@@ -6,7 +6,7 @@
 #import "common/util.typ": *
 
 #import "@preview/i-figured:0.2.3"
-
+#import "@preview/hallon:0.1.3": style-figures
 
 
 // This function gets your whole document as its `body` and formats it.
@@ -386,25 +386,10 @@
         v(32pt)
       )
     ]
-    // rest figure/equation numbers for each chapter
-    // -> manual reimplementation of the i-figured.reset-counters(...) function
-    //   -> fixes: heading page is wrong due to pagebreak 
-    if figure_numbering_per_chapter {
-      for kind in (image, table, raw)  {
-        counter(figure.where(kind: i-figured._prefix + repr(kind))).update(0)
-      }
-    }
     if equation_numbering_per_chapter {
         counter(math.equation).update(0)
     }
   }
-  // rest figure numbers for each chapter
-  // -> not working together with pagebreak of heading level 1
-  //   -> heading page is wrong
-  //show heading: it => if figure_numbering_per_chapter {
-  //    i-figured.reset-counters.with()(it)
-  //  } else {it}
-
 
   // heading level 2 
   show heading.where(
@@ -480,14 +465,6 @@
         fallback: false,
         weight: "regular"
   )
-  // figure numbering per Chapter
-  show figure: it => {
-    if figure_numbering_per_chapter {
-      i-figured.show-figure(it)
-    }
-    else {it}
-  }
-
 
   // configure footnotes
   set footnote.entry(
@@ -520,6 +497,7 @@
     }
   }
 
+  show: style-figures.with(heading-levels: 1)
 
   ///////////////////////////////////////
   // Display font checks
