@@ -497,7 +497,11 @@
     }
   }
 
-  show: style-figures.with(heading-levels: 1)
+  show: it => if figure_numbering_per_chapter {
+    style-figures.with(heading-levels: 1)(it)
+  } else {
+    it
+  }
 
   ///////////////////////////////////////
   // Display font checks
