@@ -8,6 +8,10 @@
 
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 
+#import "template/common/vendored/hallon/0.2.0/lib.typ": style-figures, style-equations
+
+#show: style-figures(heading-levels: 1).rule
+#show: style-equations(heading-levels: 1).rule
 
 // setup
 // #set page(width: 20cm, height:auto)
