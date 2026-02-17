@@ -110,13 +110,6 @@ typst compile main.typ --font-path assets/fonts/ --pdf-standard a-2b
 ```
 In case this should not yield a PDF which is accepted by TUbama, you can use a converter to convert from the Typst output to PDF/A, but check that there are no losses during the conversion. 
 
-## Development
+## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-## Dev Notes
-### Publish Locally
-For creating a local package you need to use the `scripts/publish.py` script.
-```python
-python ./scripts/publish.py --local
-```

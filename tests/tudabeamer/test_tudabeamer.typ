@@ -1,8 +1,6 @@
 // imports
 
-#import "template/lib.typ": *
-#import "template/common/tudacolors.typ": tuda_colors
-#import "template/common/props.typ": *
+#import "@preview/not-tudabeamer-2023:0.2.1": *
 
 #show: not-tudabeamer-2023-theme.with(
   config-info(

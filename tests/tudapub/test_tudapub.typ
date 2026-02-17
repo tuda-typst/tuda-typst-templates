@@ -6,9 +6,7 @@
 #show: make-glossary
 
 
-#import "template/tudapub.typ": tudapub
-#import "template/common/tudacolors.typ": tuda_colors
-#import "template/common/props.typ": *
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 
 
 // setup

@@ -1,8 +1,6 @@
 // imports
 
-#import "template/lib.typ": tudaexercise
-#import "template/common/tudacolors.typ": tuda_colors
-#import "template/common/props.typ": *
+#import "@preview/athena-tu-darmstadt-exercise:0.2.0": *
 
 
 // setup

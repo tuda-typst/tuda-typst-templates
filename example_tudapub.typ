@@ -10,9 +10,7 @@
 #show: make-glossary
 
 
-//#import "templates/tudapub/tudapub.typ": tudapub
-//#import "templates/tudapub/tudacolors.typ": tuda_colors
-#import "templates/tudapub/template/lib.typ": *
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 
 // equation sub numbering
 #show: equate.with(sub-numbering: true, number-mode: "label")

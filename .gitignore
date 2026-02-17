@@ -12,3 +12,5 @@ test*.pdf
 .vscode
 .DS_Store
 .venv
+
+packages
