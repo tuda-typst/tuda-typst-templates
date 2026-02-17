@@ -11,6 +11,7 @@ import sys
 
 # gitignore style pattern relative to repo root
 publish_ignore_files = """
+/packages
 /example_tudapub.pdf
 /example_tudapub.typ
 /.typos.toml
@@ -20,7 +21,6 @@ publish_ignore_files = """
 
 /tests/
 /tud_design_guide/
-**/TODO.md
 
 /templates_examples/*/logos/*
 !/templates_examples/*/logos/*.sh
@@ -174,13 +174,13 @@ def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
 
     # replace markdown links in readme -> add full repo path in front
     links_to_replace_with_repo_path = [
+        'templates/tudaexercise/template/tudaexercise.typ',
         'templates/tudapub/template/tudapub.typ',
+        'templates/not-tudabeamer-2023/template/lib.typ',
+        'templates_examples/tudaexercise/main.typ',
         'example_tudapub.pdf',
         'example_tudapub.typ',
-        'templates/tudapub/tudapub.typ',
-        'templates/tudapub/TODO.md',
-        'templates/tudaexercise/template/tudaexercise.typ',
-        'templates_examples/tudaexercise/main.typ'
+        'templates_examples/not-tudabeamer-2023/main.typ',
     ]
     repo_path = package_repository + '/blob/main/'
     print('\n>> will replace links in the REAMDME.md')
