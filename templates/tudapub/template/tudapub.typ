@@ -227,6 +227,7 @@
     //spacing: 91%  // to make it look like the latex template
     spacing: 95%  // to make it look like the latex template
   )
+  show raw: set text(font: "Roboto Mono", spacing: 100%) // spacing is needed to preserve monospacing
 
   if paper != "a4" {
     panic("currently just a4 as paper is supported")
