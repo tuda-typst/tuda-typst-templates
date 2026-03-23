@@ -1,4 +1,4 @@
-#import "props.typ": tud_heading_line_thin_stroke, tud_header_line_height
+#import "props.typ": tud_header_line_height, tud_heading_line_thin_stroke
 
 #let tud_body_line_height = tud_header_line_height / 2
 
@@ -10,17 +10,20 @@
   text-prefix: "",
   text-suffix: "",
   counter-suffix: "",
-  it
+  it,
 ) = {
   set text(
-      font: "Roboto",
-      fallback: false,
-      weight: text-weight,
-      size: text-size
-    )
+    font: "Roboto",
+    fallback: false,
+    weight: text-weight,
+    size: text-size,
+  )
   //set block(below: 0.5em, above: 2em)
   block(
-    breakable: false, inset: 0pt, outset: 0pt, fill: none,
+    breakable: false,
+    inset: 0pt,
+    outset: 0pt,
+    fill: none,
     //above: heading_margin_before,
     //below: 0.6em //+ 10pt
   )[
@@ -37,11 +40,10 @@
         }
         it.body
         text-suffix
-      
       }),
       v(heading_line_spacing),
       line(length: 100%, stroke: tud_heading_line_thin_stroke),
-      v(10pt)
+      v(10pt),
     )
   ]
 }
@@ -62,7 +64,7 @@
       if ruled {
         line(length: 100%, stroke: tud_body_line_height)
       }
-    }
+    },
   )
 }
 

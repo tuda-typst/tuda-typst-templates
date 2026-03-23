@@ -10,13 +10,13 @@
     date: datetime.today(),
     department: [Department],
     institute: [Institute],
-    logo: text(fallback: true, size: 0.75in, emoji.cat.face)
+    logo: text(fallback: true, size: 0.75in, emoji.cat.face),
     //logo: image("logos/tuda_logo.svg", height: 100%)
   ),
   config-store(
     show-logo: true,
     show-bar: true,
-    enable-header: true
+    enable-header: true,
   ),
   accentcolor: "9c",
 )

@@ -32,14 +32,14 @@ def main():
     for pkg in packages:
         template_dir = root_dir / "templates" / pkg["template"]
         toml_path = template_dir / "typst.toml"
-        
+
         version = get_version(toml_path)
 
         preview_dir = root_dir / "packages" / "preview" / pkg["name"]
         preview_dir.mkdir(parents=True, exist_ok=True)
 
         link_path = preview_dir / version
-        
+
         target_path = Path("..", "..", "..", "templates", pkg["template"])
 
         if link_path.is_symlink():

@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 # first download the logo from:
 #   https://download.hrz.tu-darmstadt.de/protected/ULB/tuda_logo.pdf

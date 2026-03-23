@@ -11,10 +11,10 @@
     curve(
       stroke: .5pt,
       curve.move((0em, -.5em)),
-      curve.line((0em,0em)),
-      curve.line((1em,0em)),
-      curve.line((1em,-.5em)),
-    )
+      curve.line((0em, 0em)),
+      curve.line((1em, 0em)),
+      curve.line((1em, -.5em)),
+    ),
   )
 
   let student_id_boxes = range(7).map(_ => number_form_box).join([ ])
@@ -36,7 +36,7 @@
     ],
     if "id" in headline [
       #dict.student_id: #student_id_boxes
-    ]
+    ],
   ).filter(x => x != none)
 
   grid(
