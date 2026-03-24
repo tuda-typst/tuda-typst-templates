@@ -3,11 +3,12 @@ import os
 import re
 import sys
 from pathlib import Path
+import tomllib
 
 def get_version(toml_path: Path) -> str:
-    content = toml_path.read_text(encoding="utf-8")
-    match = re.search(r'version\s*=\s*"([^"]+)"', content)
-    return match.group(1)
+    with open(toml_path, "rb") as f:
+        data = tomllib.load(f)
+        return data.get("package", {}).get("version")
 
 def main():
     script_path = Path(__file__).resolve()
