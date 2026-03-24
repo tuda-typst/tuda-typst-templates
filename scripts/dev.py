@@ -8,7 +8,7 @@ import tomllib
 def get_version(toml_path: Path) -> str:
     with open(toml_path, "rb") as f:
         data = tomllib.load(f)
-        return data.get("package", {}).get("version")
+        return data["package"]["version"]
 
 def main():
     script_path = Path(__file__).resolve()
