@@ -2,7 +2,7 @@
 
 Run once (per version bump):
 ```bash
-./scripts/dev.sh
+python3 ./scripts/dev.py
 ```
 
 For running the tests/examples against your changes:
