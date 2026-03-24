@@ -1,23 +1,12 @@
 # Contributing
 
-Run once (per version bump):
+To develop against your local changes, first run the python script to create local symlinks in a `packages/` folder that is then used by Typst. You only need to run the script once per version bump. Then start your editor / `typst` with the environment variable set to an absolute path to that folder.
 ```bash
 python3 ./scripts/dev.py
-```
-
-For running the tests/examples against your changes:
-```bash
 TYPST_PACKAGE_PATH=$PWD/packages code .
 ```
 
-For running the tests/examples against the released version (e.g. to test for regressions):
+To run tests / examples against the released version, simply start your editor / `typst` without the environment variable set. This can be useful to verify that you code changes did not have unintended effects. 
 ```bash
 code .
-```
-
-## Publish locally
-
-For creating a local package you need to use the `scripts/publish.py` script.
-```python
-python ./scripts/publish.py --local
 ```
