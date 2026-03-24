@@ -15,12 +15,9 @@ insert_final_newline = true
 indent_size = 2
 trim_trailing_whitespace = false
 
-[flake.{lock,nix}]
-indent_size = 2
-
-[{Makefile,*.tmTheme,*.bib}]
+[*.bib]
 indent_style = tab
 
-[{COPYING,LICENSE,NOTICE,*.{md,mf,xmp,typ}}]
+[{LICENSE,*.{md,typ}}]
 indent_size = unset
 trim_trailing_whitespace = false
