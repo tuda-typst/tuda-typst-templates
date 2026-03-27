@@ -25,7 +25,7 @@
 
 
   //abstract: [The abstract...],
-  logo_tuda: image("logos/tuda_logo_replace.svg"),
+  logo_tuda: image("logos/tuda_logo.svg"),
 
   margin: tud_page_margin_big,
 
