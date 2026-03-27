@@ -5,7 +5,7 @@
 
 // add
 // - subpar for sub-figures
-#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tuda_colors, hallon.style-figures, hallon.style-equations, hallon.subfigure, equate
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tuda_colors, hallon.style-figures, hallon.style-equations, hallon.subfigure, equate.equate
 #show: style-figures(heading-levels: 1).rule
 #show: style-equations(heading-levels: 1).rule
 #show: equate.with(sub-numbering: true, number-mode: "label")
