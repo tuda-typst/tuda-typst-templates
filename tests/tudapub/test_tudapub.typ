@@ -5,11 +5,7 @@
 #import "@preview/drafting:0.1.2": *
 #show: make-glossary
 
-
-#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
-
-#import "template/common/vendored/hallon/0.2.0/lib.typ": style-figures, style-equations
-
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tud_page_margin_big, hallon.style-figures, hallon.style-equations
 #show: style-figures(heading-levels: 1).rule
 #show: style-equations(heading-levels: 1).rule
 
@@ -29,7 +25,7 @@
 
 
   //abstract: [The abstract...],
-  logo_tuda: image("logos/tuda_logo.svg"),
+  logo_tuda: image("logos/tuda_logo_replace.svg"),
 
   margin: tud_page_margin_big,
 

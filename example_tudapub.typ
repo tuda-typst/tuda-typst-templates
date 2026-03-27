@@ -5,17 +5,12 @@
 
 // add
 // - subpar for sub-figures
-#import "@preview/equate:0.1.0": equate
-#import "@preview/hallon:0.1.3" as hallon: subfigure
-
-#show: make-glossary
-
-
-#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
-
-// equation sub numbering
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tuda_colors, hallon.style-figures, hallon.style-equations, hallon.subfigure, equate
+#show: style-figures(heading-levels: 1).rule
+#show: style-equations(heading-levels: 1).rule
 #show: equate.with(sub-numbering: true, number-mode: "label")
 
+#show: make-glossary
 
 // setup the template
 #show: tudapub.with(
@@ -42,7 +37,7 @@
 
   bib: bibliography("tests/tudapub/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
 
-  logo_tuda: image("assets/logos/tuda_logo.svg"),
+  logo_tuda: image("assets/logos/tuda_logo_replace.svg"),
   
   // logo_institute: image("templates/tudapub/logos/iasLogo.jpeg"),
   // logo_institute_sizeing_type: "width",
@@ -63,7 +58,6 @@
 
   //outline_table_of_contents_style: "adapted",
   //reduce_heading_space_when_first_on_page: false
-  figure_numbering_per_chapter: true, // needed for subfigure use
 
   // Which pages to insert
   // Pages can be disabled individually.
@@ -462,13 +456,6 @@ In the following, we show the show-command of this template with all doc and def
 
   // Use 'Roboto Slab' instead of 'Robot' font for figure captions.
   figure_caption_font_roboto_slab: true,
-
-  // Figures have the numbering <chapter-nr>.<figure-nr>
-  figure_numbering_per_chapter: true,
-
-  // Equations have the numbering <chapter-nr>.<equation-nr>
-  // @todo This seems to increase the equation number in steps of 2 instead of one
-  equation_numbering_per_chapter: false,
 )
 ```
 

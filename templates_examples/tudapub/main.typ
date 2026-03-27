@@ -43,7 +43,6 @@
 
 
   // outline_table_of_contents_style: "adapted",
-  // figure_numbering_per_chapter: false
   // 
   // Set space above the heading to zero if it's the first element on a page.
   // This is currently implemented as a hack (check the y pos of the heading).
