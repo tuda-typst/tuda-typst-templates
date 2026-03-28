@@ -5,9 +5,11 @@
 #import "@preview/drafting:0.1.2": *
 #show: make-glossary
 
-#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tud_page_margin_big, hallon.style-figures, hallon.style-equations
-#show: style-figures(heading-levels: 1).rule
-#show: style-equations(heading-levels: 1).rule
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
+#let subfigure = hallon.subfigure
+#show: hallon.style-figures(heading-levels: 1).rule
+#show: hallon.style-equations(heading-levels: 1).rule
+#show: equate.equate.with(sub-numbering: true, number-mode: "label")
 
 // setup
 // #set page(width: 20cm, height:auto)

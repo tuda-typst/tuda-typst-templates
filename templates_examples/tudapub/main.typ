@@ -1,4 +1,8 @@
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
+#let subfigure = hallon.subfigure
+#show: hallon.style-figures(heading-levels: 1).rule
+#show: hallon.style-equations(heading-levels: 1).rule
+#show: equate.equate.with(sub-numbering: true, number-mode: "label")
 
 // setup the template
 #show: tudapub.with(
@@ -70,10 +74,6 @@
     - $m$ - mass
   ]
 )
-
-
-
-
 
 // test content
 = First Chapter

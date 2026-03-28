@@ -3,10 +3,11 @@
 #import "@preview/glossarium:0.5.4":  make-glossary, register-glossary, print-glossary, gls, glspl //make-glossary, print-glossary, gls, glspl 
 #import "@preview/mitex:0.2.3": *
 
-#import "@preview/athena-tu-darmstadt-thesis:0.1.2": tudapub, tuda_colors, hallon.style-figures, hallon.style-equations, hallon.subfigure, equate.equate
-#show: style-figures(heading-levels: 1).rule
-#show: style-equations(heading-levels: 1).rule
-#show: equate.with(sub-numbering: true, number-mode: "label")
+#import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
+#let subfigure = hallon.subfigure
+#show: hallon.style-figures(heading-levels: 1).rule
+#show: hallon.style-equations(heading-levels: 1).rule
+#show: equate.equate.with(sub-numbering: true, number-mode: "label")
 
 #show: make-glossary
 
