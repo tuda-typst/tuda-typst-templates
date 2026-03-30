@@ -7,7 +7,7 @@
 #import "common/format.typ": text-roboto
 #import "title.typ": *
 #import "locales.typ": *
-#import "title-sub.typ" as title-sub
+#import "info-layout.typ" as info-layout
 #import "headline.typ": resolve-headline
 
 #let design-defaults = (
@@ -49,21 +49,21 @@
 ///   - `subtitle`
 ///   - `author` 
 ///   
-///   Additionally the following items are used by the `exercise` `title-sub`:
+///   Additionally the following items are used by the `exercise` info-layout:
 ///   - `term`
 ///   - `date`
 ///   - `sheet`
 ///   
-///   Other `title-sub`s may use more options, which can be added here. See the documentation
-///   of the `title-sub` for corresponding items.
+///   Other `info-layouts`s may use more options, which can be added here. See the documentation
+///   of the `info-layout` for corresponding items.
 ///   
 ///   Note: Items mapped to `none` are ignored aka. internally the dict is processed without
 ///   them.
 /// 
-/// - title-sub (content, function, none): The content of the subline in the title card.
-///   By default the `title-sub.exercise` style.
+/// - info-layout (content, function, none): The content of the subline in the title card.
+///   By default the `info-layout.exercise` style.
 /// 
-///   See the `title-sub` export for functions to insert here or if you do not find something
+///   See the `info-layout` export for functions to insert here or if you do not find something
 ///   fitting to your needs you can also pass raw content and completely customize it yourself.
 /// 
 /// - design (dictionary): Options for the design of the template. Possible entries: 
@@ -101,7 +101,7 @@
     lecturer: none,
   ),
 
-  title-sub: title-sub.exercise(),
+  info-layout: info-layout.exercise(),
 
   design: design-defaults,
 
@@ -320,7 +320,7 @@
         logo, 
         tud_title_logo_height, 
         info,
-        title-sub,
+        info-layout,
         dict
         )
     }

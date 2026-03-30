@@ -1,54 +1,5 @@
-/// Provides functions to style the subline in the title card of the template.
-/// Currently the following two functions exist:
-/// - exercise: Behaves pretty much like in the LaTeX template
-/// - submission: Behaves out of the box more like Rubos LaTeX template but also has
-///   customization options and allows more info-fields.
-
-#import "common/format.typ": format-date, text-roboto
-
-/// To be used as `title-sub`
-/// 
-/// The default version of the title subline.
-/// 
-/// *Possible `info` items:*
-/// - `term`: The current term (types: #str)
-/// - `date`: A date related to the exercise (types: #str, #datetime)
-/// - `sheet`: The number of this sheet/exercise (types: #int)
-/// 
-/// - additional (content,none): Additional content to be displayed after the previous options
-/// -> function
-#let exercise(additional: none) = (info, dict) => {
-  if "term" in info {
-    if info.term == auto {
-      // if month between 4 and 9 then it's summer term, else it's winter term
-      let month = datetime.today().month()
-      let year = datetime.today().year()
-      if month >= 4 and month <= 9 {
-        dict.summer_term + " " + str(year)
-      } else {
-        dict.winter_term
-        if month < 4 {
-          year = year - 1
-        }
-        " " + str(year) + "/" + str(year + 1)
-      }
-    } else {
-      info.term
-    }
-    linebreak()
-  }
-  if "date" in info {
-    format-date(info.date, dict.locale)
-    linebreak()
-  }
-  if "sheet" in info {
-    [#dict.sheet #info.sheet]
-    linebreak()
-  }
-  if additional != none {
-    additional
-  }
-}
+#import "../common/format.typ": format-date, text-roboto
+#import "utils.typ": resolve-term
 
 #let submission-item-style(key, value) = if type(value) == array {
   [
@@ -59,8 +10,6 @@
   [#text-roboto(strong(key)): #value]
 }
 
-/// To be used as `title-sub`
-/// 
 /// Allows more customization about how to display information about this document.
 /// 
 /// *Possible `info` items:*
@@ -126,8 +75,12 @@
   } else if i in info {
     assert(i in dict,
       message: "Unknown item '" + i + "' in submission, please use manual syntax: (\"Display Name\", \"Value\")")
+    let value = info.at(i)
+    if i == "term" {
+      value = resolve-term(value, info, dict)
+    }
     // Format date ignores formatting if type isn't date thus this works
-    return item-style(dict.at(i), format-date(info.at(i), dict.locale))
+    return item-style(dict.at(i), format-date(value, dict.locale))
   } else {
     return none
   }
