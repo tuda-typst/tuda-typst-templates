@@ -1,11 +1,13 @@
 #import "common/format.typ": format-date
 
-#let resolve-title-sub(title-sub, info, dict) = if type(title-sub) == content {
-  title-sub
-} else if type(title-sub) == function {
-  title-sub(info, dict)
+#let title-info-keys = ("title", "header_title", "subtitle", "author")
+
+#let resolve-info-layout(info-layout, info, dict) = if type(info-layout) == content {
+  info-layout
+} else if type(info-layout) == function {
+  info-layout(info, dict)
 } else {
-  panic("title-sub has unsupported type. Expected content, function or none. Got " + type(title-sub))
+  panic("info-layout has unsupported type. Expected content, function or none. Got " + type(info-layout))
 }
 
 #let tuda-make-title(
@@ -18,7 +20,7 @@
   logo_element,
   logo_height,
   info,
-  title-sub,
+  info-layout,
   dict
 ) = {
   let text_on_accent_color = if colorback {
@@ -100,10 +102,10 @@
       )
       v(6pt)
       line(length: 100%, stroke: stroke)
-      if title-sub != none {
+      if info-layout != none and info.keys().any(x => not x in title-info-keys) {
         block(
           inset: text_inset,
-          resolve-title-sub(title-sub, info, dict)
+          resolve-info-layout(info-layout, info, dict)
         )
         line(length: 100%, stroke: stroke)
       }
