@@ -8,10 +8,18 @@ python3 ./scripts/dev.py
 TYPST_PACKAGE_PATH=$PWD/packages code .
 ```
 
-To run tests / examples against the released version, simply start your editor / `typst` without the environment variable set. This can be useful to verify that you code changes did not have unintended effects. 
+To run tests / examples against the released version, simply start your editor / `typst` without the environment variable set. This can be useful to verify that your code changes did not have unintended effects.
 ```bash
 code .
 ```
+
+## VS Code Setup (Optional)
+
+The repository includes recommended extensions in [.vscode/extensions.json](.vscode/extensions.json) and shared defaults in [.vscode/settings.default.json](.vscode/settings.default.json).
+
+If not prompted, you can press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) and select "Extensions: Show Recommended Extensions" to see the list of recommended extensions.
+
+Using the recommended extensions gives you formatter defaults consistent with the repository (including typstyle width), while still letting you override settings locally if needed.
 
 ## Pre-commit Hooks
 
