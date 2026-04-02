@@ -24,12 +24,12 @@
   // German abstract (Zusammenfassung)
   abstract_german: none,
 
-  // "phd", "master" or "bachelor" thesis
+  // "dr", "drfinal", "master" or "bachelor" thesis
   thesis_type: "master",
 
   // PhD information
-  phd_type: "rernat", // rernat, nat, ing, etc.
-  phd_university: "Technische Universität Darmstadt",
+  dr_type: "rernat", // rernat, nat, ing, etc.
+  dr_university: "Technische Universität Darmstadt",
 
   // The code of the accentcolor.
   // A list of all available accentcolors is in the list tuda_colors
@@ -43,6 +43,7 @@
 
   // Author name as text, e.g "Albert Author"
   author: "An Author",
+  birthplace: none,
 
   // Date of submission as string
   date_of_submission: datetime(
@@ -576,13 +577,15 @@
       title: title,
       title_german: title_german,
       thesis_type: thesis_type,
-      phd_type: phd_type,
+      dr_type: dr_type,
       accentcolor: accentcolor,
       language: language,
       author: author,
+      birthplace: birthplace,
       date_of_submission: date_of_submission,
       date_of_examination: date_of_examination,
       location: location,
+      dr_university: dr_university,
       reviewer_names: reviewer_names,
       logo_tuda: logo_tuda,
       logo_institute: logo_institute,
