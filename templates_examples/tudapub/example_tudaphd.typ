@@ -24,8 +24,9 @@
     With Typst
   ],
   author: "Albert Autor",
-  thesis_type: "phd",
-  phd_type: "rernat",
+  birthplace: "Dieburg",
+  thesis_type: "dr",
+  dr_type: "rernat",
   reviewer_names: ("Test1", "Test2"),
 
   // to deactivate the sub logo text set logo_sub_content_text: none,
