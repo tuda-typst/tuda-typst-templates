@@ -9,7 +9,10 @@ test*.pdf
 
 !example_tudapub.pdf
 
-.vscode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.default.json
+.VSCodeCounter/
 .DS_Store
 .venv
 

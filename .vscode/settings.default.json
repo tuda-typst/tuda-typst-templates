@@ -1,0 +1,6 @@
+{
+    "files.insertFinalNewline": true,
+    "tinymist.formatterMode": "typstyle",
+    "tinymist.formatterIndentSize": 2,
+    "tinymist.formatterPrintWidth": 120
+}
