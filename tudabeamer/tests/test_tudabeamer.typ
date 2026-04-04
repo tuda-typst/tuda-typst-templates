@@ -18,9 +18,9 @@
   config-store(
     show-logo: true,
     show-bar: true,
-    enable-header: true
+    enable-header: true,
   ),
-  accentcolor: "9c", 
+  accentcolor: "9c",
 )
 
 #title-slide()

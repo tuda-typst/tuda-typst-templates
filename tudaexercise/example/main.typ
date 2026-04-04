@@ -1,5 +1,6 @@
 #import "@preview/athena-tu-darmstadt-exercise:0.2.0": (
-  subtask, task, text-roboto, info-layout, tuda-gray-info, tuda-section, tuda-subsection, tudaexercise, task-points-header, point-format, difficulty-format, tuda-difficulty-stars,
+  difficulty-format, info-layout, point-format, subtask, task, task-points-header, text-roboto, tuda-difficulty-stars,
+  tuda-gray-info, tuda-section, tuda-subsection, tudaexercise,
 )
 
 #show: tudaexercise.with(
@@ -106,7 +107,7 @@ The leftover options are:
 - `margins` which is a dictionary controlling the page margins
 - `paper` which currently only supports `"a4"`
 - `headline` control the headline. The following values are supported:
-  - An array (or single string) with keys `"title"`, `"name"` and `"id"` for the default headline style. Further, `"fl"` can be provided to control the order of first and last name in the header. 
+  - An array (or single string) with keys `"title"`, `"name"` and `"id"` for the default headline style. Further, `"fl"` can be provided to control the order of first and last name in the header.
   - Raw `content` that will be displayed
   - `none` or `()` for no headline
 
@@ -124,7 +125,7 @@ Similarly subtasks are created using
 
 If you dislike the default task prefix, you can also set your own by changing the `taks-prefix` field of the template.
 
-= Tasks with points and difficulty #task-points-header(points:5,difficulty: 2.65)
+= Tasks with points and difficulty #task-points-header(points: 5, difficulty: 2.65)
 == Task point header #task-points-header(points: 2)
 If you want to add points and difficulty to your tasks, you can use the `task-points-header` function. This will add a header to the task with the points and difficulty.
 You can pass the following parameters:
@@ -159,16 +160,8 @@ They take the same parameters as the `task-points-header` function, but addition
   details-seperator: " | ",
   hspace: none,
   star-fill: blue,
-  points-function: point-format.with(
-    points-name-single: "Bonus point",
-    points-name-plural: "Bonus points",
-  ),
-  difficulty-function: tuda-difficulty-stars.with(
-    difficulty-name: "Effort",
-    edges: 6,
-    rotation: 45deg,
-    baseline: 2pt,
-  ),
+  points-function: point-format.with(points-name-single: "Bonus point", points-name-plural: "Bonus points"),
+  difficulty-function: tuda-difficulty-stars.with(difficulty-name: "Effort", edges: 6, rotation: 45deg, baseline: 2pt),
 ))
 As mentioned above, you can overwrite the point- and difficulty functions of the `task-points-header` function. This allows you to customize the header even further. For example, you can change the number of edges of the stars, the rotation of the stars, or the fill color of the stars:
 ```typst

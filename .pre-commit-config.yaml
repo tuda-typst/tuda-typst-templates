@@ -1,0 +1,30 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: mixed-line-ending
+        args: [--fix=lf]
+  - repo: local # currently using system installation, until https://github.com/typstyle-rs/typstyle/issues/460 is resolved
+    hooks:
+      - id: typstyle
+        name: typstyle
+        description: Format files with typstyle from system PATH
+        entry: typstyle
+        language: system
+        types: [file]
+        files: \.typ$
+        args: [
+          "-i",
+          "-l",
+          "120",
+        ]
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: "3.6.1" # pick a git hash / tag to point to
+    hooks:
+      - id: editorconfig-checker
+        exclude_types: [tex]
+        alias: ec

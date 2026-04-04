@@ -1,6 +1,6 @@
 // imports
 #import "@preview/cetz:0.2.2": canvas, plot
-#import "@preview/glossarium:0.5.4":  make-glossary, register-glossary, print-glossary, gls, glspl //make-glossary, print-glossary, gls, glspl 
+#import "@preview/glossarium:0.5.4": gls, glspl, make-glossary, print-glossary, register-glossary //make-glossary, print-glossary, gls, glspl
 #import "@preview/mitex:0.2.3": *
 
 // add
@@ -33,7 +33,7 @@
   ],
 
   accentcolor: "9c",
- 
+
   abstract: [
     This is a template to write your thesis with the corporate design of #link("https://www.tu-darmstadt.de/")[TU Darmstadt].
     For instructions on how to set up this template see @sec_usage.
@@ -42,7 +42,7 @@
   bib: bibliography("tests/tudapub/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
 
   logo_tuda: image("assets/logos/tuda_logo.svg"),
-  
+
   // logo_institute: image("templates/tudapub/logos/iasLogo.jpeg"),
   // logo_institute_sizeing_type: "width",
 
@@ -59,7 +59,6 @@
   //   bottom: 56mm
   // ),
 
-
   //outline_table_of_contents_style: "adapted",
   //reduce_heading_space_when_first_on_page: false
   //figure_numbering_per_chapter: false
@@ -70,7 +69,7 @@
     title_page: true,
     outline_table_of_contents: true,
     // "Erklärung zur Abschlussarbeit"
-    thesis_statement_pursuant: true
+    thesis_statement_pursuant: true,
   ),
 
   thesis_statement_pursuant_include_english_translation: false,
@@ -108,12 +107,12 @@ Here is some demo text. #lorem(50)
 This text contains two#footnote[The number two can also be written as 2.] footnotes#footnote[This is a first footnote. \ It has a second line.].
 
 === Figures
-The following @fig_test represents a demo Figure. 
+The following @fig_test represents a demo Figure.
 #figure(
   rect(inset: 20pt, fill: gray)[
     Here should be an Image
   ],
-  caption: [The figure caption.]
+  caption: [The figure caption.],
 ) <fig_test>
 
 We can also make tables, as in @fig_tab_test.
@@ -121,9 +120,9 @@ We can also make tables, as in @fig_tab_test.
   table(
     columns: 2,
     [A], [B],
-    [1], [2]
+    [1], [2],
   ),
-  caption: [This is the table title.]
+  caption: [This is the table title.],
 ) <fig_tab_test>
 The text continues normally after the Figures.
 
@@ -133,21 +132,21 @@ The text continues normally after the Figures.
 Let's autogenerate some stuff:
 //#let x = (1, 2, 3)
 #let x = range(0, 3)
-#for (i, el) in x.map(el => el*2).enumerate() [
-  - Element Nr. #i has value #el 
-    #circle(fill: color.linear-rgb(100, 100, el*20), width: 12pt)
-    //$circle$
+#for (i, el) in x.map(el => el * 2).enumerate() [
+  - Element Nr. #i has value #el
+    #circle(fill: color.linear-rgb(100, 100, el * 20), width: 12pt)
+  //$circle$
 ]
 
 == Lists
 This is a list:
- + an item
- + another item
++ an item
++ another item
 
 This is another list
- - an item
- - another item
- - yet another item
+- an item
+- another item
+- yet another item
 
 
 #pagebreak()
@@ -159,43 +158,43 @@ Math: $x + y (a+b)/2$.
 
 
 $
-"Align:"& \
-        & x+y^2    && != 27 sum_(n=0)^N e^(i dot pi dot n) \
-        & "s.t. "  && b c
-        \
-        \
-        & mat(
-            1,3 ;
-            3, 4
-          )^T
-          && = 
-          alpha 
-          mat(
-            x ,y ;
-            x_2, y_2
-          )^T
-          \
-          \
-          & underbrace( cal(B) >= B , "This is fancy!")
-\
-x &= y^2 + 12  & "(This does A)"
-\
-y &= z \/ 2  =  z / 2 & "(This does B)" #<eq.last>
-$ 
+  "Align:"& \
+  & x+y^2 && != 27 sum_(n=0)^N e^(i dot pi dot n) \
+  & "s.t. " && b c
+  \
+  \
+  & mat(
+    1, 3;
+    3, 4
+  )^T
+  && =
+  alpha
+  mat(
+    x, y;
+    x_2, y_2
+  )^T
+  \
+  \
+  & underbrace(cal(B) >= B, "This is fancy!")
+  \
+  x &= y^2 + 12 & "(This does A)"
+  \
+  y &= z \/ 2 = z / 2 & "(This does B)" #<eq.last>
+$
 In @eq.last we can see cool stuff.
 
 Sub equations:
 $
- a &= "with line number" #<eq.second.sub> \
- b &= "no line number" \
- b &= "with line number" #<eq.second.sub2>
+  a & = "with line number" #<eq.second.sub> \
+  b & = "no line number" \
+  b & = "with line number" #<eq.second.sub2>
 $
 
 
 
 === Math in Latex
 This is possible with the package #link("https://github.com/mitex-rs/mitex")[mitex]:
-You can include the package at the beginning of your document via 
+You can include the package at the beginning of your document via
 //```typst
 #raw(lang: "typst", "#import \"@preview/mitex:0.1.0\": *")
 //```
@@ -207,28 +206,30 @@ Usage:
     ```latex
     mitex(`
     \begin{pmatrix}
-      \dot{r}_x + \omega r_x - \omega p_x \\ 
+      \dot{r}_x + \omega r_x - \omega p_x \\
       \dot{r}_x - \omega r_x + \omega p_x
     \end{pmatrix}
     =
     \begin{pmatrix}
-      +\omega \xi_x - \omega p_x \\ 
+      +\omega \xi_x - \omega p_x \\
       -\omega s_x + \omega p_x
     \end{pmatrix}
     `)
     ```,
 
-    mitex(`
+    mitex(
+      `
         \begin{pmatrix}
-            \dot{r}_x + \omega r_x - \omega p_x \\ 
+            \dot{r}_x + \omega r_x - \omega p_x \\
             \dot{r}_x - \omega r_x + \omega p_x
         \end{pmatrix}
         =
         \begin{pmatrix}
-            +\omega \xi_x - \omega p_x \\ 
+            +\omega \xi_x - \omega p_x \\
             -\omega s_x + \omega p_x
         \end{pmatrix}
-    `)
+    `,
+    ),
   )
 ]
 
@@ -243,7 +244,7 @@ To reduce the spacing above and below block equations use:
   [
     This is Text.
     $
-    x^2 = y^2
+      x^2 = y^2
     $
     This is Text.
   ],
@@ -251,10 +252,10 @@ To reduce the spacing above and below block equations use:
     #show math.equation: set block(spacing: 0.5em)
     This is Text.
     $
-    x^2 = y^2
+      x^2 = y^2
     $
     This is Text.
-  ]
+  ],
 )
 
 
@@ -276,7 +277,7 @@ In @fig.myfig we can see things.
   ],
   caption: [
     This is a figure
-  ]
+  ],
 )<fig.myfig>
 
 
@@ -392,7 +393,7 @@ In the following, we show the show-command of this template with all doc and def
 
   // Add an English translation to the "Erklärung zur Abschlussarbeit".
   thesis_statement_pursuant_include_english_translation: false,
-  
+
   // Which pages to insert
   // Pages can be disabled individually.
   show_pages: (
@@ -446,7 +447,7 @@ In the following, we show the show-command of this template with all doc and def
 
 
   // How the table of contents outline is displayed.
-  // Either "adapted":    use the default typst outline and adapt the style 
+  // Either "adapted":    use the default typst outline and adapt the style
   // or     "rewritten":  use own custom outline implementation which better reproduces the look of the original latex template.
   //                      Note that this may be less stable than "adapted", thus when you notice visual problems with the outline switch to "adapted".
   outline_table_of_contents_style: "rewritten",
@@ -486,19 +487,19 @@ The list of colors that can be used in the template argument `accentcolor`:
         inset: 4pt,
         outset: 0pt,
         width: 100%,
-        fill: rgb(color)
+        fill: rgb(color),
       )[
         #set align(center)
         #key
-      ]
+      ],
     )
-  }
+  },
 )
 
 
 
 
- 
+
 
 
 = Glossary
@@ -508,17 +509,22 @@ The list of colors that can be used in the template argument `accentcolor`:
   // a term with a long form
   (key: "unamur", short: "UNamur", long: "Université de Namur"),
   // no long form here
-  (key: "kdecom", short: "KDE Community", description:"An international team developing and distributing Open Source software."),
+  (
+    key: "kdecom",
+    short: "KDE Community",
+    description: "An international team developing and distributing Open Source software.",
+  ),
   // a full term with description containing markup
   (
-    key: "oidc", 
-    short: "OIDC", 
-    long: "OpenID Connect", 
+    key: "oidc",
+    short: "OIDC",
+    long: "OpenID Connect",
     description: [OpenID is an open standard and decentralized authentication protocol promoted by the non-profit
-     #link("https://en.wikipedia.org/wiki/OpenID#OpenID_Foundation")[OpenID Foundation].]),
+      #link("https://en.wikipedia.org/wiki/OpenID#OpenID_Foundation")[OpenID Foundation].],
+  ),
 )
 #register-glossary(glossary)
 #print-glossary(
   glossary,
-  show-all: true
+  show-all: true,
 )

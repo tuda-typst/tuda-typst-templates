@@ -1,0 +1,25 @@
+name: run style checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Set up Git repository
+      uses: actions/checkout@v6
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.14"
+    - name: Install typstyle # TODO: install via pre-commit hook once https://github.com/typstyle-rs/typstyle/issues/460 is resolved
+      uses: taiki-e/install-action@v2
+      with:
+        tool: typstyle
+    - name: Execute Pre-commit Hooks
+      uses: pre-commit/action@v3.0.1

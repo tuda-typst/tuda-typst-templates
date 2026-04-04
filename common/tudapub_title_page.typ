@@ -19,7 +19,6 @@
   // language for correct hyphenation
   language: "en",
 
-
   // author name as text, e.g "Albert Author"
   author: "A Author",
 
@@ -54,9 +53,8 @@
   // E.g. logo_sub_content_text: [ Institute A \ filed of study: \ B]
   logo_sub_content_text: none,
 
-  title_height: 3.5em
+  title_height: 3.5em,
 ) = {
-
   // vars
   let accentcolor_rgb = tuda_colors.at(accentcolor)
   let title_separator_spacing = 15pt
@@ -68,11 +66,10 @@
   let submission_date = format-date(date_of_submission, language)
 
   let thesis_type_text = {
-    if lower(thesis_type) == "master" {"Master"}
-    else if lower(thesis_type) == "bachelor" {"Bachelor"}
-    else {panic("thesis_type has to be either 'master' or 'bachelor'")}
+    if lower(thesis_type) == "master" { "Master" } else if lower(thesis_type) == "bachelor" { "Bachelor" } else {
+      panic("thesis_type has to be either 'master' or 'bachelor'")
+    }
   }
-
 
   ///////////////////////////////////////
   // Display the title page
@@ -85,7 +82,7 @@
       //fallback: false,
       weight: "bold",
       size: 35.86pt,
-      //height: 
+      //height:
     )
 
     //#v(80pt)
@@ -95,13 +92,14 @@
         // title
         block(
           inset: (left: title_page_inner_margin_left),
-          height: title_height)[
-            #set par(
-              justify: false,
-              leading: 20pt   // line spacing
-            )
-            #align(bottom)[#title]
-          ],
+          height: title_height,
+        )[
+          #set par(
+            justify: false,
+            leading: 20pt, // line spacing
+          )
+          #align(bottom)[#title]
+        ],
         v(title_separator_spacing),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),
         v(3mm), // title_separator_spacing
@@ -110,7 +108,7 @@
         block(inset: (left: title_page_inner_margin_left))[
           #set text(size: 12pt)
           #set par(
-            leading: 5.8pt
+            leading: 5.8pt,
           )
           #title_german
           \
@@ -121,37 +119,37 @@
           \
           \
           #for (i, reviewer_name) in reviewer_names.enumerate() [
-            #(i+1). Review: #reviewer_name
+            #(i + 1). Review: #reviewer_name
             \
           ]
           // looked better with -5pt (but -8pt fits latext template)
           #v(-8pt) // spacing optional
           #location
         ],
-        v(15pt)
+        v(15pt),
       ),
       // color rect with logos
       rect(
         fill: color.rgb(accentcolor_rgb),
         stroke: (
           top: tud_heading_line_thin_stroke,
-          bottom: tud_heading_line_thin_stroke
+          bottom: tud_heading_line_thin_stroke,
         ),
         inset: 0mm,
         width: 100%,
-        height: 100%//10em
+        height: 100%, //10em
       )[
-        
-        #v(logo_tud_height/2)
+
+        #v(logo_tud_height / 2)
         #context {
           //let tud_logo = image(logo_tuda_path, height: logo_tud_height)
           let tud_logo = [
-                #set image(height: logo_tud_height)
-                #if logo_tuda == none {
-                  box(height: logo_tud_height, fill: white)[logo_tuda \ not set!]
-                } else {
-                  logo_tuda
-                } 
+            #set image(height: logo_tud_height)
+            #if logo_tuda == none {
+              box(height: logo_tud_height, fill: white)[logo_tuda \ not set!]
+            } else {
+              logo_tuda
+            }
           ]
           let tud_logo_width = measure(tud_logo).width
           let tud_logo_offset_right = -6.3mm
@@ -159,7 +157,7 @@
 
           align(right)[
             //#natural-image(logo_tuda_path)
-            #grid( 
+            #grid(
               // tud logo
               // move logo(s) to the right
               box(inset: (right: tud_logo_offset_right), fill: black)[
@@ -167,51 +165,51 @@
                 #tud_logo
               ],
               // sub logo
-              if logo_institute != none {v(5mm)},
+              if logo_institute != none { v(5mm) },
               // height from design guidelines
               if logo_institute != none {
                 box(inset: (right: logo_institute_offset_right), fill: black)[
-                  #set image(height: tud_logo_width*(2/3))
+                  #set image(height: tud_logo_width * (2 / 3))
                   #{
                     if logo_institute_sizeing_type == "width" {
                       //image(logo_institute_path, width: tud_logo_width*(2/3))
-                      set image(width: tud_logo_width*(2/3), height: auto)
+                      set image(width: tud_logo_width * (2 / 3), height: auto)
                       logo_institute
-                    }
-                    else if logo_institute_sizeing_type == "height" {
+                    } else if logo_institute_sizeing_type == "height" {
                       //image(logo_institute_path, height: logo_tud_height*(2/3))
-                      set image(height: logo_tud_height*(2/3))
+                      set image(height: logo_tud_height * (2 / 3))
                       logo_institute
-                    }
-                    else {
+                    } else {
                       panic("logo_institute_sizeing_type has to be width or height")
                     }
                   }
                 ]
               },
-              if logo_sub_content_text != none {v(5mm)}, 
+              if logo_sub_content_text != none { v(5mm) },
               // sub box with custom text
               let logo_sub_box_extend_dx = -tud_logo_offset_right,
               if logo_sub_content_text != none {
-                move(dx: logo_sub_box_extend_dx, box(width: tud_logo_width + logo_sub_box_extend_dx,
-                    outset: 0mm, 
-                    fill: white, 
-                    inset: (
-                      top: 6pt,
-                      bottom: 6pt,
-                      left: 4.5mm,
-                      right: logo_sub_box_extend_dx,
-                    ),
-                    align(left)[
+                move(dx: logo_sub_box_extend_dx, box(
+                  width: tud_logo_width + logo_sub_box_extend_dx,
+                  outset: 0mm,
+                  fill: white,
+                  inset: (
+                    top: 6pt,
+                    bottom: 6pt,
+                    left: 4.5mm,
+                    right: logo_sub_box_extend_dx,
+                  ),
+                  align(left)[
                     #set text(weight: "regular", size: 9.96pt)
-                  #logo_sub_content_text
-                ]))
-            }
+                    #logo_sub_content_text
+                  ],
+                ))
+              },
             )
           ]
         }
-        
-      ]
+
+      ],
     )
   ]
 }

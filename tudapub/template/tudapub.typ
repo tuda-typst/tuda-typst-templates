@@ -66,7 +66,7 @@
   margin: tud_page_margin_big,
 
   // tuda logo - has to be a svg. E.g. image("PATH/TO/LOGO")
-  logo_tuda: none,  // e.g. image("logos/tuda_logo.svg")
+  logo_tuda: none, // e.g. image("logos/tuda_logo.svg")
 
   // optional sub-logo of an institute.
   // E.g. image("logos/iasLogo.jpeg")
@@ -90,29 +90,25 @@
     Institute A
   ],
 
-
   // The bibliography created with the bibliography(...) function.
   // When this is not none a references section will appear at the end of the document.
   // E.g. bib: bibliography("my_references.bib")
   bib: none,
 
-
   // Add an English translation to the "Erklärung zur Abschlussarbeit".
   thesis_statement_pursuant_include_english_translation: false,
-  
+
   // Insert an image as a signature on the "Erklärung zur Abschlussarbeit"
   thesis_statement_pursuant_signature: none,
-  
+
   // Which pages to insert
   // Pages can be disabled individually.
   show_pages: (
     title_page: true,
     outline_table_of_contents: true,
     // "Erklärung zur Abschlussarbeit"
-    thesis_statement_pursuant: true
+    thesis_statement_pursuant: true,
   ),
-
-
 
   // Insert additional pages directly after the title page.
   // E.g. additional_pages_after_title_page: [
@@ -142,7 +138,6 @@
   // Additionally, every page that is not the title page displays its page number in the footer.
   page_numbering_starts_after_outline: true,
 
-
   // For headings with a height level than this number no number will be shown.
   // The heading with the lowest level has level 1.
   // Note that the numbers of the first two levels will always be shown.
@@ -157,9 +152,8 @@
   // Thus when you experience compilation problems (slow, no convergence) set this to false.
   reduce_heading_space_when_first_on_page: false,
 
-
   // How the table of contents outline is displayed.
-  // Either "adapted":    use the default typst outline and adapt the style 
+  // Either "adapted":    use the default typst outline and adapt the style
   // or     "rewritten":  use own custom outline implementation which better reproduces the look of the original latex template.
   //                      Note that this may be less stable than "adapted", thus when you notice visual problems with the outline switch to "adapted".
   outline_table_of_contents_style: "rewritten",
@@ -183,7 +177,7 @@
   equation_numbering_per_chapter: false,
 
   // content.
-  body
+  body,
 ) = context {
   // checks
   //assert(tuda_colors.keys().contains(accentcolor), "accentcolor unknown")
@@ -196,11 +190,10 @@
   let heading_2_margin_before = 13.5pt // typst 0.12: 12pt
   let heading_3_margin_before = 13.5pt // typst 0.12: 12pt
 
-
   // Set document metadata.
   set document(
     title: title,
-    author: author
+    author: author,
   )
 
   // for typst 0.12:
@@ -213,7 +206,7 @@
   set par(
     justify: true,
     //leading: 4.8pt//0.42em//4.7pt   // line spacing
-    leading: 6.25pt//0.42em//4.7pt   // line spacing
+    leading: 6.25pt, //0.42em//4.7pt   // line spacing
   )
   //show par: set block(below: 1.1em) // was 1.2em
   set par(spacing: 1.2em)
@@ -228,7 +221,7 @@
     //spacing: 92%  // to make it look like the latex template
     //spacing: 84%  // to make it look like the latex template
     //spacing: 91%  // to make it look like the latex template
-    spacing: 95%  // to make it look like the latex template
+    spacing: 95%, // to make it look like the latex template
   )
   show raw: set text(font: "Roboto Mono", spacing: 100%) // spacing is needed to preserve monospacing
 
@@ -236,45 +229,48 @@
     panic("currently just a4 as paper is supported")
   }
 
-
-  
-
   ///////////////////////////////////////
   // page setup
   // with header and footer
-  let header = box(//fill: white,
+  let header = box(
+    //fill: white,
     grid(
-    rows: auto,
-    rect(
-      fill: color.rgb(accentcolor_rgb),
-      width: 100%,
-      height: 4mm //- 0.05mm
+      rows: auto,
+      rect(
+        fill: color.rgb(accentcolor_rgb),
+        width: 100%,
+        height: 4mm, //- 0.05mm
+      ),
+      v(1.4mm + 0.25mm),
+      // should be 1.4mm according to guidelines
+      line(length: 100%, stroke: 1.2pt),
+      //+ 0.1pt) // should be 1.2pt according to guidelines
     ),
-    v(1.4mm + 0.25mm), // should be 1.4mm according to guidelines
-    line(length: 100%, stroke: 1.2pt) //+ 0.1pt) // should be 1.2pt according to guidelines
-  ))
+  )
 
   let footer = grid(
     rows: auto,
     v(0mm),
-    line(length: 100%, stroke: 0.6pt), // should be 1.6pt according to guidelines
+    line(length: 100%, stroke: 0.6pt),
+    // should be 1.6pt according to guidelines
     v(2.5mm),
     text(
-        font: "Roboto",
-        stretch: 100%,
-        fallback: false,
-        weight: "regular",
-        size: 10pt
+      font: "Roboto",
+      stretch: 100%,
+      fallback: false,
+      weight: "regular",
+      size: 10pt,
     )[
       #set align(right)
       // context needed for page counter for typst >= 0.11.0
       #context {
         let counter_disp = counter(page).display()
         let after_table_of_contents = query(selector(<__after_table_of_contents>).before(here())).len() >= 1
-        if not page_numbering_starts_after_outline or after_table_of_contents { counter_disp }
-        else { hide(counter_disp) }
+        if not page_numbering_starts_after_outline or after_table_of_contents { counter_disp } else {
+          hide(counter_disp)
+        }
       }
-    ]
+    ],
   )
 
   let header_height = measure(header).height
@@ -287,15 +283,9 @@
   // title page has different margins
   let margin_title_page = tud_page_margin_title_page
 
-
-
-
-
-
   ////////////////////////////
   // content page setup
-  let content_page_margin_full_top = margin.top + inner_page_margin_top + 1*header_height
-
+  let content_page_margin_full_top = margin.top + inner_page_margin_top + 1 * header_height
 
   ///////////////////////////////////////
   // headings
@@ -308,23 +298,22 @@
     }
 
     let heading_font_size = {
-      if it.level <= 3 {11.9pt}
-      else {10.9pt}
+      if it.level <= 3 { 11.9pt } else { 10.9pt }
     }
 
     // change heading margin depending on its the first on the page
     let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
-      heading_3_margin_before, 
-      here(), 
+      heading_3_margin_before,
+      here(),
       content_page_margin_full_top,
-      enable: reduce_heading_space_when_first_on_page
+      enable: reduce_heading_space_when_first_on_page,
     )
 
     set text(
       font: "Roboto",
       fallback: false,
       weight: "bold",
-      size: heading_font_size
+      size: heading_font_size,
     )
     block(breakable: false, inset: 0pt, outset: 0pt)[
       #stack(
@@ -336,11 +325,10 @@
           }
           #it.body
         ],
-        v(10pt)
+        v(10pt),
       )
     ]
   }
-
 
   // heading level 5
   show heading.where(level: 5): it => {
@@ -349,16 +337,15 @@
       font: "Roboto",
       fallback: false,
       weight: "bold",
-      size: fontsize
+      size: fontsize,
     )
-    it.body + [: ] 
+    it.body + [: ]
     h(1mm)
   }
 
-
   // heading level 1
   show heading.where(
-    level: 1
+    level: 1,
   ): it => {
     // heading font style
     set text(
@@ -366,14 +353,14 @@
       fallback: false,
       weight: "bold",
       size: 20.6pt,
-      //height: 
+      //height:
     )
     [#pagebreak(weak: true)]
     block(breakable: false, inset: 0pt, outset: 0pt, fill: none)[
       #stack(
         v(20mm),
         block[
-          //\ \ 
+          //\ \
           //#v(50pt)
           #if it.outlined and it.numbering != none {
             counter(heading).display(it.numbering)
@@ -383,19 +370,19 @@
         ],
         v(13pt),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),
-        v(32pt)
+        v(32pt),
       )
     ]
     // rest figure/equation numbers for each chapter
     // -> manual reimplementation of the i-figured.reset-counters(...) function
-    //   -> fixes: heading page is wrong due to pagebreak 
+    //   -> fixes: heading page is wrong due to pagebreak
     if figure_numbering_per_chapter {
-      for kind in (image, table, raw)  {
+      for kind in (image, table, raw) {
         counter(figure.where(kind: i-figured._prefix + repr(kind))).update(0)
       }
     }
     if equation_numbering_per_chapter {
-        counter(math.equation).update(0)
+      counter(math.equation).update(0)
     }
   }
   // rest figure numbers for each chapter
@@ -405,28 +392,30 @@
   //    i-figured.reset-counters.with()(it)
   //  } else {it}
 
-
-  // heading level 2 
+  // heading level 2
   show heading.where(
-    level: 2
+    level: 2,
   ): it => context {
     // change heading margin depending if its the first on the page
     let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
-      heading_2_margin_before, 
-      here(), 
+      heading_2_margin_before,
+      here(),
       content_page_margin_full_top,
-      enable: reduce_heading_space_when_first_on_page
+      enable: reduce_heading_space_when_first_on_page,
     )
 
     set text(
       font: "Roboto",
       fallback: false,
       weight: "bold",
-      size: 14.3pt
+      size: 14.3pt,
     )
     //set block(below: 0.5em, above: 2em)
     block(
-      breakable: false, inset: 0pt, outset: 0pt, fill: none,
+      breakable: false,
+      inset: 0pt,
+      outset: 0pt,
+      fill: none,
       //above: heading_margin_before,
       //below: 0.6em //+ 10pt
     )[
@@ -440,18 +429,15 @@
             h(2pt)
           }
           #it.body
-          //[is_first_on_page: #is_first_on_page] 
+          //[is_first_on_page: #is_first_on_page]
           //#loc.position() #content_page_margin_full_top
         ],
         v(heading_2_line_spacing),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),
-        v(10pt)
+        v(10pt),
       )
     ]
   }
-
-
-
 
   ///////////////////////////////////////
 
@@ -464,8 +450,7 @@
     if equation_numbering_per_chapter {
       // @todo this seems to increase the equation number in steps of 2 instead of one
       i-figured.show-equation(only-labeled: false, it)
-    }
-    else {it}
+    } else { it }
   }
 
   // Configure figures.
@@ -474,24 +459,22 @@
     figure_caption_font = ("Roboto Slab", "Roboto")
   }
   show figure.caption: set text(
-        font: figure_caption_font,
-        ligatures: false,
-        stretch: 100%,
-        fallback: false,
-        weight: "regular"
+    font: figure_caption_font,
+    ligatures: false,
+    stretch: 100%,
+    fallback: false,
+    weight: "regular",
   )
   // figure numbering per Chapter
   show figure: it => {
     if figure_numbering_per_chapter {
       i-figured.show-figure(it)
-    }
-    else {it}
+    } else { it }
   }
-
 
   // configure footnotes
   set footnote.entry(
-    separator: line(length: 40%, stroke: 0.5pt)
+    separator: line(length: 40%, stroke: 0.5pt),
   )
   show footnote.entry: it => {
     if footnote_rewritten_fix_alignment {
@@ -500,33 +483,24 @@
       let idx_str = numbering(it.note.numbering, ..it_counter_arr)
       //[#it.fields()]
 
-      stack(dir: ltr, 
-        h(5pt),
-        super(idx_str),
-        {
-          // optional add indent to multi-line footnote
-          if footnote_rewritten_fix_alignment_hanging_indent {
-            par(hanging-indent: 5pt)[#it.note.body]
-          }
-          else {
-            it.note.body
-          }
+      stack(dir: ltr, h(5pt), super(idx_str), {
+        // optional add indent to multi-line footnote
+        if footnote_rewritten_fix_alignment_hanging_indent {
+          par(hanging-indent: 5pt)[#it.note.body]
+        } else {
+          it.note.body
         }
-      )
-    }
-    else {
+      })
+    } else {
       // if not footnote_rewritten_fix_alignment keep as is
       it
     }
   }
 
-
   ///////////////////////////////////////
   // Display font checks
   check-font-exists("Roboto")
   check-font-exists("XCharter")
-
-
 
   ///////////////////////////////////////
   // Display the title page
@@ -537,24 +511,23 @@
       left: margin_title_page.left, //15mm,
       right: margin_title_page.right, //15mm,
       //  top: inner + margin.top + header_height
-      top: margin_title_page.top + inner_page_margin_top + header_height,  // 15mm
-      bottom: margin_title_page.bottom //+ 0*inner_page_margin_bottom + footer_height //20mm
+      top: margin_title_page.top + inner_page_margin_top + header_height, // 15mm
+      bottom: margin_title_page.bottom, //+ 0*inner_page_margin_bottom + footer_height //20mm
     ),
     // header
     header: header,
     // don't move header up -> so that upper side is at 15mm from top
-    header-ascent: inner_page_margin_top,//0%,
+    header-ascent: inner_page_margin_top, //0%,
     // footer
-    footer: none,//footer,
-    footer-descent: 0mm //inner_page_margin_bottom
+    footer: none, //footer,
+    footer-descent: 0mm, //inner_page_margin_bottom
   )
 
   // make image paths relative to this dir of this .typ file
   let make-path-rel-parent(path) = {
     if not path == none and not path.starts-with("/") and not path.starts-with("./") and path.starts-with("") {
       return "../" + path
-    }
-    else {return path}
+    } else { return path }
   }
 
   if show_pages.title_page {
@@ -573,32 +546,29 @@
       logo_institute_sizeing_type: logo_institute_sizeing_type,
       logo_institute_offset_right: logo_institute_offset_right,
       logo_sub_content_text: logo_sub_content_text,
-      title_height: title_height
+      title_height: title_height,
     )
   }
 
-
-
-
   ///////////////////////////////////////
   // Content pages
-  
+
   // body has different margins than title page
   // @todo some bug seems to insert an empty page at the end when content (title page) appears before this second 'set page'
   set page(
     margin: (
       left: margin.left, //15mm,
       right: margin.right, //15mm,
-      top: margin.top + inner_page_margin_top + 1*header_height,  // 15mm
-      bottom: margin.bottom + inner_page_margin_bottom + footer_height //20mm
+      top: margin.top + inner_page_margin_top + 1 * header_height, // 15mm
+      bottom: margin.bottom + inner_page_margin_bottom + footer_height, //20mm
     ),
-     // header
+    // header
     header: header,
     // don't move header up -> so that upper side is at 15mm from top
-    header-ascent: inner_page_margin_top,//0%,
+    header-ascent: inner_page_margin_top, //0%,
     // footer
     footer: footer,
-    footer-descent: inner_page_margin_bottom //footer_height // @todo
+    footer-descent: inner_page_margin_bottom, //footer_height // @todo
   )
 
   // disable heading outlined for outline
@@ -608,17 +578,15 @@
   pagebreak(weak: true)
   additional_pages_after_title_page
 
-
-
   ///////////////////////////////////////
   // "Erklärung zur Abschlussarbeit" and abstract
   if show_pages.thesis_statement_pursuant {
     tudapub-get-thesis-statement-pursuant(
-      date: date_of_submission, 
-      author: author, 
+      date: date_of_submission,
+      author: author,
       location: location,
       include-english-translation: thesis_statement_pursuant_include_english_translation,
-      signature: thesis_statement_pursuant_signature
+      signature: thesis_statement_pursuant_signature,
     )
   }
 
@@ -626,9 +594,6 @@
     = Abstract
     #abstract
   ]
-
-
-
 
   ///////////////////////////////////////
   // Display the table of contents
@@ -641,10 +606,9 @@
   if show_pages.outline_table_of_contents [
     #tudapub-make-outline-table-of-contents(
       outline_table_of_contents_style: outline_table_of_contents_style,
-      heading_numbering_max_level: outline_table_of_contents_max_level
+      heading_numbering_max_level: outline_table_of_contents_max_level,
     )
   ]
-
 
   // main body starts at the next page after table of contents
   pagebreak(weak: true)
@@ -661,14 +625,11 @@
   // restart heading counter
   counter(heading).update(0)
 
-
-
   // enable heading outlined for body
   set heading(outlined: true)
 
   // Display the paper's contents.
   body
-
 
   ///////////////////////////////////////
   // references

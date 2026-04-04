@@ -1,9 +1,12 @@
-#import "common/tudacolors.typ": tuda_colors, text_colors
-#import "common/props.typ": tud_exercise_page_margin, tud_header_line_height, tud_inner_page_margin_top, tud_title_logo_height, tud_heading_line_thin_stroke
+#import "common/tudacolors.typ": text_colors, tuda_colors
+#import "common/props.typ": (
+  tud_exercise_page_margin, tud_header_line_height, tud_heading_line_thin_stroke, tud_inner_page_margin_top,
+  tud_title_logo_height,
+)
 #import "common/headings.typ": tuda-section, tuda-subsection, tuda-subsection-unruled
 #import "common/util.typ": check-font-exists
 #import "common/addons/difficulty-points.typ": difficulty-stars
-#import "common/colorutil.typ": calc-relative-luminance, calc-contrast
+#import "common/colorutil.typ": calc-contrast, calc-relative-luminance
 #import "common/format.typ": text-roboto
 #import "title.typ": *
 #import "locales.typ": *
@@ -13,7 +16,7 @@
 #let design-defaults = (
   accentcolor: "0b",
   colorback: true,
-  darkmode: false
+  darkmode: false,
 )
 
 #let s = state("tud_design")
@@ -23,60 +26,60 @@
 /// ```
 /// #show: tudaexercise.with(<options>)
 /// ```
-/// 
+///
 /// - language ("en", "de"): The language for dates and certain keywords
-/// 
+///
 /// - margins (dictionary): The page margins, possible entries: `top`, `left`,
 ///   `bottom`, `right`
-/// 
+///
 /// - headline (array, str, content, none): Control the headline of pages.
 ///   If array or string, the following keys are supported: `"title"`, `"name"`,
 ///   `"id"` and `"fl"`. The first three create the correspondig part known from the
 ///   LaTeX template. If `"fl"` is present, the ordering for the names is switched to
 ///   `First, Last`.
-/// 
+///
 ///   If content is passed, it is displayed directly. If none is passed or at most `"fl"`
 ///   is given as key, the headline is omitted.
-/// 
+///
 /// - paper (str): The type of paper to be used. Currently only a4 is supported.
-/// 
+///
 /// - logo (content): The tuda logo as an image to be used in the title.
-/// 
+///
 /// - info (dictionary): Info about the document mostly used in the title.
-///   
+///
 ///   By default accepts the following items:
 ///   - `title`
 ///   - `subtitle`
-///   - `author` 
-///   
+///   - `author`
+///
 ///   Additionally the following items are used by the `exercise` info-layout:
 ///   - `term`
 ///   - `date`
 ///   - `sheet`
-///   
+///
 ///   Other `info-layouts`s may use more options, which can be added here. See the documentation
 ///   of the `info-layout` for corresponding items.
-///   
+///
 ///   Note: Items mapped to `none` are ignored aka. internally the dict is processed without
 ///   them.
-/// 
+///
 /// - info-layout (content, function, none): The content of the subline in the title card.
 ///   By default the `info-layout.exercise` style.
-/// 
+///
 ///   See the `info-layout` export for functions to insert here or if you do not find something
 ///   fitting to your needs you can also pass raw content and completely customize it yourself.
-/// 
-/// - design (dictionary): Options for the design of the template. Possible entries: 
+///
+/// - design (dictionary): Options for the design of the template. Possible entries:
 ///   `accentcolor`, `colorback` and `darkmode`
-/// 
-/// - task-prefix (str,none): How the task numbers are prefixed. If unset, the tasks use the 
+///
+/// - task-prefix (str,none): How the task numbers are prefixed. If unset, the tasks use the
 ///   language default.
-/// 
+///
 /// - show-title (bool): Whether to show a title or not
-/// 
+///
 /// - subtask ("ruled", "plain"): How subtasks are shown
-/// 
-/// - body (content): 
+///
+/// - body (content):
 #let tudaexercise(
   language: "en",
 
@@ -111,7 +114,7 @@
 
   subtask: "ruled",
 
-  body
+  body,
 ) = {
   if paper != "a4" {
     panic("currently just a4 paper is supported")
@@ -120,7 +123,7 @@
   let margins = tud_exercise_page_margin + margins
   let design = design-defaults + design
   let info = info.pairs().filter(x => x.at(1) != none).to-dict()
-  
+
   let text_color = if design.darkmode {
     white
   } else {
@@ -128,7 +131,7 @@
   }
 
   let background_color = if design.darkmode {
-    rgb(29,31,33)
+    rgb(29, 31, 33)
   } else {
     white
   }
@@ -151,7 +154,7 @@
       white
     }
   }
-  
+
   s.update((
     text_color: text_color,
     background_color: background_color,
@@ -169,7 +172,7 @@
   } else {
     panic("Only 'ruled' and 'plain' are supported subtask options")
   }
-  
+
   let meta_document_title = if "subtitle" in info and "title" in info {
     [#info.subtitle #sym.dash.em #info.title]
   } else if "title" in info {
@@ -189,7 +192,7 @@
             it.at(0)
           } else {
             it
-          }
+          },
         )
         authors
       } else {
@@ -197,16 +200,16 @@
       }
     } else {
       ()
-    }
+    },
   )
 
   set par(
     justify: true,
     //leading: 4.7pt//0.42em//4.7pt   // line spacing
-    leading: 4.8pt,//0.42em//4.7pt   // line spacing
-    spacing: 1.1em
+    leading: 4.8pt, //0.42em//4.7pt   // line spacing
+    spacing: 1.1em,
   )
-  
+
   set text(
     font: "XCharter",
     size: 10.909pt,
@@ -255,7 +258,7 @@
   let identbar = rect(
     fill: accent_color,
     width: 100%,
-    height: 4mm
+    height: 4mm,
   )
 
   let header_frontpage = {
@@ -272,15 +275,14 @@
     set block(above: 2.1mm + 0.25mm, below: 0mm)
 
     block(headline, width: 100%)
-    
+
     line(length: 100%, stroke: tud_heading_line_thin_stroke)
   } else {}
-  
 
   context {
     // without width argument, measure sometimes yields imprecise results
     let height_header = measure(header_frontpage, width: 21cm).height
-    let height_additional_header = if show_additional_header { 
+    let height_additional_header = if show_additional_header {
       // measure does not account for block spacing around element
       measure(additional_header, width: 21cm).height + 2.1mm + 0.25mm
     } else {
@@ -292,10 +294,10 @@
       numbering: "1",
       number-align: right,
       margin: (
-        top: margins.top + tud_inner_page_margin_top + height_header + height_additional_header, 
-        bottom: margins.bottom, 
-        left: margins.left, 
-        right: margins.right
+        top: margins.top + tud_inner_page_margin_top + height_header + height_additional_header,
+        bottom: margins.bottom,
+        left: margins.left,
+        right: margins.right,
       ),
       header: context {
         header_frontpage
@@ -306,23 +308,23 @@
         }
       },
       header-ascent: tud_inner_page_margin_top,
-      fill: background_color
+      fill: background_color,
     )
 
     if show-title {
       tuda-make-title(
-        tud_inner_page_margin_top + height_additional_header, 
+        tud_inner_page_margin_top + height_additional_header,
         tud_header_line_height,
         accent_color,
         text_on_accent_color,
         text_color,
         design.colorback,
-        logo, 
-        tud_title_logo_height, 
+        logo,
+        tud_title_logo_height,
         info,
         info-layout,
-        dict
-        )
+        dict,
+      )
     }
 
     check-font-exists("Roboto")
@@ -330,12 +332,11 @@
 
     body
   }
-
 }
 
 #let tuda-gray-info(title: none, body) = context {
   let darkmode = s.get().darkmode
-  let background = if(darkmode == false) {rgb("#f0f0f0")} else {rgb("#3F4647")}
+  let background = if (darkmode == false) { rgb("#f0f0f0") } else { rgb("#3F4647") }
   rect(
     fill: background,
     // inset: 1em,
@@ -346,10 +347,11 @@
     radius: 3pt,
     width: 100%,
     stroke: (left: 5pt + gray),
-  [
-    #{if title != none [#text-roboto(strong(title)) \ ]}
-    #body
-  ])
+    [
+      #{ if title != none [#text-roboto(strong(title)) \ ] }
+      #body
+    ],
+  )
 }
 
 /// Formats points for display in a task header.
@@ -449,7 +451,7 @@
     details.push(points-function(points: points))
   }
   if difficulty != none {
-    details.push(difficulty-function(difficulty, max-difficulty: max-difficulty,fill:ctxstar-fill))
+    details.push(difficulty-function(difficulty, max-difficulty: max-difficulty, fill: ctxstar-fill))
   }
   if details.len() > 0 {
     details.join(details-seperator)

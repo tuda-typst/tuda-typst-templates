@@ -38,7 +38,7 @@ repo_root = script_folder + '/..'
 os.chdir(repo_root)
 
 ignore_pattern = pathspec.PathSpec.from_lines(
-    pathspec.patterns.GitWildMatchPattern, 
+    pathspec.patterns.GitWildMatchPattern,
     publish_ignore_files.splitlines()
 )
 
@@ -49,16 +49,16 @@ parser = argparse.ArgumentParser(
     prog='Typst Package Publisher',
     description='Copies this repo to typst local packages or locally cloned typst-packages while not copying the ignored files.'
 )
-parser.add_argument('--local', action='store_true', 
+parser.add_argument('--local', action='store_true',
                     help='copy to $TYPST_PACKAGE_ROOT/typst/packages/local/<PACKAGE_NAME>/<VERSION>.99')
-parser.add_argument('--clean-dist-folder-force', action='store_true', 
+parser.add_argument('--clean-dist-folder-force', action='store_true',
                     help='Delete the contents of the destinatio folder before copying without asking. ')
-parser.add_argument('--universe', type=str, 
+parser.add_argument('--universe', type=str,
                     help='copy to GIVEN_TYPST_PACKAGES_LOCAL_REPO_PATH//<PACKAGE_NAME>/<VERSION>',
                     metavar='GIVEN_TYPST_PACKAGES_LOCAL_REPO_PATH')
-parser.add_argument('--not-clean-dist-folder', action='store_true', 
+parser.add_argument('--not-clean-dist-folder', action='store_true',
                     help='Not delete the contents of the destinatio folder before copying.')
-parser.add_argument('--template', type=str, 
+parser.add_argument('--template', type=str,
                     help='If set only publish the template with this name, otherwise all templates.')
 args = parser.parse_args()
 
@@ -86,7 +86,7 @@ elif args.universe is not None:
 
 def copy_by_ignore_pattern(root, pattern: str, copy_dest_dir):
     ignore_pattern = pathspec.PathSpec.from_lines(
-        pathspec.patterns.GitWildMatchPattern, 
+        pathspec.patterns.GitWildMatchPattern,
         pattern.splitlines()
     )
     # filter files and also resolve symlinks
@@ -99,7 +99,7 @@ def copy_by_ignore_pattern(root, pattern: str, copy_dest_dir):
 
 def delete_by_ignore_pattern(root, pattern: str):
     ignore_pattern = pathspec.PathSpec.from_lines(
-        pathspec.patterns.GitWildMatchPattern, 
+        pathspec.patterns.GitWildMatchPattern,
         pattern.splitlines()
     )
     # filter files and also resolve symlinks
@@ -154,7 +154,7 @@ def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
     with open(copy_dest_dir / "README.md", "r+") as readme:
         c = readme.read()
         links = list(link_regex.finditer(c)) #findall(c))
-        
+
         def replace(match):
             out_full = match.group()
             out_split = out_full.split('(')

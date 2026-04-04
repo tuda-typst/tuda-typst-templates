@@ -102,5 +102,5 @@
   "11a": white,
   "11b": white,
   "11c": white,
-  "11d": white
+  "11d": white,
 )
