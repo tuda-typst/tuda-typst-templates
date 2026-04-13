@@ -14,8 +14,9 @@
   title: [Title],
   title_german: [Title German],
 
-  // Adjust height of title on title page if title gets to long
-  title_height: 3.5em,
+  // Adjust height of title on title page.
+  // If set to auto, it is inferred automatically.
+  title_height: auto,
 
   // Adds an abstract page after the title page with the corresponding content.
   // E.g. abstract: [My abstract text...]
