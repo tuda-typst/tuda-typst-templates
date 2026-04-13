@@ -120,7 +120,7 @@
           } else {
             title_height
           }
-          
+
           block(
             inset: (left: title_page_inner_margin_left),
             height: title_height_calculated,
