@@ -53,15 +53,31 @@
   // E.g. logo_sub_content_text: [ Institute A \ filed of study: \ B]
   logo_sub_content_text: none,
 
-  title_height: 3.5em,
+  // Minimum title height is always 3.5em.
+  // If set to auto, title height is inferred from content.
+  title_height: auto,
 ) = {
   // vars
   let accentcolor_rgb = tuda_colors.at(accentcolor)
   let title_separator_spacing = 15pt
   let title = [#title]
-  //let title_height = 150pt //measure(title, styles).height
   let title_page_inner_margin_left = 8pt
   let logo_tud_height = 22mm
+
+  let make-title-box-content(content_width: 100%) = {
+    [
+      #set text(
+        font: "Roboto",
+        weight: "bold",
+        size: 35.86pt,
+      )
+      #set par(
+        justify: false,
+        leading: 20pt,
+      )
+      #box(width: content_width)[#title]
+    ]
+  }
 
   let submission_date = format-date(date_of_submission, language)
 
@@ -90,16 +106,28 @@
       rows: (auto, 1fr),
       stack(
         // title
-        block(
-          inset: (left: title_page_inner_margin_left),
-          height: title_height,
-        )[
-          #set par(
-            justify: false,
-            leading: 20pt, // line spacing
-          )
-          #align(bottom)[#title]
-        ],
+        layout(size => {
+          // measure title dimensions for automatic height adjustment
+          let title_content_width = size.width - title_page_inner_margin_left
+          let title_height_min = measure(box(height: 3.5em)[]).height
+          let title_height_calculated = if title_height == auto {
+            calc.max(
+              title_height_min,
+              measure(
+                make-title-box-content(content_width: title_content_width),
+              ).height,
+            )
+          } else {
+            title_height
+          }
+
+          block(
+            inset: (left: title_page_inner_margin_left),
+            height: title_height_calculated,
+          )[
+            #align(bottom)[#make-title-box-content(content_width: title_content_width)]
+          ]
+        }),
         v(title_separator_spacing),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),
         v(3mm), // title_separator_spacing
