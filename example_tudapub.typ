@@ -309,7 +309,7 @@ In the following, we show the show-command of this template with all doc and def
 ```typst
 #show: tudapub.with(
   title: [Title],
-  title_german: [Title German],
+  subtitle: [Subtitle],
 
   // Adds an abstract page after the title page with the corresponding content.
   // E.g. abstract: [My abstract text...]

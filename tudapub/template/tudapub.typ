@@ -12,7 +12,7 @@
 // This function gets your whole document as its `body` and formats it.
 #let tudapub(
   title: [Title],
-  title_german: [Title German],
+  subtitle: [Subtitle],
 
   // Adjust height of title on title page.
   // If set to auto, it is inferred automatically.
@@ -534,7 +534,7 @@
   if show_pages.title_page {
     tudpub-make-title-page(
       title: title,
-      title_german: title_german,
+      subtitle: subtitle,
       thesis_type: thesis_type,
       accentcolor: accentcolor,
       language: language,

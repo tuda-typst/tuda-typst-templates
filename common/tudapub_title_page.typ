@@ -7,7 +7,7 @@
 // Set these up before
 #let tudpub-make-title-page(
   title: [Title],
-  title_german: [Title German],
+  subtitle: [Subtitle],
 
   // "master" or "bachelor" thesis
   thesis_type: "master",
@@ -138,7 +138,7 @@
           #set par(
             leading: 5.8pt,
           )
-          #title_german
+          #subtitle
           \
           #set text(weight: "regular")
           #thesis_type_text thesis by #author
