@@ -12,6 +12,7 @@
 // This function gets your whole document as its `body` and formats it.
 #let tudapub(
   title: [Title],
+  // For theses writting in English, this is often a German title.
   subtitle: [Subtitle],
 
   // Adjust height of title on title page.
