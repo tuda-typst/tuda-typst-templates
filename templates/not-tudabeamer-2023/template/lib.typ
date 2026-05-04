@@ -24,7 +24,14 @@
 }
 
 #let header-font(..args) = {
-  text(font: "roboto", fallback: false, weight: "black", tracking: 2pt, size: 10pt, ..args)
+  text(
+    font: "roboto",
+    fallback: false,
+    weight: "black",
+    tracking: 2pt,
+    size: 10pt,
+    ..args,
+  )
 }
 
 #let footer-font(..args) = {
@@ -43,7 +50,14 @@
 
 #let slide-title-font(..args) = {
   set par(leading: 0.1in)
-  text(font: "roboto", fallback: false, weight: "black", bottom-edge: "descender", size: 42pt, ..args)
+  text(
+    font: "roboto",
+    fallback: false,
+    weight: "black",
+    bottom-edge: "descender",
+    size: 42pt,
+    ..args,
+  )
 }
 
 #let header = self => pad(align(top)[
@@ -65,12 +79,17 @@
       },
       // should be 1.2pt according to guidelines
       if self.store.enable-header {
-        pad(top: 0.25in, left: margin.left, header-font(upper(self.info.short-title + " / " + self.info.short-author)))
+        pad(top: 0.25in, left: margin.left, header-font(upper(
+          self.info.short-title + " / " + self.info.short-author,
+        )))
       },
     ),
   )
   #if self.store.show-logo {
-    place(top + right, dx: 0.1in - margin.right, dy: 0in)[#block(height: 0.99in, self.info.logo)]
+    place(top + right, dx: 0.1in - margin.right, dy: 0in)[#block(
+      height: 0.99in,
+      self.info.logo,
+    )]
   }
 ])
 
@@ -79,7 +98,13 @@
   columns: (15%, 1fr, 15%),
   align: (bottom + left, bottom + center, bottom + right),
   footer-font(utils.display-info-date(self)),
-  footer-font(self.info.department + " | " + self.info.institute + " | " + self.info.short-author),
+  footer-font(
+    self.info.department
+      + " | "
+      + self.info.institute
+      + " | "
+      + self.info.short-author,
+  ),
   footer-font(context utils.slide-counter.display()),
 ))
 
@@ -106,7 +131,14 @@
       )
     }),
   )
-  touying-slide(self: self, config: config, repeat: repeat, setting: setting, composer: composer, ..bodies)
+  touying-slide(
+    self: self,
+    config: config,
+    repeat: repeat,
+    setting: setting,
+    composer: composer,
+    ..bodies,
+  )
 })
 
 #let title-slide(..args) = touying-slide-wrapper(self => {
@@ -140,7 +172,9 @@
       ),
       gutter: (0in, 0.05in),
       grid.cell([]),
-      grid.cell(align: bottom, slide-title-font(upper(utils.display-current-heading(level: 1)))),
+      grid.cell(align: bottom, slide-title-font(upper(
+        utils.display-current-heading(level: 1),
+      ))),
       grid.cell(align: top, subtitle-font([]))
     )
   }
@@ -197,7 +231,11 @@
       primary: rgb(tuda_colors.at(accentcolor)),
     ),
     config-methods(init: (self: none, body) => {
-      set document(title: self.info.title + " " + self.info.subtitle, author: self.info.author, date: self.info.date)
+      set document(
+        title: self.info.title + " " + self.info.subtitle,
+        author: self.info.author,
+        date: self.info.date,
+      )
       body
     }),
     ..args,

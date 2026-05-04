@@ -86,9 +86,19 @@
 /// ```
 /// - title (str): The title of this subsection
 #let tuda-subsection(title) = {
-  tuda-section-lines(above: 1.4em, below: 1em, text(title, font: "Roboto", weight: "regular", size: 11pt))
+  tuda-section-lines(above: 1.4em, below: 1em, text(
+    title,
+    font: "Roboto",
+    weight: "regular",
+    size: 11pt,
+  ))
 }
 
 #let tuda-subsection-unruled(title) = {
-  tuda-section-lines(above: 1.4em, below: 1em, ruled: false, text(title, font: "Roboto", weight: "regular", size: 11pt))
+  tuda-section-lines(above: 1.4em, below: 1em, ruled: false, text(
+    title,
+    font: "Roboto",
+    weight: "regular",
+    size: 11pt,
+  ))
 }

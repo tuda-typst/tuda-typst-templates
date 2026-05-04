@@ -1,6 +1,7 @@
 #import "@preview/athena-tu-darmstadt-exercise:0.2.0": (
-  difficulty-format, info-layout, point-format, subtask, task, task-points-header, text-roboto, tuda-difficulty-stars,
-  tuda-gray-info, tuda-section, tuda-subsection, tudaexercise,
+  difficulty-format, info-layout, point-format, subtask, task,
+  task-points-header, text-roboto, tuda-difficulty-stars, tuda-gray-info,
+  tuda-section, tuda-subsection, tudaexercise,
 )
 
 #show: tudaexercise.with(

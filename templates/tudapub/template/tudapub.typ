@@ -244,7 +244,6 @@
     panic("currently just a4 as paper is supported")
   }
 
-
   ///////////////////////////////////////
   // page setup
   // with header and footer
@@ -281,8 +280,12 @@
       // context needed for page counter for typst >= 0.11.0
       #context {
         let counter_disp = counter(page).display()
-        let after_table_of_contents = query(selector(<__after_table_of_contents>).before(here())).len() >= 1
-        if not page_numbering_starts_after_outline or after_table_of_contents { counter_disp } else {
+        let after_table_of_contents = (
+          query(selector(<__after_table_of_contents>).before(here())).len() >= 1
+        )
+        if not page_numbering_starts_after_outline or after_table_of_contents {
+          counter_disp
+        } else {
           hide(counter_disp)
         }
       }
@@ -301,7 +304,9 @@
 
   ////////////////////////////
   // content page setup
-  let content_page_margin_full_top = margin.top + inner_page_margin_top + 1 * header_height
+  let content_page_margin_full_top = (
+    margin.top + inner_page_margin_top + 1 * header_height
+  )
 
   ///////////////////////////////////////
   // headings
@@ -318,7 +323,10 @@
     }
 
     // change heading margin depending on its the first on the page
-    let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
+    let (
+      heading_margin_before,
+      is_first_on_page,
+    ) = get-spacing-zero-if-first-on-page(
       heading_3_margin_before,
       here(),
       content_page_margin_full_top,
@@ -335,7 +343,11 @@
       #stack(
         v(heading_margin_before),
         block[
-          #if it.level <= heading_numbering_max_level and it.outlined and it.numbering != none {
+          #if (
+            it.level <= heading_numbering_max_level
+              and it.outlined
+              and it.numbering != none
+          ) {
             counter(heading).display(it.numbering)
             h(0.3em)
           }
@@ -408,16 +420,15 @@
   //    i-figured.reset-counters.with()(it)
   //  } else {it}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e0b6ca8 (add formatter configuration (#53))
   // heading level 2
   show heading.where(
     level: 2,
   ): it => context {
     // change heading margin depending if its the first on the page
-    let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
+    let (
+      heading_margin_before,
+      is_first_on_page,
+    ) = get-spacing-zero-if-first-on-page(
       heading_2_margin_before,
       here(),
       content_page_margin_full_top,
@@ -503,26 +514,12 @@
       let idx_str = numbering(it.note.numbering, ..it_counter_arr)
       //[#it.fields()]
 
-<<<<<<< HEAD
-      stack(dir: ltr,
-        h(5pt),
-        super(idx_str),
-        {
-          // optional add indent to multi-line footnote
-          if footnote_rewritten_fix_alignment_hanging_indent {
-            par(hanging-indent: 5pt)[#it.note.body]
-          }
-          else {
-            it.note.body
-          }
-=======
       stack(dir: ltr, h(5pt), super(idx_str), {
         // optional add indent to multi-line footnote
         if footnote_rewritten_fix_alignment_hanging_indent {
           par(hanging-indent: 5pt)[#it.note.body]
         } else {
           it.note.body
->>>>>>> e0b6ca8 (add formatter configuration (#53))
         }
       })
     } else {
@@ -559,7 +556,12 @@
 
   // make image paths relative to this dir of this .typ file
   let make-path-rel-parent(path) = {
-    if not path == none and not path.starts-with("/") and not path.starts-with("./") and path.starts-with("") {
+    if (
+      not path == none
+        and not path.starts-with("/")
+        and not path.starts-with("./")
+        and path.starts-with("")
+    ) {
       return "../" + path
     } else { return path }
   }

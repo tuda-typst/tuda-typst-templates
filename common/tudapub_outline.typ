@@ -18,8 +18,13 @@
   heading_numbering_max_level: none,
 ) = {
   // check args
-  if not (outline_table_of_contents_style == "adapted" or outline_table_of_contents_style == "rewritten") {
-    panic("outline_table_of_contents_style has to be either 'adapted' or 'rewritten'")
+  if not (
+    outline_table_of_contents_style == "adapted"
+      or outline_table_of_contents_style == "rewritten"
+  ) {
+    panic(
+      "outline_table_of_contents_style has to be either 'adapted' or 'rewritten'",
+    )
   }
 
   // alternative (simpler than next solution)
@@ -115,7 +120,9 @@
     )[Contents]
 
     context {
-      let headings = query(selector(heading.where(outlined: true)).after(here()))
+      let headings = query(
+        selector(heading.where(outlined: true)).after(here()),
+      )
 
       // outline params
       let heading_numbering_intent = 1em
@@ -139,7 +146,8 @@
 
         let sum_prev_levels = range(it.level).sum()
         let padd = (
-          (it.level - 1) * heading_numbering_intent + (sum_prev_levels) * heading_numbering_width_per_level * 1
+          (it.level - 1) * heading_numbering_intent
+            + (sum_prev_levels) * heading_numbering_width_per_level * 1
         )
         // box[#pad(left: padd)
         let preamb = box(fill: none)[#pad(left: padd)[
@@ -160,7 +168,10 @@
 
         // only count, if the heading is numbered!
         let text_params = ()
-        let fill_dots = box(width: 1fr, repeat[ #h(fill_dot_space) . #h(fill_dot_space)])
+        let fill_dots = box(
+          width: 1fr,
+          repeat[ #h(fill_dot_space) . #h(fill_dot_space)],
+        )
 
         // heading with level 1 has different styling
         if it.level == 1 {

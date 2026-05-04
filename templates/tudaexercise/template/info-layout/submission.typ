@@ -62,7 +62,11 @@
   dict-addon: (:),
   item-style: submission-item-style,
 ) = {
-  assert.eq(type(item-style), function, message: "Expected item-style of submission(...) to be a function")
+  assert.eq(
+    type(item-style),
+    function,
+    message: "Expected item-style of submission(...) to be a function",
+  )
 
   let resolve-item(i, info, dict) = if type(i) == array {
     assert.eq(
@@ -81,7 +85,9 @@
   } else if i in info {
     assert(
       i in dict,
-      message: "Unknown item '" + i + "' in submission, please use manual syntax: (\"Display Name\", \"Value\")",
+      message: "Unknown item '"
+        + i
+        + "' in submission, please use manual syntax: (\"Display Name\", \"Value\")",
     )
     let value = info.at(i)
     if i == "term" {
@@ -109,7 +115,8 @@
       columns: (1fr, 1fr),
       align: (alignment.left, alignment.right),
 
-      filter-none(left-items).join(linebreak()), filter-none(right-items).join(linebreak()),
+      filter-none(left-items).join(linebreak()),
+      filter-none(right-items).join(linebreak()),
     )
   }
 }

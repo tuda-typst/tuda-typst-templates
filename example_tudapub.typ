@@ -1,6 +1,8 @@
 // imports
 #import "@preview/cetz:0.2.2": canvas, plot
-#import "@preview/glossarium:0.5.4": gls, glspl, make-glossary, print-glossary, register-glossary //make-glossary, print-glossary, gls, glspl
+#import "@preview/glossarium:0.5.4": (
+  gls, glspl, make-glossary, print-glossary, register-glossary,
+) //make-glossary, print-glossary, gls, glspl
 #import "@preview/mitex:0.2.3": *
 
 // add
@@ -39,7 +41,10 @@
     For instructions on how to set up this template see @sec_usage.
   ],
 
-  bib: bibliography("tests/tudapub/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
+  bib: bibliography(
+    "tests/tudapub/latex_ref/DEMO-TUDaBibliography.bib",
+    full: true,
+  ), //, style: "spie")
 
   logo_tuda: image("assets/logos/tuda_logo.svg"),
 
