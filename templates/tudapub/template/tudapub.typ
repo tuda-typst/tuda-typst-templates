@@ -244,7 +244,6 @@
     panic("currently just a4 as paper is supported")
   }
 
-
   ///////////////////////////////////////
   // page setup
   // with header and footer
@@ -408,10 +407,6 @@
   //    i-figured.reset-counters.with()(it)
   //  } else {it}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e0b6ca8 (add formatter configuration (#53))
   // heading level 2
   show heading.where(
     level: 2,
@@ -503,26 +498,12 @@
       let idx_str = numbering(it.note.numbering, ..it_counter_arr)
       //[#it.fields()]
 
-<<<<<<< HEAD
-      stack(dir: ltr,
-        h(5pt),
-        super(idx_str),
-        {
-          // optional add indent to multi-line footnote
-          if footnote_rewritten_fix_alignment_hanging_indent {
-            par(hanging-indent: 5pt)[#it.note.body]
-          }
-          else {
-            it.note.body
-          }
-=======
       stack(dir: ltr, h(5pt), super(idx_str), {
         // optional add indent to multi-line footnote
         if footnote_rewritten_fix_alignment_hanging_indent {
           par(hanging-indent: 5pt)[#it.note.body]
         } else {
           it.note.body
->>>>>>> e0b6ca8 (add formatter configuration (#53))
         }
       })
     } else {
