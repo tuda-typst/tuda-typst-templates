@@ -12,10 +12,12 @@
 // This function gets your whole document as its `body` and formats it.
 #let tudapub(
   title: [Title],
-  title_german: [Title German],
+  // For theses writting in English, this is often a German title.
+  subtitle: [Subtitle],
 
-  // Adjust height of title on title page if title gets too long
-  title_height: 3.5em,
+  // Adjust height of title on title page.
+  // If set to auto, it is inferred automatically.
+  title_height: auto,
 
   // Adds an abstract page after the title page with the corresponding content.
   // E.g. abstract: [My abstract text...]
@@ -544,7 +546,7 @@
   if show_pages.title_page {
     tudapub-make-title-page(
       title: title,
-      title_german: title_german,
+      subtitle: subtitle,
       thesis_type: thesis_type,
       dr_type: dr_type,
       accentcolor: accentcolor,
