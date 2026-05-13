@@ -5,12 +5,13 @@
 
 // note the page needs to have the correct margins.
 // Set these up before
-#let tudpub-make-title-page(
+#let tudapub-make-title-page(
   title: [Title],
   subtitle: [Subtitle],
 
-  // "master" or "bachelor" thesis
+  // "master" or "bachelor" thesis or "phd"
   thesis_type: "master",
+  dr_type: none,
 
   // the code of the accentcolor.
   // A list of all available accentcolors is in the list tuda_colors
@@ -21,6 +22,7 @@
 
   // author name as text, e.g "Albert Author"
   author: "A Author",
+  birthplace: none,
 
   // date of submission as string
   date_of_submission: datetime(
@@ -28,8 +30,14 @@
     month: 10,
     day: 4,
   ),
+  date_of_examination: datetime(
+    year: 2023,
+    month: 10,
+    day: 4,
+  ),
 
   location: "Darmstadt",
+  dr_university: "Technische Universität Darmstadt",
 
   // array of the names of the reviewers
   reviewer_names: ("Super Supervisor 1", "Super Supervisor 2"),
@@ -80,11 +88,24 @@
   }
 
   let submission_date = format-date(date_of_submission, language)
+  let examination_date = format-date(date_of_examination, language)
 
   let thesis_type_text = {
-    if lower(thesis_type) == "master" { "Master" } else if lower(thesis_type) == "bachelor" { "Bachelor" } else {
-      panic("thesis_type has to be either 'master' or 'bachelor'")
-    }
+    if lower(thesis_type) == "master" { "Master thesis by" } else if lower(thesis_type) == "bachelor" {
+      "Bachelor thesis by"
+    } else if lower(thesis_type) == "dr" { "Vorgelegte Dissertation von" } else if lower(thesis_type) == "drfinal" {
+      "Genehmigte Dissertation von"
+    } else { panic("thesis_type has to be either 'dr', 'drfinal', 'master' or 'bachelor'") }
+  }
+
+  let dr_title_text = {
+    if lower(dr_type) == "rernat" {
+      "Zur Erlangung des Grades eines Doktors der Naturwissenschaften (Dr. rer. nat.)"
+    } else if lower(dr_type) == "ing" { "Zur Erlangung des akademischen Grades Doktor-Ingenieur (Dr.-Ing.)" } else if (
+      lower(dr_type) == "phil"
+    ) { "Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)" } else if lower(dr_type) == "phil" {
+      "Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)"
+    } else { "Submitted doctoral thesis" }
   }
 
   ///////////////////////////////////////
@@ -141,9 +162,17 @@
           #subtitle
           \
           #set text(weight: "regular")
-          #thesis_type_text thesis by #author
+          #if lower(thesis_type) == "dr" { dr_title_text }
           \
-          Date of submission: #submission_date
+          #thesis_type_text #author #if lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr" {
+            "aus "
+            birthplace
+          }
+          \
+          Date of submission: #submission_date #if lower(thesis_type) == "drfinal" {
+            ", Date of examination: "
+            examination_date
+          }
           \
           \
           #for (i, reviewer_name) in reviewer_names.enumerate() [
@@ -152,7 +181,10 @@
           ]
           // looked better with -5pt (but -8pt fits latext template)
           #v(-8pt) // spacing optional
-          #location
+          #location#if lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr" {
+            ", "
+            dr_university
+          }
         ],
         v(15pt),
       ),

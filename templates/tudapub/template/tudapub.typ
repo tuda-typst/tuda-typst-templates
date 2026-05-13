@@ -23,8 +23,15 @@
   // E.g. abstract: [My abstract text...]
   abstract: none,
 
-  // "master" or "bachelor" thesis
+  // German abstract (Zusammenfassung)
+  abstract_german: none,
+
+  // "dr", "drfinal", "master" or "bachelor" thesis
   thesis_type: "master",
+
+  // PhD information
+  dr_type: "rernat", // rernat, nat, ing, etc.
+  dr_university: "Technische Universität Darmstadt",
 
   // The code of the accentcolor.
   // A list of all available accentcolors is in the list tuda_colors
@@ -38,6 +45,7 @@
 
   // Author name as text, e.g "Albert Author"
   author: "An Author",
+  birthplace: none,
 
   // Date of submission as string
   date_of_submission: datetime(
@@ -45,6 +53,9 @@
     month: 10,
     day: 4,
   ),
+
+  // Date of examination
+  date_of_examination: none,
 
   location: "Darmstadt",
 
@@ -533,15 +544,19 @@
   }
 
   if show_pages.title_page {
-    tudpub-make-title-page(
+    tudapub-make-title-page(
       title: title,
       subtitle: subtitle,
       thesis_type: thesis_type,
+      dr_type: dr_type,
       accentcolor: accentcolor,
       language: language,
       author: author,
+      birthplace: birthplace,
       date_of_submission: date_of_submission,
+      date_of_examination: date_of_examination,
       location: location,
+      dr_university: dr_university,
       reviewer_names: reviewer_names,
       logo_tuda: logo_tuda,
       logo_institute: logo_institute,
@@ -595,6 +610,10 @@
   if abstract != none [
     = Abstract
     #abstract
+  ]
+  if abstract_german != none [
+    = Zusammenfassung
+    #abstract_german
   ]
 
   ///////////////////////////////////////
