@@ -53,11 +53,7 @@
   ),
 
   // Date of examination
-  date_of_examination: datetime(
-    year: 2024,
-    month: 4,
-    day: 15,
-  ),
+  date_of_examination: none,
 
   location: "Darmstadt",
 
