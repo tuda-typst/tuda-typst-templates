@@ -11,14 +11,7 @@
 /// - rotation (angle): The rotation of the star in degrees. Default is 90deg.
 /// - baseline (length): The baseline of the star. Default is 0.5pt.
 /// -> Returns: A star shape.
-#let draw-star(
-  edges: 5,
-  size: 1em,
-  stroke: .8pt,
-  fill: red,
-  rotation: 270deg,
-  baseline: 0.5pt,
-) = {
+#let draw-star(edges: 5, size: 1em, stroke: .8pt, fill: red, rotation: 270deg, baseline: 0.5pt) = {
   let inner_size = size / 2 - stroke
   let outer_r = inner_size
   let inner_r = inner_size * 0.4
@@ -32,20 +25,13 @@
       center_p.at(1) + radius * calc.sin(angle),
     ))
   }
-  box(
-    width: size,
-    height: size,
-    baseline: baseline,
-    inset: 0pt,
-    outset: 0pt,
-    align(center + horizon, curve(
-      stroke: stroke,
-      fill: fill,
-      curve.move(points.remove(0)),
-      ..points.map(p => curve.line(p)),
-      curve.close(mode: "straight"),
-    )),
-  )
+  box(width: size, height: size, baseline: baseline, inset: 0pt, outset: 0pt, align(center + horizon, curve(
+    stroke: stroke,
+    fill: fill,
+    curve.move(points.remove(0)),
+    ..points.map(p => curve.line(p)),
+    curve.close(mode: "straight"),
+  )))
 }
 
 /// Draws a number of stars to represent the difficulty of a task.
@@ -66,24 +52,13 @@
   difficulty-sep: ": ",
   ..otherargs,
 ) = {
-  assert(
-    type(difficulty) in (float, int),
-    message: "difficulty must be a number",
-  )
-  assert.eq(
-    type(max-difficulty),
-    int,
-    message: "max-difficulty must be an integer",
-  )
+  assert(type(difficulty) in (float, int), message: "difficulty must be a number")
+  assert.eq(type(max-difficulty), int, message: "max-difficulty must be an integer")
   assert(
     difficulty >= 0 and difficulty <= max-difficulty,
     message: "difficulty must be between 0 and " + str(max-difficulty),
   )
-  assert.eq(
-    type(fill),
-    color,
-    message: "fill must be a color, got " + str(type(fill)),
-  )
+  assert.eq(type(fill), color, message: "fill must be a color, got " + str(type(fill)))
   let remaining_difficulty = difficulty
   let first = true
   if difficulty-name != none {

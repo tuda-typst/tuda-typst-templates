@@ -1,12 +1,9 @@
 #import "common/tudacolors.typ": text_colors, tuda_colors
 #import "common/props.typ": (
-  tud_exercise_page_margin, tud_header_line_height,
-  tud_heading_line_thin_stroke, tud_inner_page_margin_top,
+  tud_exercise_page_margin, tud_header_line_height, tud_heading_line_thin_stroke, tud_inner_page_margin_top,
   tud_title_logo_height,
 )
-#import "common/headings.typ": (
-  tuda-section, tuda-subsection, tuda-subsection-unruled,
-)
+#import "common/headings.typ": tuda-section, tuda-subsection, tuda-subsection-unruled
 #import "common/util.typ": check-font-exists
 #import "common/addons/difficulty-points.typ": difficulty-stars
 #import "common/colorutil.typ": calc-contrast, calc-relative-luminance
@@ -144,9 +141,7 @@
   } else if type(design.accentcolor) == str {
     rgb(tuda_colors.at(design.accentcolor))
   } else {
-    panic(
-      "Unsupported color format. Either pass a color code as a string or pass an actual color.",
-    )
+    panic("Unsupported color format. Either pass a color code as a string or pass an actual color.")
   }
 
   let text_on_accent_color = if type(design.accentcolor) == str {
@@ -299,10 +294,7 @@
       numbering: "1",
       number-align: right,
       margin: (
-        top: margins.top
-          + tud_inner_page_margin_top
-          + height_header
-          + height_additional_header,
+        top: margins.top + tud_inner_page_margin_top + height_header + height_additional_header,
         bottom: margins.bottom,
         left: margins.left,
         right: margins.right,
@@ -344,9 +336,7 @@
 
 #let tuda-gray-info(title: none, body) = context {
   let darkmode = s.get().darkmode
-  let background = if (darkmode == false) { rgb("#f0f0f0") } else {
-    rgb("#3F4647")
-  }
+  let background = if (darkmode == false) { rgb("#f0f0f0") } else { rgb("#3F4647") }
   rect(
     fill: background,
     // inset: 1em,
@@ -389,10 +379,7 @@
     }
   }
   assert.ne(points, none, message: "points must be provided")
-  assert(
-    type(points) in (float, int),
-    message: "points must be a number, got " + str(type(points)),
-  )
+  assert(type(points) in (float, int), message: "points must be a number, got " + str(type(points)))
   str(points)
   pointssep
   if points == 1 {
@@ -451,10 +438,7 @@
   points-function: point-format,
   difficulty-function: difficulty-stars,
 ) = context {
-  assert(
-    points != none or difficulty != none,
-    message: "Either points or difficulty must be provided",
-  )
+  assert(points != none or difficulty != none, message: "Either points or difficulty must be provided")
   if hspace != none {
     h(hspace)
   }
@@ -467,11 +451,7 @@
     details.push(points-function(points: points))
   }
   if difficulty != none {
-    details.push(difficulty-function(
-      difficulty,
-      max-difficulty: max-difficulty,
-      fill: ctxstar-fill,
-    ))
+    details.push(difficulty-function(difficulty, max-difficulty: max-difficulty, fill: ctxstar-fill))
   }
   if details.len() > 0 {
     details.join(details-seperator)

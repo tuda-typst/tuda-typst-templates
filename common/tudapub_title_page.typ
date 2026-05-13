@@ -75,29 +75,19 @@
   let examination_date = format-date(date_of_examination, language)
 
   let thesis_type_text = {
-    if lower(thesis_type) == "master" { "Master thesis by" } else if (
-      lower(thesis_type) == "bachelor"
-    ) { "Bachelor thesis by" } else if lower(thesis_type) == "dr" {
-      "Vorgelegte Dissertation von"
-    } else if lower(thesis_type) == "drfinal" {
-      "Genehmigte Dissertation von"
-    } else {
-      panic(
-        "thesis_type has to be either 'dr', 'drfinal', 'master' or 'bachelor'",
-      )
-    }
+    if lower(thesis_type) == "master" {"Master thesis by"}
+    else if lower(thesis_type) == "bachelor" {"Bachelor thesis by"}
+    else if lower(thesis_type) == "dr" {"Vorgelegte Dissertation von"}
+    else if lower(thesis_type) == "drfinal" {"Genehmigte Dissertation von"}
+    else {panic("thesis_type has to be either 'dr', 'drfinal', 'master' or 'bachelor'")}
   }
 
   let dr_title_text = {
-    if lower(dr_type) == "rernat" {
-      "Zur Erlangung des Grades eines Doktors der Naturwissenschaften (Dr. rer. nat.)"
-    } else if lower(dr_type) == "ing" {
-      "Zur Erlangung des akademischen Grades Doktor-Ingenieur (Dr.-Ing.)"
-    } else if lower(dr_type) == "phil" {
-      "Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)"
-    } else if lower(dr_type) == "phil" {
-      "Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)"
-    } else { "Submitted doctoral thesis" }
+    if lower(dr_type) == "rernat" {"Zur Erlangung des Grades eines Doktors der Naturwissenschaften (Dr. rer. nat.)"}
+    else if lower(dr_type) == "ing" {"Zur Erlangung des akademischen Grades Doktor-Ingenieur (Dr.-Ing.)"}
+    else if lower(dr_type) == "phil" {"Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)"}
+    else if lower(dr_type) == "phil" {"Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)"}
+    else {"Submitted doctoral thesis"}
   }
 
   ///////////////////////////////////////
@@ -142,19 +132,11 @@
           #title_german
           \
           #set text(weight: "regular")
-          #if lower(thesis_type) == "dr" { dr_title_text }
+          #if lower(thesis_type) == "dr" {dr_title_text}
           \
-          #thesis_type_text #author #if (
-            lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr"
-          ) {
-            "aus "
-            birthplace
-          }
+          #thesis_type_text #author #if lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr" {"aus "; birthplace}
           \
-          Date of submission: #submission_date #if lower(thesis_type) == "drfinal" {
-            ", Date of examination: "
-            examination_date
-          }
+          Date of submission: #submission_date #if lower(thesis_type) == "drfinal" {", Date of examination: " ;examination_date}
           \
           \
           #for (i, reviewer_name) in reviewer_names.enumerate() [
@@ -163,12 +145,7 @@
           ]
           // looked better with -5pt (but -8pt fits latext template)
           #v(-8pt) // spacing optional
-          #location#if (
-            lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr"
-          ) {
-            ", "
-            dr_university
-          }
+          #location#if lower(thesis_type) == "drfinal" or lower(thesis_type) == "dr" {", ";dr_university}
         ],
         v(15pt),
       ),
@@ -224,9 +201,7 @@
                       set image(height: logo_tud_height * (2 / 3))
                       logo_institute
                     } else {
-                      panic(
-                        "logo_institute_sizeing_type has to be width or height",
-                      )
+                      panic("logo_institute_sizeing_type has to be width or height")
                     }
                   }
                 ]

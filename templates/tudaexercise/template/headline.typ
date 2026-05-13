@@ -1,9 +1,6 @@
 #let default-headline(headline, info, dict) = {
   for x in headline {
-    assert(
-      x in ("title", "name", "id", "fl"),
-      message: "Unknown headline key'" + x + "'!",
-    )
+    assert(x in ("title", "name", "id", "fl"), message: "Unknown headline key'" + x + "'!")
   }
 
   if headline == () or headline == ("fl",) {

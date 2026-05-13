@@ -2,17 +2,12 @@
 
 #let title-info-keys = ("title", "header_title", "subtitle", "author")
 
-#let resolve-info-layout(info-layout, info, dict) = if (
-  type(info-layout) == content
-) {
+#let resolve-info-layout(info-layout, info, dict) = if type(info-layout) == content {
   info-layout
 } else if type(info-layout) == function {
   info-layout(info, dict)
 } else {
-  panic(
-    "info-layout has unsupported type. Expected content, function or none. Got "
-      + type(info-layout),
-  )
+  panic("info-layout has unsupported type. Expected content, function or none. Got " + type(info-layout))
 }
 
 #let tuda-make-title(
@@ -78,10 +73,7 @@
                 for author in info.author {
                   if type(author) == array {
                     [#author.at(0)
-                      #text(
-                        weight: "regular",
-                        size: 0.8em,
-                      )[(Mat.: #author.at(1))]]
+                      #text(weight: "regular", size: 0.8em)[(Mat.: #author.at(1))]]
                     linebreak()
                   } else {
                     author
@@ -110,9 +102,7 @@
       )
       v(6pt)
       line(length: 100%, stroke: stroke)
-      if (
-        info-layout != none and info.keys().any(x => not x in title-info-keys)
-      ) {
+      if info-layout != none and info.keys().any(x => not x in title-info-keys) {
         block(
           inset: text_inset,
           resolve-info-layout(info-layout, info, dict),

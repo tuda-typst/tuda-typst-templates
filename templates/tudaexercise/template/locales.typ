@@ -50,12 +50,7 @@
 #let get-locale-dict(locale) = {
   let dict = dicts.at(locale, default: none)
   if dict == none {
-    panic(
-      "Unsupported locale: "
-        + locale
-        + ". Supported locales are: "
-        + dicts.keys().join(", ", last: " and "),
-    )
+    panic("Unsupported locale: " + locale + ". Supported locales are: " + dicts.keys().join(", ", last: " and "))
   }
   dict
 }
