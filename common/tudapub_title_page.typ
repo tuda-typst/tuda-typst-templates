@@ -195,9 +195,12 @@
               // sub logo
               if logo_institute != none { v(5mm) },
               // height from design guidelines
+              let logo_institute_extend_dx = -tud_logo_offset_right * (2 / 3),
               if logo_institute != none {
-                box(inset: (right: logo_institute_offset_right), fill: black)[
-                  #set image(height: tud_logo_width * (2 / 3))
+                move(dx: logo_institute_extend_dx, box(
+                  inset: (right: logo_institute_offset_right + logo_institute_extend_dx),
+                  fill: white,
+                )[
                   #{
                     if logo_institute_sizeing_type == "width" {
                       //image(logo_institute_path, width: tud_logo_width*(2/3))
@@ -205,13 +208,13 @@
                       logo_institute
                     } else if logo_institute_sizeing_type == "height" {
                       //image(logo_institute_path, height: logo_tud_height*(2/3))
-                      set image(height: logo_tud_height * (2 / 3))
+                      set image(height: logo_tud_height * (2 / 3), width: auto)
                       logo_institute
                     } else {
                       panic("logo_institute_sizeing_type has to be width or height")
                     }
                   }
-                ]
+                ])
               },
               if logo_sub_content_text != none { v(5mm) },
               // sub box with custom text
