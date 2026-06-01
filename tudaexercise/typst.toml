@@ -13,4 +13,4 @@ compiler = "0.12.0"
 [template]
 path = "example"
 entrypoint = "main.typ"
-thumbnail = "preview/tudaexercise_prev-1.png"
+thumbnail = "preview/tudaexercise-light.png"
