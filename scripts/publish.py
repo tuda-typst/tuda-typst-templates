@@ -11,39 +11,24 @@ import sys
 
 # gitignore style pattern relative to repo root
 publish_ignore_files = """
-/packages
-/example_tudapub.pdf
-/example_tudapub.typ
-/.typos.toml
-
-/.git/
-/scripts/
-
 /tests/
-/tud_design_guide/
 
-/templates_examples/*/logos/*
-!/templates_examples/*/logos/*.sh
-!/templates_examples/*/logos/*logo_replace.svg
-/templates_examples/*/fonts/*
-!/templates_examples/*/fonts/*.sh
-/templates_examples/*/template
-/templates_examples/*/*.pdf
+/example/logos/*
+!/example/logos/*.sh
+!/example/logos/*logo_replace.svg
 
-/common/
-/assets/
+/example/fonts/*
+!/example/fonts/*.sh
 
 .DS_Store
-.venv
-.vscode
-
+*.pdf
 """
 
 # template folder names
 templates = [
     'tudapub',
     'tudaexercise',
-    'not-tudabeamer-2023'
+    'tudabeamer'
 ]
 
 
@@ -109,7 +94,7 @@ def copy_by_ignore_pattern(root, pattern: str, copy_dest_dir):
         dest = copy_dest_dir / match
         print(f'  - copy {match} to {dest}')
         os.makedirs(pathlib.Path(dest).parent, exist_ok=True)
-        shutil.copy(match, dest)
+        shutil.copy(root / match, dest)
 
 
 def delete_by_ignore_pattern(root, pattern: str):
@@ -125,7 +110,7 @@ def delete_by_ignore_pattern(root, pattern: str):
 
 
 def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
-    template_folder = pathlib.Path('templates') / template_folder_name
+    template_folder = pathlib.Path(repo_root) / template_folder_name
 
     # read typt.toml
     typst_toml = toml.load(template_folder / 'typst.toml')
@@ -148,39 +133,20 @@ def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
     os.makedirs(copy_dest_dir, exist_ok=True)
 
     # filter files and also resolve symlinks
-    copy_by_ignore_pattern(repo_root, publish_ignore_files, copy_dest_dir)
-    delete_by_ignore_pattern(copy_dest_dir, f"""
-    /templates_examples/*/logos/*
-    !/templates_examples/*/logos/*.sh
-    /templates_examples/*/fonts/*
-    !/templates_examples/*/fonts/*.sh
-    """)
+    copy_by_ignore_pattern(template_folder, publish_ignore_files, copy_dest_dir)
 
-    
-    # now move template sub-folder to root dir and remove other templates
-    dest_template_folder = copy_dest_dir / 'templates' / template_folder_name
-    for src_file in os.listdir(dest_template_folder):
-        src_path = os.path.join(dest_template_folder, src_file)
-        print(f" - move {src_path} to ./")
-        shutil.move(src_path, copy_dest_dir)
-    # remove template folder
-    shutil.rmtree(copy_dest_dir / 'templates')
-    
-    # copy example
-    examples_folder = copy_dest_dir / 'templates_examples'
-    shutil.copytree(examples_folder / template_folder_name, copy_dest_dir / 'example')
-    shutil.rmtree(examples_folder)
-
+    shutil.copy("README.md", copy_dest_dir / "README.md")
 
     # replace markdown links in readme -> add full repo path in front
     links_to_replace_with_repo_path = [
-        'templates/tudaexercise/template/tudaexercise.typ',
-        'templates/tudapub/template/tudapub.typ',
-        'templates/not-tudabeamer-2023/template/lib.typ',
-        'templates_examples/tudaexercise/main.typ',
+        'tudaexercise/template/tudaexercise.typ',
+        'tudapub/template/tudapub.typ',
+        'tudabeamer/template/lib.typ',
+        'tudaexercise/example/main.typ',
         'example_tudapub.pdf',
         'example_tudapub.typ',
-        'templates_examples/not-tudabeamer-2023/main.typ',
+        'tudabeamer/example/main.typ',
+        './CONTRIBUTING.md'
     ]
     repo_path = package_repository + '/blob/main/'
     print('\n>> will replace links in the REAMDME.md')
@@ -221,4 +187,5 @@ if args.template:
     ]
 
 for name in templates:
+    print(">> copying " + name)
     copy_template(copy_dest_dir=copy_dest_dir, template_folder_name=name)

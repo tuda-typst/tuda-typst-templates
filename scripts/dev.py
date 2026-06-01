@@ -25,12 +25,12 @@ def main():
         },
         {
             "name": "not-tudabeamer-2023",
-            "template": "not-tudabeamer-2023"
+            "template": "tudabeamer"
         }
     ]
 
     for pkg in packages:
-        template_dir = root_dir / "templates" / pkg["template"]
+        template_dir = pkg["template"]
         toml_path = template_dir / "typst.toml"
         
         version = get_version(toml_path)
@@ -40,7 +40,7 @@ def main():
 
         link_path = preview_dir / version
         
-        target_path = Path("..", "..", "..", "templates", pkg["template"])
+        target_path = Path("..", "..", "..", pkg["template"])
 
         if link_path.is_symlink():
             link_path.unlink()
