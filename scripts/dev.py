@@ -39,7 +39,7 @@ def main():
         preview_dir.mkdir(parents=True, exist_ok=True)
 
         link_path = preview_dir / version
-        
+
         target_path = Path("..", "..", "..", pkg["template"])
 
         if link_path.is_symlink():

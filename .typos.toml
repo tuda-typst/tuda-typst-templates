@@ -1,6 +1,6 @@
 [files]
-extend-exclude = [ 
-    "*/tests/", 
+extend-exclude = [
+    "*/tests/",
     "common/tudacolors.typ",
     "common/thesis_statement_pursuant.typ"
 ]
