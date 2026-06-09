@@ -229,6 +229,9 @@
     } else {
       numbering("1a", ..numbers)
     }
+    if numbers.pos().len() == 2 {
+      ")"
+    }
   })
 
   show heading: it => {
@@ -246,9 +249,9 @@
       tuda-section[#final-prefix#c: #it.body]
     } else if it.level == 2 {
       if ruled_subtask {
-        tuda-subsection(c + ") " + it.body)
+        tuda-subsection[#c #it.body]
       } else {
-        tuda-subsection-unruled(c + ") " + it.body)
+        tuda-subsection-unruled[#c #it.body]
       }
     } else {
       it
@@ -334,9 +337,11 @@
   }
 }
 
-#let tuda-gray-info(title: none, body) = context {
-  let darkmode = s.get().darkmode
-  let background = if (darkmode == false) { rgb("#f0f0f0") } else { rgb("#3F4647") }
+#let tuda-box(title: none, color: none, fill: true, body) = {
+  assert.ne(color, none, message: "Please define a color for the box.")
+  let background = if fill {
+    color.transparentize(80%)
+  }
   rect(
     fill: background,
     // inset: 1em,
@@ -346,13 +351,15 @@
     ),
     radius: 3pt,
     width: 100%,
-    stroke: (left: 5pt + gray),
+    stroke: (left: 5pt + color),
     [
       #{ if title != none [#text-roboto(strong(title)) \ ] }
       #body
     ],
   )
 }
+
+#let tuda-gray-info = tuda-box.with(color: gray, fill: true)
 
 /// Formats points for display in a task header.
 ///
