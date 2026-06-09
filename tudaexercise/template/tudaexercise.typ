@@ -221,6 +221,8 @@
     lang: language,
   )
 
+  show raw: set text(spacing: 100%)
+
   let dict = get-locale-dict(language)
 
   set heading(numbering: (..numbers) => {
