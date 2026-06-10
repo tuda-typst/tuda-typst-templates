@@ -116,9 +116,7 @@
 
   body,
 ) = {
-  if paper != "a4" {
-    panic("currently just a4 paper is supported")
-  }
+  assert.eq(paper, "a4", message: "Currently just A4 paper is supported.")
 
   let margins = tud_exercise_page_margin + margins
   let design = design-defaults + design
