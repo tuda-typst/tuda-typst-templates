@@ -3,7 +3,7 @@
   tud_exercise_page_margin, tud_header_line_height, tud_heading_line_thin_stroke, tud_inner_page_margin_top,
   tud_title_logo_height,
 )
-#import "common/headings.typ": tuda-section, tuda-subsection, tuda-subsection-unruled
+#import "common/headings.typ": tuda-section, tuda-subsection, tuda-nthsection
 #import "common/util.typ": check-font-exists
 #import "common/addons/difficulty-points.typ": difficulty-stars
 #import "common/colorutil.typ": calc-contrast, calc-relative-luminance
@@ -248,13 +248,9 @@
       }
       tuda-section[#final-prefix#c: #it.body]
     } else if it.level == 2 {
-      if ruled_subtask {
-        tuda-subsection[#c #it.body]
-      } else {
-        tuda-subsection-unruled[#c #it.body]
-      }
+      tuda-subsection(ruled: ruled_subtask)[#c #it.body]
     } else {
-      it
+      tuda-nthsection(ruled: ruled_subtask)[#c #it.body]
     }
   }
 
