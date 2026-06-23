@@ -224,12 +224,19 @@
   let dict = get-locale-dict(language)
 
   set heading(numbering: (..numbers) => {
+    let len = numbers.pos().len()
+    assert(len < 4, message: "Headings beyond level 3 need to supply their own numbering.")
+
+    let base = "1a i"
     if "sheet" in info {
-      numbering("1.1a", info.sheet, ..numbers)
+      numbering("1." + base, info.sheet, ..numbers)
     } else {
-      numbering("1a", ..numbers)
+      numbering(base, ..numbers)
     }
-    if numbers.pos().len() == 2 {
+    // append last character
+    if len == 1 {
+      ":"
+    } else {
       ")"
     }
   })
@@ -246,7 +253,7 @@
       } else {
         dict.task + " "
       }
-      tuda-section[#final-prefix#c: #it.body]
+      tuda-section[#final-prefix#c #it.body]
     } else if it.level == 2 {
       tuda-subsection(ruled: ruled_subtask)[#c #it.body]
     } else {
