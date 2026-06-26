@@ -48,7 +48,7 @@
 
   set text(fill: text_on_accent_color)
 
-  box(
+  block(
     fill: if colorback { accent_color },
     width: 100%,
     outset: 0pt,

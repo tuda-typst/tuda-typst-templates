@@ -1,4 +1,4 @@
-#import "@preview/athena-tu-darmstadt-exercise:0.2.0": (
+#import "@preview/athena-tu-darmstadt-exercise:0.3.0": (
   difficulty-format, info-layout, point-format, subtask, task, task-points-header, text-roboto, tuda-difficulty-stars,
   tuda-gray-info, tuda-section, tuda-subsection, tudaexercise,
 )
@@ -37,7 +37,7 @@
 The easiest way is by using `typst init` like on this templates universe page. But here is everything broken down:
 
 == Add to typst
-+ Import the package: `#import "@preview/athena-tu-darmstadt-exercise:0.1.0": *`
++ Import the package: `#import "@preview/athena-tu-darmstadt-exercise:0.3.0": *`
 
 + Apply the template using `#show: tudaexercise.with(<options>)`
 
@@ -188,3 +188,8 @@ If you want to create an unnumbered section you can use the `tuda-section` or `t
 + Points -- This would require a state and make declaring tasks far more complex than just using headings. Though technically the points can also be written manually into the task title.
 
 + Solutions -- Enabling whether solutions should be shown or not from within the template would again require a state and is thus rather costly. However you can implement them rather easily as from outside the template a boolean will already do.
+
+= Migrations from v0.2.0 to v0.3.0
+
+- The `title-sub` parameter was renamed to `info-layout`. Further, it now generates no subline, if set to `none`, or no relevant info keys are passed.
+- A `task-prefix` of `none` now removes the task prefix. Instead, `auto` should be passed, to have the default task prefix.

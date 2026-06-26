@@ -190,6 +190,8 @@
   ))
 
   set line(stroke: text_color)
+  set block(stroke: 0pt + text_color)
+  set curve(stroke: 0pt + text_color)
 
   let ruled_subtask = if subtask == "ruled" {
     true

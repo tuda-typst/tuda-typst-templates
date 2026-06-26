@@ -55,10 +55,9 @@
     outset: 0mm,
     above: above,
     below: below,
-    stroke: if ruled {(
-      top: tud_body_line_height,
-      bottom: tud_body_line_height
-    )},
+    stroke: if ruled {
+      (y: tud_body_line_height,)
+    },
     body,
   )
 }
