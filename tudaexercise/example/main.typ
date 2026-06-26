@@ -51,6 +51,8 @@ The template requires the following fonts: Roboto and XCharter. Typst right now 
 == Logo
 Similarly as the logo is protected and Typst does not have a folder for global resources you will need to setup the logo manually. You will need to download the logo and convert it into a svg. Then pass the `logo: image(<path to logo>)` option to this package. The height of the logo will automatically be set to 22mm.
 
+Additionally, a partner or institution logo can be passed using the `sublogo` parameter.
+
 = Configuring the title
 All options of the title can be controlled using the `info` dictionary:
 
@@ -124,7 +126,7 @@ Similarly subtasks are created using
 == Title of your subtask
 ```
 
-If you dislike the default task prefix, you can also set your own by changing the `taks-prefix` field of the template.
+If you dislike the default task format, you can slightly customize it using the `task-prefix`, `task-separator` and `task-prefix-subtasks` fields of the template.
 
 = Tasks with points and difficulty #task-points-header(points: 5, difficulty: 2.65)
 == Task point header #task-points-header(points: 2)
