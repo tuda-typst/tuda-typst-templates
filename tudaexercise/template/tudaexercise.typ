@@ -46,6 +46,8 @@
 ///
 /// - logo (content): The tuda logo as an image to be used in the title.
 ///
+/// - sublogo (content): A logo of an institution or similar for the title.
+///
 /// - info (dictionary): Info about the document mostly used in the title.
 ///
 ///   By default accepts the following items:
@@ -113,6 +115,7 @@
   paper: "a4",
 
   logo: none,
+  sublogo: none,
 
   info: (
     title: none,
@@ -341,6 +344,7 @@
         text_color,
         design.colorback,
         logo,
+        sublogo,
         tud_title_logo_height,
         info,
         info-layout,

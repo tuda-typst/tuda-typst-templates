@@ -18,6 +18,7 @@
   text_color,
   colorback,
   logo_element,
+  sublogo_element,
   logo_height,
   info,
   info-layout,
@@ -57,7 +58,8 @@
       v(logo_height / 2)
       grid(
         columns: (1fr, auto),
-        box(inset: (y: 3mm), {
+        align: (auto,right),
+        pad(y: 3mm, {
           set text(font: "Roboto", weight: "bold", size: 12pt)
           grid(
             row-gutter: 1em,
@@ -99,6 +101,11 @@
                 logo_element
               },
             )
+          }
+          if sublogo_element != none {
+            // 2/3 is from the tudapub example
+            set image(height: logo_height * 2 / 3)
+            sublogo_element
           }
         },
       )
