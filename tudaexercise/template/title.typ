@@ -62,6 +62,7 @@
           grid(
             row-gutter: 1em,
             inset: text_inset,
+            ..(
             if "title" in info {
               text(info.title, size: 20pt)
             },
@@ -83,7 +84,8 @@
               } else {
                 info.author
               }
-            },
+            }
+            ).filter(x => x != none)
           )
 
           v(.5em)
