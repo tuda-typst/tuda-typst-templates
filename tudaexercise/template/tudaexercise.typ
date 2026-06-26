@@ -11,6 +11,7 @@
 #import "title.typ": *
 #import "locales.typ": *
 #import "info-layout.typ" as info-layout
+#import "task-format.typ": format-task
 #import "headline.typ": resolve-headline
 
 #let design-defaults = (
@@ -72,9 +73,31 @@
 /// - design (dictionary): Options for the design of the template. Possible entries:
 ///   `accentcolor`, `colorback` and `darkmode`
 ///
-/// - task-prefix (str,none): How the task numbers are prefixed. If unset, the tasks use the
-///   language default.
+/// - task-prefix (auto, str, array, content): How the task numbers are prefixed. If unset or auto, 
+///   the tasks use the language default. 
+/// 
+///   If an array is given, it is indexed at the current value of 
+///   `counter("tuda-task-prefix")` mod `task-prefix.len()`. 
+///   Thus, splits into group-/homework tasks can be implemented as follows:
+///   
+///   ```typst
+///   #show: tudaexercise.with(
+///     ...
+///     task-prefix: ("G", "H")
+///   )
+///   = Group tasks
+/// 
+///   #counter("tuda-task-prefix").step()
+///   #counter(heading).update(0) // to make headings count at 1 again
+/// 
+///   = Homework tasks
+///   ```
 ///
+/// - task-separator (str, array, content): The separator between the task numbering and the task name.
+///   If an array, it is indexed using the current heading level, repeating the last element.
+/// 
+/// - task-prefix-subtasks (bool): Whether subtasks should also be prefixed or not.
+/// 
 /// - show-title (bool): Whether to show a title or not
 ///
 /// - subtask ("ruled", "plain"): How subtasks are shown
@@ -108,7 +131,9 @@
 
   design: design-defaults,
 
-  task-prefix: none,
+  task-prefix: auto,
+  task-separator: (":", ")"),
+  task-prefix-subtasks: false,
 
   show-title: true,
 
@@ -233,12 +258,6 @@
     } else {
       numbering(base, ..numbers)
     }
-    // append last character
-    if len == 1 {
-      ":"
-    } else {
-      ")"
-    }
   })
 
   show heading: it => {
@@ -247,17 +266,13 @@
       return
     }
     let c = counter(heading).display(it.numbering)
+    let prefix = format-task(task-prefix, c, task-separator, task-prefix-subtasks, it, dict)
     if it.level == 1 {
-      let final-prefix = if (task-prefix != none) {
-        task-prefix
-      } else {
-        dict.task + " "
-      }
-      tuda-section[#final-prefix#c #it.body]
+      tuda-section[#prefix #it.body]
     } else if it.level == 2 {
-      tuda-subsection(ruled: ruled_subtask)[#c #it.body]
+      tuda-subsection(ruled: ruled_subtask)[#prefix #it.body]
     } else {
-      tuda-nthsection(ruled: ruled_subtask)[#c #it.body]
+      tuda-nthsection(ruled: ruled_subtask)[#prefix #it.body]
     }
   }
 

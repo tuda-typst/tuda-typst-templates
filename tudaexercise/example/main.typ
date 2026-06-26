@@ -25,7 +25,8 @@
     colorback: true,
     darkmode: "darkmode" in sys.inputs,
   ),
-  task-prefix: none,
+  task-prefix: auto,
+  task-prefix-subtasks: false,
 )
 
 #set enum(spacing: 1em, numbering: "1.", indent: 5pt)
