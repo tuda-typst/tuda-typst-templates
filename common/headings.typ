@@ -56,7 +56,7 @@
     above: above,
     below: below,
     stroke: if ruled {
-      (y: tud_body_line_height,)
+      (y: tud_body_line_height)
     },
     body,
   )
@@ -93,4 +93,8 @@
 /// ```
 /// - title (str): The title of this (sub)+section
 /// - ruled (bool): Whether to add lines around the section
-#let tuda-nthsection(title, ruled: true) = tuda-section-lines(above: 1em, below: 0.7em, ruled: ruled, text(title, font: "Roboto", weight: "regular"))
+#let tuda-nthsection(title, ruled: true) = tuda-section-lines(above: 1em, below: 0.7em, ruled: ruled, text(
+  title,
+  font: "Roboto",
+  weight: "regular",
+))

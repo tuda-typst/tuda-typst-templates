@@ -4,7 +4,7 @@
   separator,
   include-subtasks,
   it,
-  dict
+  dict,
 ) = {
   let sep = if type(separator) == array {
     assert.ne(separator.len(), 0, message: "If an array, `task-separator` must have at least one element.")
@@ -19,7 +19,7 @@
     assert.ne(prefix.len(), 0, message: "If an array, `task-prefix` must have at least one element.")
     context {
       let c = counter("tuda-task-prefix").get().at(0)
-      prefix.at(calc.rem(c,prefix.len()))
+      prefix.at(calc.rem(c, prefix.len()))
     }
   } else {
     prefix

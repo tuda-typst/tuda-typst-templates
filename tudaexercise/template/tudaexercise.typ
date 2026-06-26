@@ -3,7 +3,7 @@
   tud_exercise_page_margin, tud_header_line_height, tud_heading_line_thin_stroke, tud_inner_page_margin_top,
   tud_title_logo_height,
 )
-#import "common/headings.typ": tuda-section, tuda-subsection, tuda-nthsection
+#import "common/headings.typ": tuda-nthsection, tuda-section, tuda-subsection
 #import "common/util.typ": check-font-exists
 #import "common/addons/difficulty-points.typ": difficulty-stars
 #import "common/colorutil.typ": calc-contrast, calc-relative-luminance
@@ -75,31 +75,31 @@
 /// - design (dictionary): Options for the design of the template. Possible entries:
 ///   `accentcolor`, `colorback` and `darkmode`
 ///
-/// - task-prefix (auto, str, array, content): How the task numbers are prefixed. If unset or auto, 
-///   the tasks use the language default. 
-/// 
-///   If an array is given, it is indexed at the current value of 
-///   `counter("tuda-task-prefix")` mod `task-prefix.len()`. 
+/// - task-prefix (auto, str, array, content): How the task numbers are prefixed. If unset or auto,
+///   the tasks use the language default.
+///
+///   If an array is given, it is indexed at the current value of
+///   `counter("tuda-task-prefix")` mod `task-prefix.len()`.
 ///   Thus, splits into group-/homework tasks can be implemented as follows:
-///   
+///
 ///   ```typst
 ///   #show: tudaexercise.with(
 ///     ...
 ///     task-prefix: ("G", "H")
 ///   )
 ///   = Group tasks
-/// 
+///
 ///   #counter("tuda-task-prefix").step()
 ///   #counter(heading).update(0) // to make headings count at 1 again
-/// 
+///
 ///   = Homework tasks
 ///   ```
 ///
 /// - task-separator (str, array, content): The separator between the task numbering and the task name.
 ///   If an array, it is indexed using the current heading level, repeating the last element.
-/// 
+///
 /// - task-prefix-subtasks (bool): Whether subtasks should also be prefixed or not.
-/// 
+///
 /// - show-title (bool): Whether to show a title or not
 ///
 /// - subtask ("ruled", "plain"): How subtasks are shown
