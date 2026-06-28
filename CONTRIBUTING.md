@@ -20,7 +20,8 @@ code .
 cargo install --locked --git https://github.com/typst-community/tytanic
 cd tudapub
 tt --font-path ../assets/fonts/ run
-
+# to update reference
+tt --font-path ../assets/fonts/ update
 ```
 
 ## VS Code Setup (Optional)
