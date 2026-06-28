@@ -30,7 +30,7 @@ def main():
     ]
 
     for pkg in packages:
-        template_dir = pkg["template"]
+        template_dir = Path(pkg["template"])
         toml_path = template_dir / "typst.toml"
 
         version = get_version(toml_path)
