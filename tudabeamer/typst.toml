@@ -5,7 +5,7 @@ entrypoint = "template/lib.typ"
 authors = ["Moritz Hedtke <https://github.com/mohe2015>"]
 license = "MIT"
 description = "Not the TU Darmstadt Beamer 2023 template"
-repository = "https://github.com/JeyRunner/tuda-typst-templates"
+repository = "https://github.com/tuda-typst/tuda-typst-templates"
 keywords = ["TU Darmstadt", "Technische Universität Darmstadt", "tu-darmstadt", "beamer", "presentation"]
 categories = ["presentation"]
 

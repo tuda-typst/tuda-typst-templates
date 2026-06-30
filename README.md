@@ -44,7 +44,7 @@ For a manual setup create a folder for your writing project and download this te
 ```bash
 mkdir my_thesis && cd my_thesis
 mkdir templates && cd templates
-git clone https://github.com/JeyRunner/tuda-typst-templates
+git clone https://github.com/tuda-typst/tuda-typst-templates
 ```
 </details>
 
