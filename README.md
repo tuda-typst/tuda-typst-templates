@@ -16,9 +16,9 @@ For missing features, ideas or other problems you can just open an issue :wink:.
 
 | Template | Preview | Example | Scope |
 |----------|---------|---------|-------|
-| [tudapub](tudapub/template/tudapub.typ) | <img src="tudapub/preview/tudapub_prev-01.png" height="300px"> | [example_tudapub.pdf](example_tudapub.pdf) <br/> [example_tudapub.typ](example_tudapub.typ) | Master and Bachelor thesis |
-| [tudaexercise](tudaexercise/template/tudaexercise.typ) | <img src="tudaexercise/preview/tudaexercise-light.png" height="300px"> | [Example File](tudaexercise/example/main.typ) | Exercises |
-| [not-tudabeamer-2023](tudabeamer/template/lib.typ) | <img src="tudabeamer/preview/thumbnail.webp" height="300px"> | [Example File](tudabeamer/example/main.typ) | Presentations |
+| [tudapub](tudapub/template/tudapub.typ) | <img src="tudapub/preview/tudapub_prev-01.png" height="300px" alt="An image showing an example tudapub front cover"> | [example_tudapub.pdf](example_tudapub.pdf) <br/> [example_tudapub.typ](example_tudapub.typ) | Master and Bachelor thesis |
+| [tudaexercise](tudaexercise/template/tudaexercise.typ) | <img src="tudaexercise/preview/tudaexercise-light.png" height="300px" alt="An image showing an example tudaexercise sheet"> | [Example File](tudaexercise/example/main.typ) | Exercises |
+| [not-tudabeamer-2023](tudabeamer/template/lib.typ) | <img src="tudabeamer/preview/thumbnail.webp" height="300px" alt="An image showing an example tudabeamer title slide"> | [Example File](tudabeamer/example/main.typ) | Presentations |
 
 ## Usage
 Create a new typst project based on this template locally.
