@@ -1,10 +1,9 @@
 
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 #import "@preview/hallon:0.1.3"
-#show: hallon.style-figures.with(heading-levels: 1)
 
-#show: tudapub.with(
-)
+#show: tudapub.with()
+#show: hallon.style-figures.with(heading-levels: 1)
 
 = Chapter 1
 
