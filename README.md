@@ -18,9 +18,9 @@ For missing features, ideas or other problems, feel free to open an issue as wel
 
 | Template | Preview | Example | Scope |
 |----------|---------|---------|-------|
-| [tudapub](tudapub/template/tudapub.typ) | <img src="tudapub/preview/tudapub_prev-01.png" height="300px" alt="An image showing an example tudapub front cover"> | [example_tudapub.pdf](example_tudapub.pdf) <br/> [example_tudapub.typ](example_tudapub.typ) | Master and Bachelor theses |
-| [tudaexercise](tudaexercise/template/tudaexercise.typ) | <img src="tudaexercise/preview/tudaexercise-light.png" height="300px" alt="An image showing an example tudaexercise sheet"> | [Example File](tudaexercise/example/main.typ) | Exercises |
-| [not-tudabeamer-2023](tudabeamer/template/lib.typ) | <img src="tudabeamer/preview/thumbnail.webp" height="300px" alt="An image showing an example tudabeamer title slide"> | [Example File](tudabeamer/example/main.typ) | Presentations |
+| [tudapub](tudapub/template/tudapub.typ) | <img src="tudapub/preview/tudapub_prev-01.png" height="300px" alt="An exemplary tudapub front cover"> | [example_tudapub.pdf](example_tudapub.pdf) <br/> [example_tudapub.typ](example_tudapub.typ) | Master and Bachelor theses |
+| [tudaexercise](tudaexercise/template/tudaexercise.typ) | <img src="tudaexercise/preview/tudaexercise-light.png" height="300px" alt="An exemplary tudaexercise sheet"> | [Example File](tudaexercise/example/main.typ) | Exercises |
+| [not-tudabeamer-2023](tudabeamer/template/lib.typ) | <img src="tudabeamer/preview/thumbnail.webp" height="300px" alt="An exemplary tudabeamer title slide"> | [Example File](tudabeamer/example/main.typ) | Presentations |
 
 ## Usage
 To create a new Typst project based on one of these templates locally:
@@ -52,6 +52,11 @@ git clone https://github.com/tuda-typst/tuda-typst-templates
 
 ### Logo and Font Setup
 Download the TUDa logo from [download.hrz.tu-darmstadt.de/protected/ULB/tuda_logo.pdf](https://download.hrz.tu-darmstadt.de/protected/ULB/tuda_logo.pdf) and put it into the `assets/logos` folder.
+Since Typst 0.14.0, you can use the logo PDF file directly.
+If you use an earier version of Typst, see below for instructions on how to convert the logo to an SVG file.
+
+<details>
+<summary>Converting the Logo to SVG</summary>
 Now execute the following script in the `assets/logos` folder to convert it into an svg:
 
 ```bash
@@ -60,6 +65,7 @@ cd assets/logos
 ```
 
 Note: This script uses the `pdf2svg` command, which might not be available to you. In this case we recommend a online converter such as [PDF24 Tools](https://tools.pdf24.org/en/pdf-to-svg). There is also a [tool](https://github.com/FussballAndy/typst-img-to-local) to install images as local Typst packages.
+</details>
 
 Also download the required fonts `Roboto` and `XCharter`:
 ```bash
@@ -76,7 +82,7 @@ Note: `wget` might not be available to you. You may replace the command with som
 Create a simple `main.typ` in the root folder (e.g., `my_thesis`) of your new project:
 
 ```typ
-#import "templates/tuda-typst-templates/templates/tudapub/template/lib.typ": *
+#import "templates/tuda-typst-templates/tudapub/template/lib.typ": *
 
 #show: tudapub.with(
   title: [
@@ -98,7 +104,7 @@ Some Text
 typst watch main.typ --font-path assets/fonts/
 ```
 
-This will watch your file and recompile it to a PDF when the file is saved. For writing, you can use [Vscode](https://code.visualstudio.com/) with [Tinymist](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist).
+This will watch your file and recompile it to a PDF when the file is saved. For writing, you can use [VS Code](https://code.visualstudio.com/) with [Tinymist](https://marketplace.visualstudio.com/items?itemName=myriad-dreamin.tinymist).
 Alternatively, use the [Typst web app](https://typst.app/). Note that you'll have to upload your logos and fonts manually.
 
 Note that we add `--font-path` to ensure that the correct fonts are used.
