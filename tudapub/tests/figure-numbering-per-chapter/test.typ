@@ -14,7 +14,8 @@
 
 See @figure-1-1, @figure-1-2, @figure-2-1, @figure-2-2
 
-#set heading(numbering: "A", supplement: [Appendix])
+#set heading(numbering: "A.1", supplement: [Appendix])
+#counter(heading).update(0)
 
 = Chapter 2
 
