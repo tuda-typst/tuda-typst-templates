@@ -60,8 +60,24 @@ parser.add_argument('--not-clean-dist-folder', action='store_true',
                     help='Not delete the contents of the destinatio folder before copying.')
 parser.add_argument('--template', type=str,
                     help='If set only publish the template with this name, otherwise all templates.')
+parser.add_argument('--tag', type=str,
+                    help='The tag to use when rewriting links.')
 args = parser.parse_args()
 
+## input validation
+
+# check whether tag is valid
+if args.tag is not None:
+    import subprocess
+
+    result = subprocess.run([
+        "git", "tag", "--list"
+    ], stdout=subprocess.PIPE, text=True)
+    tags = result.stdout.splitlines()
+    if not args.tag in tags:
+        print(f'Invalid tag: {args.tag}')
+        parser.print_usage()
+        exit(1)
 
 # get copy destination
 copy_dest_dir = None
@@ -148,7 +164,8 @@ def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
         'tudabeamer/example/main.typ',
         './CONTRIBUTING.md'
     ]
-    repo_path = package_repository + '/blob/main/'
+    ref = args.tag or 'main'
+    repo_path = f'{package_repository}/blob/{ref}/'
     print('\n>> will replace links in the REAMDME.md')
     link_regex = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
     with open(copy_dest_dir / "README.md", "r+") as readme:
@@ -169,7 +186,7 @@ def copy_template(copy_dest_dir, template_folder_name = 'tudapub'):
 
         # replace image links in readme
         img_tag_start = '<img src="'
-        repo_path_raw = package_repository.replace('https://github.com/', 'https://raw.githubusercontent.com/') + '/refs/heads/main/'
+        repo_path_raw = package_repository.replace('https://github.com/', 'https://raw.githubusercontent.com/') + f'/refs/{'heads' if args.tag is None else 'tags'}/{ref}/'
         c = c.replace(img_tag_start, img_tag_start + repo_path_raw)
 
         # overwrite
