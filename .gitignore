@@ -1,3 +1,4 @@
+*.log
 tud_design_guide/**
 
 assets/fonts/*/*
