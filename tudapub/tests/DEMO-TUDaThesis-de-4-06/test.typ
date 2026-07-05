@@ -66,13 +66,9 @@ TUDa-CI verwendet hierfür das babel-Paket.
 Dies wird jedoch nicht automatisch geladen, da hierfür die Konfiguration der Sprachen bekannt sein müsste. Die Demo-Dateien für Abschlussarbeiten (`DEMO-TUDaThesis.tex`/`DEMO-TUDaPhD.tex`) laden hierfür die Konfiguration:
 
 ```
-
-```
 \usepackage[english, main=german]{babel}
-
 ```
 
-```
 Diese ist für ein Dokument mit Deutsch als Hauptsprache und Englischen Elementen.
 Die Hauptsprache wird als Wert der Option `main=` übergeben.
 Das Laden von `german` wird in den Fällen, in denen es von TUDa-CI benötigt wird, automatisch ausgelöst.
@@ -81,12 +77,7 @@ Für eine bessere Übersichtlichkeit ist es dennoch hilfreich es dort aufzuführ
 Falls die Hauptsprache nicht Deutsch ist, wäre daher die folgende Konfiguration sinnvoll:
 
 ```
-
-```
 \usepackage[german, main=<Hauptsprache>]{babel}
-
-```
-
 ```
 
 #heading(level: 2)[Übergabe der Titeldaten]
@@ -94,13 +85,9 @@ Falls die Hauptsprache nicht Deutsch ist, wäre daher die folgende Konfiguration
 Die Daten werden analog zur klassischen Titeleierzeugung mit `\maketitle` übergeben. Allerdings wurden die Felder um ein paar speziellere Daten erweitert. Sofern nicht anders angegeben, verfügen alle Makros über ein notwendiges Argument für die Datenübergabe, z. B.
 
 ```
-
-```
 \title{\LaTeX{} im Corporate Design der TU Darmstadt}
-
 ```
 
-```
 Es ist zu beachten, dass für die Erzeugung der Titelseite nach Übergabe aller Daten `\maketitle` aufgerufen werden muss.
 
 Falls eine Layoutanpassung der Titelseite notwendig ist, gelten die in der TUDa-CI-Dokumentation @tuda-ci geschilderten Optionen. Dort finden sich auch Hinweise zur Platzierung von Sponsorenlogos.
@@ -115,43 +102,29 @@ Falls eine Layoutanpassung der Titelseite notwendig ist, gelten die in der TUDa-
   Die Änderung des Bezeichners ist über ein optionales Argument möglich:
 
 ```
-
-```
       \reviewer[Ersatzbezeichner]{Name1 \and Name2}
-
 ```
 
-```
 Um die numerische Benennung abzuändern ist es zusätzlich möglich statt dem Ersatzbezeichner eine Kommaliste zu übergeben:
-
-```
 
 ```
       \reviewer\*[Bezeichner1, Bezeichner2]{Name1 \and Name2}
 
 ```
 
-```
 In diesem Fall entfällt die Nummerierung vor dem Bezeichner. Soll z. B. den Formulierungen der Promotionsordnung entsprochen werden, gilt:
 
 ```
-
-```
       \reviewer[Erstreferent\_in,Koreferent\_in]{Name1 \and Name2}
-
 ```
 
-```
 Für die Erstellung Fachbereichsspezifischer Templates existiert hierfür auch ein Makro, dass ohne den Aufruf von `\reviewer` Änderungen zulässt.
-
-```
 
 ```
       \setupReviewName{Ersatzwort für „Gutachten“}
 
 ```
 
-```
 Setzt die ersten beiden Bezeichner. Alternativ ist es auch möglich Positionen einzeln zu benennen `\setupReviewName[1]{Erstferent}`, eine Übergabe als Komma-Liste ist als `\setupReviewName*{Bezeicher1,Bezeicher2}` möglich.
 
 Ab Version 3.26 werden die Gutachter nicht mehr auf der Titelrückseite genannt. Dies wird über die `thesis` Option `reviewer-on-uppertitleback` gesteuert. Voreingestellt ist der Wert `false`.
@@ -162,31 +135,23 @@ Dieses Makro verfügt jedoch zusätzlich über die Möglichkeit abweichende Eint
 
 
 ```
-
-```
   \department[Ersatztext]{Kürzel/Bezeichnung}
 
 ```
 
-```
 Zusätzlich gibt es ab Version 2.01 auch die Möglichkeit den gesamten Text "im Fachbereich <Bereichsbezeichnung>", sowie die Angabe in der Infobox auf der Titelseite zu ersetzen. Dies geschieht über die gesternte Variante:
-
-```
 
 ```
   \department\*[Text für die Box]{Text zwischen Typ und Autor}
 
 ```
 
-```
 / `\group`: Arbeitsgruppe.
 / `\submissiondate`: Datum der Einreichung
 / `\examdate`: Datum der Disputation
 / `\date`: Beliebiges Datum. Wird über `datename` bezeichnet.
 / `\publishers`: Wird hier für die Ortsangabe verwendet und ist mit "Darmstadt", bzw. "Darmstadt, Technische Universität Darmstadt" (bei Dissertationen) vorbelegt.
 / `\tuprints`: <page:tuprints> Übergabe der Daten, sofern das Dokument über TUprints Veröffentlicht werden soll.
-
-```
 
 ```
   \tuprints{
@@ -197,7 +162,6 @@ Zusätzlich gibt es ab Version 2.01 auch die Möglichkeit den gesamten Text "im 
 
 ```
 
-```
 Falls das Argument kein Gleichheitszeichen erkennt, wird der Wert als `printid` gesetzt und keine URN angegeben.
 
 Die printid is die ID-Nummer des TUprints-Eintrags. Die urn ist ein dauerhaft eindeutig zitierfähiger Bezeichner für das Dokument. Die Nummer entspricht bei TUprints der printid mit Ergänzung einer Prüfziffer. Beide Angaben sind in den Details des TUprints-Eintrags zu finden.
@@ -247,8 +211,6 @@ Inwieweit diese Optionen verwendet werden dürfen ist jeweils vor der Verwendung
 TUDa-CI kann hierfür keine gesicherte Aussage treffen.
 
 ```
-
-```
 \affidavit[
     signature=Signaturname,
     signature-image={\includegraphics[width=\width]{signaturbild}}
@@ -256,13 +218,10 @@ TUDa-CI kann hierfür keine gesicherte Aussage treffen.
 
 ```
 
-```
 Eine vertikale Verschiebung des Signaturbildes ist nicht direkt implementiert, ist jedoch mit der Verwendung des LaTeX-Makros `\raisebox{<Verschiebung>}{<Inhalt>}` problemlos möglich.
 
 Es besteht zusätzlich die Möglichkeit ein anderssprachiges Affidavit als Ergänzung mit abzudrucken. Um die Struktur und die ggf. notwendige Sprachumschaltung zu erledigen, existiert hierfür ab Version 2.03 eine Umgebung:
 
-
-```
 
 ```
 \begin{affidavit*}[Babel-Sprachoption]{Überschrift}
@@ -271,31 +230,20 @@ Es besteht zusätzlich die Möglichkeit ein anderssprachiges Affidavit als Ergä
 
 ```
 
-```
-
 Diese Variante verfügt bewusst über keine Unterschriftenzeile, da diese Version laut Verständnis der Entwickler keine rechtliche Verbindlichkeit besitzt.
 
 Die Umgebung kann jedoch auch für besondere Formen der Erklärung genutzt werden. In diesem Fall kann eine zusätzliche Signaturzeile über
-
-```
 
 ```
 \AffidavitSignature[Stadt]
 
 ```
 
-```
 hinzugefügt werden. Die Vorbelegung für Stadt ist hierbei "Darmstadt".
 Ab Version 3.20 ist die Übergabe einer zusätzlichen Option für den Ort der Signatur auch als Option möglich.
 
-
-```
-
 ```
 \affidavit[signature-location=Stadt]
-
-```
-
 ```
 
 #heading(level: 2)[Layout-Optionen mit Verstoß gegen das Corporate Design]
@@ -311,13 +259,12 @@ Daher existiert die Klassenoption `custommargins`, die für dieses Dokument akti
   Hierbei ist zu beachten, dass die Einstellungen als Ausgangspunkt den Voreingestellten Satzspiegel nutzen (je nach Option mit Randnotizspalte oder ohne). Es ist möglich diese Optionen vor den eigenen mit zurückzusetzen:
 
 ```
-
 \geometry{
 reset,
 
 }
-
 ```
+
 Die gilt insbesondere für die Optionen `includehead`, `includefoot`, `includemp`.
 
 *Hinweis zu den Kopf-/Fußzeilen*\
@@ -327,14 +274,13 @@ Auch ist das Standard-Layout der Kolumnentitel wenig vorteilhaft, da die Kolumne
 Deswegen kann über
 
 ```
-
 \pagestyle{TUDa.headings}
-
 ```
+
 ein einfacherer Seitenstil ausgewählt werden, der die Nutzung mit lebenden Kolumnentitel erheblich vereinfacht. Dieser Stil ist über `scrlayer-scrpage` realisiert und kann entsprechend der KOMAScript-Dokumentation angepasst werden.
 
 *Hinweis zur Bindekorrektur*\
-Bei Verwendung einer Bindekorrektur (`BCOR=<Länge>`) wird diese nicht automatisch auch auf der Titelseite eingefügt. Für diesen Fall wurde mit Version 3.0 zusätzlich die Option `BCORtitlepage} hinzugefügt. Falls diese aktiviert wird, nimmt die Titelseite den Wert der Typearea Option `BCOR` auf der ersten Seite als Zusatz zum linken Rand hinzu.
+Bei Verwendung einer Bindekorrektur (`BCOR=<Länge>`) wird diese nicht automatisch auch auf der Titelseite eingefügt. Für diesen Fall wurde mit Version 3.0 zusätzlich die Option `BCORtitlepage` hinzugefügt. Falls diese aktiviert wird, nimmt die Titelseite den Wert der Typearea Option `BCOR` auf der ersten Seite als Zusatz zum linken Rand hinzu.
 
 #heading(level: 2)[Spezielle Optionen für Abschlussarbeiten]
 Die Klasse unterstützt alle Optionen der `tudapub`-Klasse. Darüber hinaus besteht über Wertzuweisung der Option `thesis` die Möglichkeit spezielle Einstellungen zu wählen.
@@ -343,10 +289,9 @@ Es ist prinzipiell möglich die Optionen auch direkt als Optionen zur `tudapub`-
 Für dieses Dokument wurden beispielsweise die Optionen als
 
 ```
-
 thesis={type=dr,dr=rernat}
-
 ```
+
 übergeben.
 
 Im folgenden findet sich die Bedeutung der einzelnen Optionen:
@@ -418,5 +363,3 @@ Da es möglich sein kann von dieser Vorgabe abzuweichen, existiert für Sonderf�
 Sofern die Vorgaben es erfordern, ist es möglich mit dem setspace-Paket den Durchschuss zu erhöhen. Allerdings beeinflusst dies natürlich sämtliche Zeilenabstände. Ein erhöhter Zeilenabstand sollte daher erst nach der Titelseite aktiviert werden. Allgemein ist es jedoch empfehlenswert auch für Verzeichnisse und sonstige Sonderelemente außerhalb des Fließtextes auf bei normalen Einstellungen zu bleiben.
 
 Setspace liefert hierfür die Möglichkeit, das Paket ohne Optionen zu laden und später über Makros, wie `\onehalfspacing` das Umschalten zu verzögern. Alternativ kann auch durch die Umgebungen, wie `singlespace` lokal wieder zum Normalzustand gewechselt werden, sofern dies erforderlich ist.
-
-```
