@@ -1,7 +1,7 @@
 // imports
 #import "@preview/cetz:0.1.2": canvas, plot
 #import "@preview/glossarium:0.2.5": gls, glspl, make-glossary, print-glossary
-#import "@preview/mitex:0.2.3": *
+#import "@preview/mitex:0.2.7": *
 #import "@preview/drafting:0.1.2": *
 #show: make-glossary
 

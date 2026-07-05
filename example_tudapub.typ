@@ -1,7 +1,7 @@
 // imports
 #import "@preview/cetz:0.2.2": canvas, plot
 #import "@preview/glossarium:0.5.4": gls, glspl, make-glossary, print-glossary, register-glossary //make-glossary, print-glossary, gls, glspl
-#import "@preview/mitex:0.2.3": *
+#import "@preview/mitex:0.2.7": *
 
 // add
 // - subpar for sub-figures
@@ -196,7 +196,7 @@ $
 This is possible with the package #link("https://github.com/mitex-rs/mitex")[mitex]:
 You can include the package at the beginning of your document via
 //```typst
-#raw(lang: "typst", "#import \"@preview/mitex:0.1.0\": *")
+#raw(lang: "typst", "#import \"@preview/mitex:0.2.7\": *")
 //```
 .
 Usage:
