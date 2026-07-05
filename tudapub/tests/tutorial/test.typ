@@ -39,7 +39,7 @@
     For instructions on how to set up this template see @sec_usage.
   ],
 
-  bib: bibliography("../latex/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
+  bib: bibliography("../DEMO-TUDaThesis-de-4-06/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
 
   logo_tuda: image("logos/tuda_logo.svg"),
 
