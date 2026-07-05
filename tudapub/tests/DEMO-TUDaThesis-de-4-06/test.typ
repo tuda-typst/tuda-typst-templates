@@ -29,8 +29,6 @@
   bib: bibliography("DEMO-TUDaBibliography.bib"),
 )
 
-#set heading(numbering: none)
-
 #heading(level: 1, numbering: none)[Über diese Datei]
 
 Die Datei `DEMO-TUDaThesis.tex` ist ein grundlegendes Template für Abschlussarbeiten im Stil des Corporate Designs der TU Darmstadt.
@@ -41,7 +39,7 @@ Sie verwendet die Dokumentenklasse `tudapub.cls`, allerdings mit erweiterten Ein
 In diesem Dokument werden überwiegend die speziell auf Abschlussarbeiten ausgelegten Funktionen beschrieben.
 Weitere Konfigurationsmöglichkeiten finden sich in der allgemeinen TUDa-CI Dokumentation @tuda-ci.
 
-Es wird empfohlen die Datei mit LuaLaTeX zu kompilieren. Es sollte bei Problemen auf jeden Fall geprüft und wenn möglich auf LuaLaTeX umgestellt werden.
+Es wird empfohlen die Datei mit Lua#LaTeX zu kompilieren. Es sollte bei Problemen auf jeden Fall geprüft und wenn möglich auf Lua#LaTeX umgestellt werden.
 
 #heading(level: 1)[Verwendung]
 Die Klasse kann wie für Dokumentenklassen üblich eingebunden werden
@@ -51,12 +49,13 @@ Die Klasse kann wie für Dokumentenklassen üblich eingebunden werden
 \documentclass[thesis]{tudapub}
 
 ```
+
 Die Option `thesis` wechselt hierbei in den Modus, der spezielle Features für Abschlussarbeiten freischaltet, die in diesem Dokument beschrieben werden.
 
 Darüber hinaus lässt sich die Klasse verwenden wie die Standard-KOMA-Script-Klasse, auf der sie basiert.
 Voreingestellt ist hierbei `scrreprt`.
 
-Allgemein bietet KOMAScript viele Möglichkeiten zu Anpassungen. Wie in der tudapub-Demo-Datei beschrieben, können hier jedoch nicht alle erläutert werden, ein Blick in die offizielle Dokumentation ist daher häufig hilfreich @scrguide-de.
+Allgemein bietet KOMA-Script viele Möglichkeiten zu Anpassungen. Wie in der tudapub-Demo-Datei beschrieben, können hier jedoch nicht alle erläutert werden, ein Blick in die offizielle Dokumentation ist daher häufig hilfreich @scrguide-de.
 
 #heading(level: 2)[Sprachanpassung]
 Der Modus für Abschlussarbeiten setzt einige sprachabhängige Bezeichnungen.
@@ -66,7 +65,10 @@ TUDa-CI verwendet hierfür das babel-Paket.
 Dies wird jedoch nicht automatisch geladen, da hierfür die Konfiguration der Sprachen bekannt sein müsste. Die Demo-Dateien für Abschlussarbeiten (`DEMO-TUDaThesis.tex`/`DEMO-TUDaPhD.tex`) laden hierfür die Konfiguration:
 
 ```
-\usepackage[english, main=german]{babel}
+
+  \usepackage[english, main=german]{babel}
+
+
 ```
 
 Diese ist für ein Dokument mit Deutsch als Hauptsprache und Englischen Elementen.
