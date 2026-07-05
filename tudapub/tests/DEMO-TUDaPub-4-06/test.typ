@@ -21,6 +21,8 @@
   bib: bibliography("DEMO-TUDaBibliography.bib"),
 )
 
+#set heading(numbering: none)
+
 == Abstract
 
 Abstract using the document main language (here English)
@@ -32,6 +34,8 @@ Weitere Zusammenfassung in einer anderen Sprache (hier Deutsch), sofern benötig
 == Contents
 
 //#tudapub-make-outline-table-of-contents()
+
+#set heading(numbering: "1.1")
 
 == About this file
 
