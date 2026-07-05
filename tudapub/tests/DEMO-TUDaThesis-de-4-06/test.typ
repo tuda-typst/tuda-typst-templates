@@ -333,13 +333,10 @@ Im folgenden findet sich die Bedeutung der einzelnen Optionen:
   Sofern keiner dieser Werte dem angestrebten Titel entspricht, kann ein Text direkt übergeben werden.
 
 ```
-
-```
   \drtext{Zur Erlangung des Grades \ldots}
 
 ```
 
-```
 / `department=<Kürzel>`: Die Fachbereiche sind fest als Textbausteine in Deutscher sowie Englischer Sprache hinterlegt. Diese Option ermöglicht die Auswahl als Dokumentenklassenoption. Aus Kompatibilitätsgründen kann jedoch auch das Makro `department`-Makro hierfür genutzt werden. Zur Verfügung stehen:\
 #table(
   columns: (auto, auto),
