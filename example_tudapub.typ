@@ -61,7 +61,6 @@
 
   //outline_table_of_contents_style: "adapted",
   //reduce_heading_space_when_first_on_page: false
-  //figure_numbering_per_chapter: false
 
   // Which pages to insert
   // Pages can be disabled individually.
@@ -462,13 +461,6 @@ In the following, we show the show-command of this template with all doc and def
 
   // Use 'Roboto Slab' instead of 'Robot' font for figure captions.
   figure_caption_font_roboto_slab: true,
-
-  // Figures have the numbering <chapter-nr>.<figure-nr>
-  figure_numbering_per_chapter: true,
-
-  // Equations have the numbering <chapter-nr>.<equation-nr>
-  // @todo This seems to increase the equation number in steps of 2 instead of one
-  equation_numbering_per_chapter: false,
 )
 ```
 
