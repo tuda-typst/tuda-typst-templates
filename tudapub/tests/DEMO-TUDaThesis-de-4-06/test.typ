@@ -4,20 +4,21 @@
 #import "@preview/metalogo:1.2.0": LaTeX
 
 #show: tudapub.with(
-  title: [TUDaThesis -- Theses using TU Darmstadt's CI],
-  subtitle: [#LaTeX im Corporate Design der TU Darmstadt],
+  language: "de",
+  title: [TUDaThesis -- Abschlussarbeiten im Corporate Design der TU Darmstadt],
+  subtitle: [#LaTeX using TU Darmstadt's CI],
   thesis_type: "bachelor",
   author: "Marei Peischl",
   date_of_submission: datetime.today(),
-  reviewer_names: ("Reviewer 1", "Reviewer 2", [...]),
+  reviewer_names: ("Gutachter*in 1", "Gutachter*in 2", [...]),
   location: "Darmstadt",
   logo_sub_content_text: [
-    field of study:\
+    Studienbereich\
     Computational Engineering\
     \
-    Institute
+    Institut
     \
-    Group
+    Arbeitsgruppe
   ],
   logo_tuda: image("logos/tuda_logo.svg"),
   show_pages: (
