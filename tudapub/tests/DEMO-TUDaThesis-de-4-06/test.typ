@@ -179,13 +179,15 @@ Zusätzlich gibt es ab Version 2.01 auch die Möglichkeit den gesamten Text "im 
       year=2022
   }
 
+
 ```
 
 Falls das Argument kein Gleichheitszeichen erkennt, wird der Wert als `printid` gesetzt und keine URN angegeben.
 
 Die printid is die ID-Nummer des TUprints-Eintrags. Die urn ist ein dauerhaft eindeutig zitierfähiger Bezeichner für das Dokument. Die Nummer entspricht bei TUprints der printid mit Ergänzung einer Prüfziffer. Beide Angaben sind in den Details des TUprints-Eintrags zu finden.
 
-*Lizenzangabe*\
+*Lizenzangabe*
+
 Ab Version 2.07 ist es zudem möglich einen eigenen Lizenztext über den Schlüssel `license=<Text>` zu übergeben. Dieser ersetzt dann die voreingestellte Lizenzangabe.
 
 Es existieren (seit v3.08) vorgefertigte Werte für die Option `license`, um eine einfachere Anpassung zu ermöglichen. Diese lauten:
@@ -193,16 +195,16 @@ Es existieren (seit v3.08) vorgefertigte Werte für die Option `license`, um ein
 #grid(
   columns: (1fr, 1fr),
   [
-    `cc-by-4.0` #link("https://creativecommons.org/licenses/by/4.0/")[cc-by-4.0] Voreinstellung seit Version 4.0\
-    #link("https://creativecommons.org/licenses/by-sa/4.0/")[cc-by-sa-4.0]\
-    #link("https://creativecommons.org/licenses/by-nc-sa/4.0/")[cc-by-nc-sa-4.0]\
-    #link("https://creativecommons.org/licenses/by-nc-/4.0/")[cc-by-nc-4.0]\
+    #link("https://creativecommons.org/licenses/by/4.0/")[`cc-by-4.0`] Voreinstellung seit Version 4.0\
+    #link("https://creativecommons.org/licenses/by-sa/4.0/")[`cc-by-sa-4.0`]\
+    #link("https://creativecommons.org/licenses/by-nc-sa/4.0/")[`cc-by-nc-sa-4.0`]\
+    #link("https://creativecommons.org/licenses/by-nc-/4.0/")[`cc-by-nc-4.0`]\
   ],
   [
-    #link("https://creativecommons.org/licenses/by-nd/4.0/")[cc-by-nd-4.0]\
-    #link("https://creativecommons.org/licenses/by-nc-nd/4.0/")[cc-by-nc-nd-4.0]\
-    #link("https://rightsstatements.org/page/InC/1.0/")[inc-1.0] (Ab Version 3.36)\
-    #link("https://creativecommons.org/licenses/by-nc-nd/2.0/")[cc-by-nc-nd-2.0-de]\
+    #link("https://creativecommons.org/licenses/by-nd/4.0/")[`cc-by-nd-4.0`]\
+    #link("https://creativecommons.org/licenses/by-nc-nd/4.0/")[`cc-by-nc-nd-4.0`]\
+    #link("https://rightsstatements.org/page/InC/1.0/")[`inc-1.0`] (Ab Version 3.36)\
+    #link("https://creativecommons.org/licenses/by-nc-nd/2.0/")[`cc-by-nc-nd-2.0-de`]\
   ]
 )
 
