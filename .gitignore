@@ -6,6 +6,7 @@ assets/fonts/*/*
 tudapub*.pdf
 example_*.pdf
 test*.pdf
+tuda_logo.pdf
 
 !example_tudapub.pdf
 
