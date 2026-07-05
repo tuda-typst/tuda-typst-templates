@@ -1,0 +1,115 @@
+% latexmk -interaction=nonstopmode -outdir=build -lualatex
+
+%% This is file `DEMO-TUDaPub.tex' version 4.06 (2026-06-08),
+%% it is part of
+%% TUDa-CI -- Corporate Design for TU Darmstadt
+%% ----------------------------------------------------------------------------
+%%
+%% Copyright (C) 2018--2026 by Marei Peischl <marei@peitex.de>
+%%
+%% ============================================================================
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%% http://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2008/05/04 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The current maintainer of this work is
+%%   Marei Peischl <tuda-ci@peitex.de>
+%%
+%% The development repository can be found at
+%% https://github.com/tudace/tuda_latex_templates
+%% Please use the issue tracker for feedback!
+%%
+%% If you need a compiled version of this document, have a look at
+%% http://mirror.ctan.org/macros/latex/contrib/tuda-ci/doc
+%% or at the documentation directory of this package (if installed)
+%% <path to your LaTeX distribution>/doc/latex/tuda-ci
+%% ============================================================================
+%%
+% !TeX program = lualatex
+%%
+
+% Enable PDF/A via pdfmanagement
+% Temporary workaround for an incompatibility wth the current status of the tagging project, see https://github.com/tudace/tuda_latex_templates/issues/521
+% \DocumentMetadata{
+\RequirePackage{pdfmanagement}
+\SetKeys[document/metadata]{
+	pdfstandard=a-2b,
+	pdfversion=1.7,% 2.0 is possible as well, but PDF/A-2b requires < 2.0
+	lang=en,
+}
+
+\documentclass[
+	english,% Main language as global option
+	accentcolor=9c,% Choose accent color: For a list of available colors see the full tudapub documentation
+%	accept-missing-logos=true,% No error in case logo files are not available
+	logofile=tuda_logo,% In case logo should be replaced
+]{tudapub}
+
+
+%%%%%%%%%%%%%%%%%%%
+% Language setup
+%%%%%%%%%%%%%%%%%%%
+\usepackage[ngerman,main=english]{babel}% load English and German to support a German abstract
+\usepackage{microtype}
+\usepackage[autostyle]{csquotes}% \enquote, to simplify use of quotation marks
+
+%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%
+\usepackage{biblatex}
+\addbibresource{DEMO-TUDaBibliography.bib}% File name of BibTeX database
+
+\hypersetup{% Metadata adjustments, in case these are not set, the data provided for \maketitle will be used
+	pdfauthor=Marei Peischl (peiTeX),
+	pdfcreationdate=2024-05-03,
+	pdfkeywords={TU Darmstadt; Corporate Design; LaTeX}
+}
+
+\title{TUDaPub -- \LaTeX-Paper using TU Darmstadt's Corporate Design}
+\subtitle{The document class tudapub}
+\author{Marei Peischl\thanks{pei\TeX{} \TeX{}nical Solutions}\and der \TeX-Löwe}
+
+
+\titlegraphic{
+%	Titlegraphic might also be set via \includegraphics
+	\color{black!30}\rule{\width}{\height}
+}
+
+% Alternative box layout:
+\addTitleBox{Text, e.g. Institute}
+%\addTitleBoxLogo{example-image}
+%\addTitleBoxLogo*{\includegraphics[width=.3\linewidth]{example-image}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Abstract using the document main language (here English)
+\end{abstract}
+
+\begin{abstract}[german]
+	Weitere Zusammenfassung in einer anderen Sprache (hier Deutsch), sofern benötigt.
+\end{abstract}
+
+\tableofcontents
+% Additional lists like \listoffigures or acronyms might be added here
+
+
+\section{About this file}
+
+\enquote{DEMO-TUDaPub.tex} is an example file for the document class \enquote{tudapub.cls}.
+It is part of TUDa-CI, which is the official template bundle of TU Darmstadt. The original version was inspired by the \enquote{tuddesign} bundle by C.~v.~Loewenich and J.~Werner.
+For more information on class options and usage have a look at the documentation \cite{tuda-ci}.
+
+
+\printbibliography
+
+\end{document}
+%% End of file `DEMO-TUDaPub.tex'.
