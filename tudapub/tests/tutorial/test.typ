@@ -1,20 +1,11 @@
-// imports
 #import "@preview/cetz:0.2.2": canvas, plot
-#import "@preview/glossarium:0.5.4": gls, glspl, make-glossary, print-glossary, register-glossary //make-glossary, print-glossary, gls, glspl
+#import "@preview/glossarium:0.5.4": gls, glspl, make-glossary, print-glossary, register-glossary
 #import "@preview/mitex:0.2.7": *
-
-// add
-// - subpar for sub-figures
 #import "@preview/equate:0.3.3": equate
-
-#show: make-glossary
-
-
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 
-// equation sub numbering
+#show: make-glossary
 #show: equate.with(sub-numbering: true, number-mode: "label")
-
 
 // setup the template
 #show: tudapub.with(

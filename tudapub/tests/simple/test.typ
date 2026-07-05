@@ -1,9 +1,10 @@
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
 #import "@preview/numera:0.0.1": display-numbering, get-numbering, my-numbering, normal-figure, numera, outer-figure-counter-value
+#import "@preview/equate:0.3.3": equate
 
 #show: tudapub.with()
-
 #show: numera(level: 1)
+#show: equate.with(sub-numbering: true, number-mode: "label")
 
 #set math.equation(numbering: (ref: false, ..nums) => {
   let heading = display-numbering(heading, ref: ref)
