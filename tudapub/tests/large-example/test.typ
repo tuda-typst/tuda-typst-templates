@@ -39,9 +39,9 @@
     For instructions on how to set up this template see @sec_usage.
   ],
 
-  bib: bibliography("tests/tudapub/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
+  bib: bibliography("../latex/latex_ref/DEMO-TUDaBibliography.bib", full: true), //, style: "spie")
 
-  logo_tuda: image("assets/logos/tuda_logo.svg"),
+  logo_tuda: image("logos/tuda_logo.svg"),
 
   // logo_institute: image("templates/tudapub/logos/iasLogo.jpeg"),
   // logo_institute_sizeing_type: "width",
@@ -72,7 +72,7 @@
   ),
 
   thesis_statement_pursuant_include_english_translation: false,
-  thesis_statement_pursuant_signature: image("assets/misc/dummy_signature.svg"),
+  thesis_statement_pursuant_signature: image("misc/dummy_signature.svg"),
 
   // pages after outline that will not be included in the outline
   additional_pages_after_outline_table_of_contents: [
