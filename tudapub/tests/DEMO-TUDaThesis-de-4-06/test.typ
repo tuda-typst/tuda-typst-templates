@@ -95,22 +95,29 @@ Es ist zu beachten, dass für die Erzeugung der Titelseite nach Übergabe aller 
 Falls eine Layoutanpassung der Titelseite notwendig ist, gelten die in der TUDa-CI-Dokumentation @tuda-ci geschilderten Optionen. Dort finden sich auch Hinweise zur Platzierung von Sponsorenlogos.
 
 / `\title`: Titel, wird in sehr großer Schrift im obersten Block der Titelseite platziert. Die Schriftgröße ist aufgrund der Häufigkeit für lange Titel kleiner gewählt als für andere Publikationen.
+
 / `\subtitle`: Untertitel. Dieses Feld kann alternativ für eine Übersetzung genutzt werden.
+
 / `\author`: Der Autor/dir Autoren. Mehere Autoren werden durch `\and` getrennt.
+
 / `\studentID`: Matrikelnummer. Nach den Vorgaben des Templates ist diese Angabe immer optional.
+
 / `\birthplace`: Geburtsort.
+
 / `\reviewer`: Gutachter. Mehrere Gutachter werden, wie Autoren durch `\and` getrennt. Die Nummerierung läuft von links nach rechts.
-  *Änderung des Bezeichners*\
-  Die Änderung des Bezeichners ist über ein optionales Argument möglich:
+ 
+*Änderung des Bezeichners*\
+Die Änderung des Bezeichners ist über ein optionales Argument möglich:
 
 ```
       \reviewer[Ersatzbezeichner]{Name1 \and Name2}
+
 ```
 
 Um die numerische Benennung abzuändern ist es zusätzlich möglich statt dem Ersatzbezeichner eine Kommaliste zu übergeben:
 
 ```
-      \reviewer\*[Bezeichner1, Bezeichner2]{Name1 \and Name2}
+      \reviewer*[Bezeichner1, Bezeichner2]{Name1 \and Name2}
 
 ```
 
@@ -118,6 +125,7 @@ In diesem Fall entfällt die Nummerierung vor dem Bezeichner. Soll z. B. den For
 
 ```
       \reviewer[Erstreferent\_in,Koreferent\_in]{Name1 \and Name2}
+
 ```
 
 Für die Erstellung Fachbereichsspezifischer Templates existiert hierfür auch ein Makro, dass ohne den Aufruf von `\reviewer` Änderungen zulässt.
@@ -130,7 +138,9 @@ Für die Erstellung Fachbereichsspezifischer Templates existiert hierfür auch e
 Setzt die ersten beiden Bezeichner. Alternativ ist es auch möglich Positionen einzeln zu benennen `\setupReviewName[1]{Erstferent}`, eine Übergabe als Komma-Liste ist als `\setupReviewName*{Bezeicher1,Bezeicher2}` möglich.
 
 Ab Version 3.26 werden die Gutachter nicht mehr auf der Titelrückseite genannt. Dies wird über die `thesis` Option `reviewer-on-uppertitleback` gesteuert. Voreingestellt ist der Wert `false`.
+
 / `\institution`: Einrichtung. Dieser Eintrag, wie auch die beiden folgenden, werden unterhalb des Logos auf der Titelseite platziert.
+
 / `\department`: Fach-/Studienbereich, allerdings ist die oben genannte Option zu bevorzugen. Die Verarbeitung des Arguments erfolgt jedoch analog.
 
 Dieses Makro verfügt jedoch zusätzlich über die Möglichkeit abweichende Einträge gegenüber den Vorgaben anzugeben. Insbesondere wenn eine gesonderte Formulierung gegenüber der voreingestellten "im Fachbereich" und ihren Varianten notwendig ist. Hierfür liefert `\department` ein optionales Argument:
@@ -139,21 +149,28 @@ Dieses Makro verfügt jedoch zusätzlich über die Möglichkeit abweichende Eint
 ```
   \department[Ersatztext]{Kürzel/Bezeichnung}
 
-```
-
-Zusätzlich gibt es ab Version 2.01 auch die Möglichkeit den gesamten Text "im Fachbereich <Bereichsbezeichnung>", sowie die Angabe in der Infobox auf der Titelseite zu ersetzen. Dies geschieht über die gesternte Variante:
 
 ```
-  \department\*[Text für die Box]{Text zwischen Typ und Autor}
+
+Zusätzlich gibt es ab Version 2.01 auch die Möglichkeit den gesamten Text "im Fachbereich \<Bereichsbezeichnung>", sowie die Angabe in der Infobox auf der Titelseite zu ersetzen. Dies geschieht über die gesternte Variante:
+
+```
+  \department*[Text für die Box]{Text zwischen Typ und Autor}
+
 
 ```
 
 / `\group`: Arbeitsgruppe.
+
 / `\submissiondate`: Datum der Einreichung
+
 / `\examdate`: Datum der Disputation
+
 / `\date`: Beliebiges Datum. Wird über `datename` bezeichnet.
+
 / `\publishers`: Wird hier für die Ortsangabe verwendet und ist mit "Darmstadt", bzw. "Darmstadt, Technische Universität Darmstadt" (bei Dissertationen) vorbelegt.
-/ `\tuprints`: <page:tuprints> Übergabe der Daten, sofern das Dokument über TUprints Veröffentlicht werden soll.
+
+/ `\tuprints`: Übergabe der Daten, sofern das Dokument über TUprints Veröffentlicht werden soll.
 
 ```
   \tuprints{
