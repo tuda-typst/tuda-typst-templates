@@ -5,7 +5,7 @@
 
 // add
 // - subpar for sub-figures
-#import "@preview/equate:0.1.0": equate
+#import "@preview/equate:0.3.3": equate
 
 #show: make-glossary
 
