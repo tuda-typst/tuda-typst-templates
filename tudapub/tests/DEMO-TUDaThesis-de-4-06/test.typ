@@ -105,7 +105,7 @@ Falls eine Layoutanpassung der Titelseite notwendig ist, gelten die in der TUDa-
 / `\birthplace`: Geburtsort.
 
 / `\reviewer`: Gutachter. Mehrere Gutachter werden, wie Autoren durch `\and` getrennt. Die Nummerierung läuft von links nach rechts.
- 
+
 *Änderung des Bezeichners*\
 Die Änderung des Bezeichners ist über ein optionales Argument möglich:
 
@@ -205,7 +205,7 @@ Es existieren (seit v3.08) vorgefertigte Werte für die Option `license`, um ein
     #link("https://creativecommons.org/licenses/by-nc-nd/4.0/")[`cc-by-nc-nd-4.0`]\
     #link("https://rightsstatements.org/page/InC/1.0/")[`inc-1.0`] (Ab Version 3.36)\
     #link("https://creativecommons.org/licenses/by-nc-nd/2.0/")[`cc-by-nc-nd-2.0-de`]\
-  ]
+  ],
 )
 
 Die Einführung dieser Option war Bestandteil der Vorbereitung zur Anpassung der Standardlizenz.
@@ -328,7 +328,7 @@ Im folgenden findet sich die Bedeutung der einzelnen Optionen:
   Wird ein Typus angegeben, der nicht erkannt wird, so wird der Text direkt übergeben. Notwendige Titelfelder über den Titel hinaus gibt es in diesem Fall nicht.
 / `dr=<Kürzel>`: Lädt einen der vordefinierten Texte für die Titelseite. Als Werte stehen bislang `rernat`, `rerpol`, `ing` und `phil` zur Verfügung. Zum Beispiel lädt der Wert `phil`:
   #quote[
-      Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)
+    Zur Erlangung des Grades eines Doktor der Philosophie (Dr. phil.)
   ]
   Sofern keiner dieser Werte dem angestrebten Titel entspricht, kann ein Text direkt übergeben werden.
 
@@ -353,7 +353,7 @@ Im folgenden findet sich die Bedeutung der einzelnen Optionen:
   [matgeo], [-> Material- und Geowissenschaften],
   [math], [-> Mathematik],
   [phys], [-> Physik],
-  [wi], [-> Rechts- und Wirtschaftswissenschaften]
+  [wi], [-> Rechts- und Wirtschaftswissenschaften],
 )
 
 Neben den Fachbereichen existieren für Abschlussarbeiten, die keine Dissertationen sind, auch Studienbereiche.
@@ -366,7 +366,7 @@ Falls das Kürzel nicht als Fachbereich hinterlegt ist, wird automatisch auf die
   [ese], [-> Energy Science and Engineering],
   [ist], [-> Information Systems Engineering],
   [mech], [-> Mechanik],
-  [metro], [-> Mechatronik]
+  [metro], [-> Mechatronik],
 )
 
 Falls etwas anderes als eines dieser Kürzel übergeben wird, wird der Text direkt verwendet und eine entsprechende Warnung ausgegeben.
