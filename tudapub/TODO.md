@@ -5,8 +5,6 @@
 * [ ] numbering/labeling of sub-equations (that are aligned with the other sub-equations)
 * [x] remove page numbers in footer before ~~and at table of contents~~
 * [x] fix first-level heading page is wrong
-  * in the outline, the page of the first-level heading is sometimes the previous page of the heading. Just appears in combination with `figure_numbering_per_chapter`.
-* [ ] fix referencing figures respect figure numbering when using `figure_numbering_per_chapter`
 * [ ] first-level headings should be referenced as 'Chapter' not as 'Sections'
 * [ ] add pages for:
   * [x] abstract

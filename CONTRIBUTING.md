@@ -13,6 +13,14 @@ To run tests / examples against the released version, simply start your editor /
 code .
 ```
 
+## Testing
+
+```
+cargo install --locked tytanic
+cd tudapub
+tt --font-path ../assets/fonts/ run
+```
+
 ## VS Code Setup (Optional)
 
 The repository includes recommended extensions in [.vscode/extensions.json](.vscode/extensions.json) and shared defaults in [.vscode/settings.default.json](.vscode/settings.default.json).
