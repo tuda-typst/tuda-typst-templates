@@ -8,11 +8,15 @@
 #import "common/addons/difficulty-points.typ": difficulty-stars
 #import "common/colorutil.typ": calc-contrast, calc-relative-luminance
 #import "common/format.typ": text-roboto
+#import "common/lang.typ": check-locale
 #import "title.typ": *
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+=======
 #import "locales.typ": *
 #import "info-layout.typ" as info-layout
 #import "task-format.typ": format-task
 #import "headline.typ": resolve-headline
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 
 #let design-defaults = (
   accentcolor: "0b",
@@ -28,6 +32,15 @@
 /// #show: tudaexercise.with(<options>)
 /// ```
 ///
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+/// - exercise-type ("exercise", "submission"): The type of exercise. This modifies the subline 
+///   (content below the header):
+///    - `exercise` shows info-fields `term`, `date` and `sheet`
+///    - `submission` additionally shows fields `group`, `tutor` and `lecturer` on the 
+///       right-hand side
+/// 
+=======
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 /// - language ("en", "de"): The language for dates and certain keywords
 ///
 /// - margins (dictionary): The page margins, possible entries: `top`, `left`,
@@ -49,17 +62,48 @@
 /// - sublogo (content): A logo of an institution or similar for the title.
 ///
 /// - info (dictionary): Info about the document mostly used in the title.
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+/// 
+///   The following items are used by the `exercise-type` `exercise`:
+=======
 ///
 ///   By default accepts the following items:
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 ///   - `title`
 ///   - `subtitle`
 ///   - `author`
 ///
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+///   Additionally the following items are used by the `exercise-type` `submission`:
+=======
 ///   Additionally the following items are used by the `exercise` info-layout:
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 ///   - `term`
 ///   - `date`
 ///   - `sheet`
 ///
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+///   For free customization of the subline (see `info-layout`) use key `custom-subline` and
+///   pass any content (`[...]`) as value.
+///   
+///   Note: Items mapped to `none` are ignored aka. internally the dict is processed without
+///   them. Furthermore items `term`, `date` and `sheet` will only show when using 
+///   `exercise-type: "submission"`
+/// 
+/// - info-layout (dict, boolean): Defines the content's layout of the subline in the title
+///   card.
+///   By default the layout is defined in the following dict:
+///     ```typst
+///     (left: ("term", "date", "sheet", "group"),
+///     right: ("tutor", "lecturer", "A Custom Key"))
+///     ```
+///   Left aligns left, and vice versa. The order of the keywords in the list, defines the 
+///   order of the info displayed in the subline.
+///   For complete customization set `info-layout: false` and define any content in the
+///   `info` dict under the key `custom-subline`
+/// 
+/// - design (dictionary): Options for the design of the template. Possible entries: 
+=======
 ///   Other `info-layouts`s may use more options, which can be added here. See the documentation
 ///   of the `info-layout` for corresponding items.
 ///
@@ -73,6 +117,7 @@
 ///   fitting to your needs you can also pass raw content and completely customize it yourself.
 ///
 /// - design (dictionary): Options for the design of the template. Possible entries:
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 ///   `accentcolor`, `colorback` and `darkmode`
 ///
 /// - task-prefix (auto, str, array, content): How the task numbers are prefixed. If unset or auto,
@@ -106,6 +151,8 @@
 ///
 /// - body (content):
 #let tudaexercise(
+  exercise-type: "exercise",
+
   language: "en",
 
   margins: tud_exercise_page_margin,
@@ -130,7 +177,14 @@
     lecturer: none,
   ),
 
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+  info-layout: (
+    left: ("term", "date", "sheet", "group"),
+    right: ("tutor", "lecturer")
+  ),
+=======
   info-layout: info-layout.exercise(),
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 
   design: design-defaults,
 
@@ -237,6 +291,12 @@
     leading: 4.8pt, //0.42em//4.7pt   // line spacing
     spacing: 1.1em,
   )
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+  
+  // Check if language is supported or even valid
+  check-locale(language)
+=======
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
 
   set text(
     font: "XCharter",
@@ -249,10 +309,13 @@
     lang: language,
   )
 
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+=======
   show raw: set text(spacing: 100%)
 
   let dict = get-locale-dict(language)
 
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
   set heading(numbering: (..numbers) => {
     let len = numbers.pos().len()
     assert(len < 4, message: "Headings beyond level 3 need to supply their own numbering.")
@@ -273,7 +336,16 @@
     let c = counter(heading).display(it.numbering)
     let prefix = format-task(task-prefix, c, task-separator, task-prefix-subtasks, it, dict)
     if it.level == 1 {
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+      let final-prefix = if (task-prefix != none) {
+        task-prefix
+      } else {
+        l("task") + " "
+      }
+      tuda-section[#final-prefix#c: #it.body]
+=======
       tuda-section[#prefix #it.body]
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
     } else if it.level == 2 {
       tuda-subsection(ruled: ruled_subtask)[#prefix #it.body]
     } else {
@@ -350,8 +422,13 @@
         tud_title_logo_height,
         info,
         info-layout,
+<<<<<<< HEAD:templates/tudaexercise/template/tudaexercise.typ
+        exercise-type
+        )
+=======
         dict,
       )
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/template/tudaexercise.typ
     }
 
     check-font-exists("Roboto")
@@ -401,12 +478,11 @@
   let ctxpoints-name-single = points-name-single
   let ctxpoints-name-plural = points-name-plural
   if points-name-single == auto or points-name-plural == auto {
-    let dict = get-locale-dict(text.lang)
     if points-name-single == auto {
-      ctxpoints-name-single = dict.point_singular
+      ctxpoints-name-single = l("point_singular")
     }
     if points-name-plural == auto {
-      ctxpoints-name-plural = dict.point_plural
+      ctxpoints-name-plural = l("point_plural")
     }
   }
   assert.ne(points, none, message: "points must be provided")
@@ -438,7 +514,7 @@
   ..otherargs,
 ) = context {
   let ctxdifficulty-name = if difficulty-name == auto {
-    get-locale-dict(text.lang).difficulty
+    l("difficulty")
   } else {
     difficulty-name
   }
