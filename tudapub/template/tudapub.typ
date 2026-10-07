@@ -474,6 +474,23 @@
     } else { it }
   }
 
+  // fix incorrect figure reference text when figure_numbering_per_chapter is true
+  show ref: it => {
+    let el = it.element
+    if figure_numbering_per_chapter and el != none and el.func() == figure {
+      let kind = el.kind
+      // only redirect the originals, not the already-prefixed i-figured twins
+      if type(kind) != str or not kind.starts-with(i-figured._prefix) {
+        let prefixes = ("image": "fig:", "table": "tbl:", "raw": "lst:")
+        let new_label = label(prefixes.at(repr(kind), default: "fig:") + str(it.target))
+        if query(new_label).len() > 0 {
+          return ref(new_label, supplement: it.supplement)
+        }
+      }
+    }
+    it
+  }
+
   // configure footnotes
   set footnote.entry(
     separator: line(length: 40%, stroke: 0.5pt),
