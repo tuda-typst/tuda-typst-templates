@@ -1,7 +1,7 @@
 #import "props.typ": *
 #import "format.typ": *
 #import "tudacolors.typ": tuda_colors
-
+#import "lang.typ": lang
 
 // note the page needs to have the correct margins.
 // Set these up before
@@ -82,7 +82,7 @@
   let submission_date = format-date(date_of_submission, language)
 
   let thesis_type_text = {
-    if lower(thesis_type) == "master" { "Master" } else if lower(thesis_type) == "bachelor" { "Bachelor" } else {
+    if lower(thesis_type) == "master" {lang("master_thesis")} else if lower(thesis_type) == "bachelor" {lang("bachelor_thesis")} else {
       panic("thesis_type has to be either 'master' or 'bachelor'")
     }
   }
@@ -141,13 +141,13 @@
           #subtitle
           \
           #set text(weight: "regular")
-          #thesis_type_text thesis by #author
+          #thesis_type_text #lang("by") #author
           \
-          Date of submission: #submission_date
+          #lang("date_of_submission") #submission_date
           \
           \
           #for (i, reviewer_name) in reviewer_names.enumerate() [
-            #(i + 1). Review: #reviewer_name
+            #(i+1). #lang("review"): #reviewer_name
             \
           ]
           // looked better with -5pt (but -8pt fits latext template)

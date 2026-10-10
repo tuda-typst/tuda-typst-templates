@@ -1,9 +1,15 @@
+<<<<<<< HEAD:templates_examples/tudaexercise/main.typ
+#import "@local/athena-tu-darmstadt-exercise:0.2.0": (
+  subtask, task, text-roboto, tuda-gray-info, tuda-section, tuda-subsection, tudaexercise, task-points-header, point-format, difficulty-format, tuda-difficulty-stars,
+=======
 #import "@preview/athena-tu-darmstadt-exercise:0.3.0": (
   difficulty-format, info-layout, point-format, subtask, task, task-points-header, text-roboto, tuda-difficulty-stars,
   tuda-gray-info, tuda-section, tuda-subsection, tudaexercise,
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/example/main.typ
 )
 
 #show: tudaexercise.with(
+  exercise-type: "exercise", // Choose between 'exercise' and 'submission'
   language: "en",
   info: (
     title: "Usage of TUDaExercise",
@@ -16,9 +22,20 @@
     group: 1,
     tutor: "Dr. John Smith",
     lecturer: "Prof. Dr. Jane Doe",
+    // Add custom key values pairs like this:
+    // "A Custom Key": "A Custom Value"
   ),
+<<<<<<< HEAD:templates_examples/tudaexercise/main.typ
+  // If you want to include custom keys in the info, uncomment the info-layout as shown below and expand it with the key of your key-value pair.
+  // info-layout: (
+  //   left: ("term", "date", "sheet", "group"),
+  //   right: ("tutor", "lecturer", "A Custom Key")
+  // ),
+
+=======
   info-layout: info-layout.exercise(),
   headline: ("title", "name", "id"),
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/example/main.typ
   logo: image("logos/tuda_logo_replace.svg"),
   design: (
     accentcolor: "0b",
@@ -56,8 +73,9 @@ Additionally, a partner or institution logo can be passed using the `sublogo` pa
 = Configuring the title
 All options of the title can be controlled using the `info` dictionary:
 
-```
+```typst
 info: (
+  exercise-type: "exercise", // You can choose between 'exercise' and 'submission'
   title: "The big title",
   header_title: "The title in the page header",
   subtitle: "The smaller title below",
@@ -76,12 +94,35 @@ info: (
   group: "05", // the lecture group you are in
   tutor: "John", // the tutor of your group
   lecturer: "Karpfen", // the lecturer of the module that this assignment is for
+  // "A Custom Key": "A Custom Value" // Adding a custom key values pair
 )
 ```
-The options can also be left empty. Then their corresponding item will not appear.
+The options can also be left empty. Then their corresponding item will not appear. Please also note, that the options `group, tutor` and `lecturer` will only show up if choosing the `exercise-type: "submission"`. 
 
+If you add a custom key, want to modify what is displayed or where it is displayed in the space below the title, include the parameter `info-layout` like shown in the example below:
+```typst
+#show: tudaexercise.with(
+  // [...]
+  info: (
+    // [...]
+    "My Custom Key": "My Custom Value" // Adding a custom key values pair
+  )
+  // If you want to include custom keys in the info, uncomment the info-layout as shown below and expand it with the key of your key-value pair.
+  info-layout: (
+    left: ("term", "date", "sheet", "group"),
+    right: ("tutor", "lecturer", "My Custom Key")
+  ),
+  // [...]
+)
+```
+The value of the key-value-pair can also be any #link("https://typst.app/docs/reference/foundations/content/", [#underline("content")])  (e.g. an image: `"My Custom Key": [#image("path/to/image.png")]`). Only the keys specified in `info-layout` will show up in the info box.
+
+<<<<<<< HEAD:templates_examples/tudaexercise/main.typ
+For absolute freedom within the subline cusomization set `info-layout: none` and pass any content you like in the info dictionary using the key `custom-subline`.
+=======
 Additionally there is the `info-layout` field which controls the subline of the title's look. By default this is set to the exercise version. There also is a submission version which displays the submission's additional information fields. Or, if both don't fit your needs, you can also pass raw content to the field and control the subline to your will. \
 For more info see the exported `info-layout` module of this template.
+>>>>>>> 4f0203d7e0f3968bd1dc4cfc7c733e515188f106:tudaexercise/example/main.typ
 
 If you do not want to have a title card you can also set `show-title` to `false`.
 

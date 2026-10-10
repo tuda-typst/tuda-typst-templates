@@ -1,0 +1,24 @@
+languages = ["en", "de"]
+
+[translations]
+# tudapub
+master_thesis.en = "Master thesis"
+master_thesis.de = "Master Thesis"
+
+bachelor_thesis.en = "Bachelor thesis"
+bachelor_thesis.de = "Bachelor Thesis"
+
+report.en = "Report"
+report.de = "Bericht"
+
+by.en = "by"
+by.de = "von"
+
+date_of_submission.en = "Date of submission:"
+date_of_submission.de = "Abgabedatum:"
+
+contents.en = "Contents"
+contents.de = "Inhaltsverzeichnis"
+
+review.en = "Review"
+review.de = "Korrektur"
