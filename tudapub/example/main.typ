@@ -1,4 +1,5 @@
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
+#import "@preview/numera:0.1.0": heading-dependent, numera
 
 // setup the template
 #show: tudapub.with(
@@ -69,9 +70,10 @@
   ],
 )
 
-
-
-
+// Per chapter figure numbering. See https://typst.app/universe/package/numera/ for configuration.
+#let level = 1
+#show: numera(level: level)
+#set figure(numbering: heading-dependent(level, "1."))
 
 // test content
 = First Chapter
