@@ -168,13 +168,6 @@
   // Use 'Roboto Slab' instead of 'Robot' font for figure captions.
   figure_caption_font_roboto_slab: true,
 
-  // Figures have the numbering <chapter-nr>.<figure-nr>
-  figure_numbering_per_chapter: true,
-
-  // Equations have the numbering <chapter-nr>.<equation-nr>
-  // @todo This seems to increase the equation number in steps of 2 instead of one
-  equation_numbering_per_chapter: false,
-
   // content.
   body,
 ) = context {
