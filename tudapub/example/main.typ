@@ -43,11 +43,6 @@
   margin: tud_page_margin_big,
 
   // outline_table_of_contents_style: "adapted",
-  //
-  // Set space above the heading to zero if it's the first element on a page.
-  // This is currently implemented as a hack (check the y pos of the heading).
-  // Thus when you experience compilation problems (slow, no convergence) set this to false.
-  reduce_heading_space_when_first_on_page: false,
 
   // Which pages to insert
   // Pages can be disabled individually.

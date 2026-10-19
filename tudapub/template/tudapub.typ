@@ -146,11 +146,6 @@
   // The heading with the lowest level has level 1.
   outline_table_of_contents_max_level: 3,
 
-  // Set space above the heading to zero if it's the first element on a page.
-  // This is currently implemented as a hack (check the y pos of the heading).
-  // Thus when you experience compilation problems (slow, no convergence) set this to false.
-  reduce_heading_space_when_first_on_page: false,
-
   // How the table of contents outline is displayed.
   // Either "adapted":    use the default typst outline and adapt the style
   // or     "rewritten":  use own custom outline implementation which better reproduces the look of the original latex template.
@@ -284,32 +279,12 @@
   set heading(numbering: "1.1")
 
   // default heading (handle cases with level >= 3 < 5)
-  show heading: it => context {
-    if it.level > 5 {
-      panic("Just heading with a level < 4 are supported.")
-    }
-
-    let heading_font_size = {
-      if it.level <= 3 { 11.9pt } else { 10.9pt }
-    }
-
-    // change heading margin depending on its the first on the page
-    let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
-      heading_3_margin_before,
-      here(),
-      content_page_margin_full_top,
-      enable: reduce_heading_space_when_first_on_page,
-    )
-
-    set text(
-      font: "Roboto",
-      fallback: false,
-      weight: "bold",
-      size: heading_font_size,
-    )
-    block(breakable: false, inset: 0pt, outset: 0pt)[
+  show heading: it => {
+    if it.level > 5 { panic("Just heading with a level < 4 are supported.") }
+    set text(font: "Roboto", fallback: false, weight: "bold",
+            size: if it.level <= 3 { 11.9pt } else { 10.9pt })
+    block(above: 1.2em + heading_3_margin_before, breakable: false, inset: 0pt, outset: 0pt)[
       #stack(
-        v(heading_margin_before),
         block[
           #if it.level <= heading_numbering_max_level and it.outlined and it.numbering != none {
             counter(heading).display(it.numbering)
@@ -368,34 +343,13 @@
   }
 
   // heading level 2
-  show heading.where(
-    level: 2,
-  ): it => context {
-    // change heading margin depending if its the first on the page
-    let (heading_margin_before, is_first_on_page) = get-spacing-zero-if-first-on-page(
-      heading_2_margin_before,
-      here(),
-      content_page_margin_full_top,
-      enable: reduce_heading_space_when_first_on_page,
-    )
-
-    set text(
-      font: "Roboto",
-      fallback: false,
-      weight: "bold",
-      size: 14.3pt,
-    )
-    //set block(below: 0.5em, above: 2em)
+  show heading.where(level: 2): it => {
+    set text(font: "Roboto", fallback: false, weight: "bold", size: 14.3pt)
     block(
-      breakable: false,
-      inset: 0pt,
-      outset: 0pt,
-      fill: none,
-      //above: heading_margin_before,
-      //below: 0.6em //+ 10pt
+      above: 1.2em + heading_2_margin_before,   // weak, so dropped at the top of a page
+      breakable: false, inset: 0pt, outset: 0pt, fill: none,
     )[
       #stack(
-        v(heading_margin_before),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),
         v(heading_2_line_spacing),
         block[
@@ -404,8 +358,6 @@
             h(2pt)
           }
           #it.body
-          //[is_first_on_page: #is_first_on_page]
-          //#loc.position() #content_page_margin_full_top
         ],
         v(heading_2_line_spacing),
         line(length: 100%, stroke: tud_heading_line_thin_stroke),

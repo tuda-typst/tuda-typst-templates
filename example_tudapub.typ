@@ -60,7 +60,6 @@
   // ),
 
   //outline_table_of_contents_style: "adapted",
-  //reduce_heading_space_when_first_on_page: false
 
   // Which pages to insert
   // Pages can be disabled individually.
@@ -438,12 +437,6 @@ In the following, we show the show-command of this template with all doc and def
   // In the outline the max heading level will be shown.
   // The heading with the lowest level has level 1.
   outline_table_of_contents_max_level: 3,
-
-  // Set space above the heading to zero if it's the first element on a page.
-  // This is currently implemented as a hack (check the y pos of the heading).
-  // Thus when you experience compilation problems (slow, no convergence) set this to false.
-  reduce_heading_space_when_first_on_page: false,
-
 
   // How the table of contents outline is displayed.
   // Either "adapted":    use the default typst outline and adapt the style
