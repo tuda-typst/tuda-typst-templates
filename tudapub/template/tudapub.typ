@@ -4,7 +4,7 @@
 #import "common/tudapub_title_page.typ": *
 #import "common/thesis_statement_pursuant.typ": *
 #import "common/util.typ": *
-
+#import "@preview/numera:0.1.0": normal-figure
 
 // This function gets your whole document as its `body` and formats it.
 #let tudapub(
@@ -277,6 +277,12 @@
   ///////////////////////////////////////
   // headings
   set heading(numbering: "1.1")
+
+  show figure: set place(clearance: 0em)
+  show figure.where(kind: image): set place(clearance: 3em)
+  show figure: set figure(gap: 1em)
+
+  show figure.caption: set align(left)
 
   // default heading (handle cases with level >= 3 < 5)
   show heading: it => {
