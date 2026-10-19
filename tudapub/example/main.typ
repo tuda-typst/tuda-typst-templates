@@ -1,4 +1,5 @@
 #import "@preview/athena-tu-darmstadt-thesis:0.1.2": *
+#import "@preview/numera:0.1.0": heading-dependent, numera
 
 // setup the template
 #show: tudapub.with(
@@ -42,7 +43,6 @@
   margin: tud_page_margin_big,
 
   // outline_table_of_contents_style: "adapted",
-  // figure_numbering_per_chapter: false
   //
   // Set space above the heading to zero if it's the first element on a page.
   // This is currently implemented as a hack (check the y pos of the heading).
@@ -69,9 +69,10 @@
   ],
 )
 
-
-
-
+// Per chapter figure numbering. See https://typst.app/universe/package/numera/ for configuration.
+#let level = 1
+#show: numera(level: level)
+#set figure(numbering: heading-dependent(level, "1."))
 
 // test content
 = First Chapter
