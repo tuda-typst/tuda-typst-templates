@@ -282,7 +282,19 @@
   show figure.where(kind: image): set place(clearance: 3em)
   show figure: set figure(gap: 1em)
 
-  show figure.caption: set align(left)
+  show figure: fig => {
+    show figure.caption: it => context {
+        let label = if it.numbering != none {
+          [#if it.supplement != none [#it.supplement ]#it.counter.display(it.numbering, at: fig.location())#it.separator]
+        }
+        let w = if label != none { measure(label).width } else { 0pt }
+        block(width: 100%)[
+          #set align(start)
+          #par(hanging-indent: w)[#label#it.body]
+        ]
+    }
+    fig
+  }
 
   // default heading (handle cases with level >= 3 < 5)
   show heading: it => {
