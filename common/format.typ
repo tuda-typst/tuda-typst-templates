@@ -3,7 +3,7 @@
 } else if language == "de" {
   date.display("[day].[month repr:numerical].[year]")
 } else {
-  date.display("[month repr:long] [day], [year]")
+  date.display("[month repr:long] [day padding:none], [year]")
 }
 
 #let text-roboto(body) = {
