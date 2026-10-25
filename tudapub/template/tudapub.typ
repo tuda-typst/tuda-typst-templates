@@ -20,6 +20,10 @@
   // E.g. abstract: [My abstract text...]
   abstract: none,
 
+  // Adds an appendix after the main content (and bibliography)
+  // E.g. appendix: [My appendix text...]
+  appendix: none,
+
   // "master" or "bachelor" thesis
   thesis_type: "master",
 
@@ -602,5 +606,14 @@
     //#bibliography(bibliography_path, style: "ieee", ..bibliography_params_dict)
     #set bibliography(style: "ieee")
     #bib
+  ]
+
+  if appendix != none [
+    #set heading(numbering: "A.1", supplement: [Appendix], bookmarked: true, outlined: true)
+    #counter(heading).update(0)
+
+    = Appendix <appendix>
+    #set heading(outlined: false)
+    #appendix
   ]
 }
